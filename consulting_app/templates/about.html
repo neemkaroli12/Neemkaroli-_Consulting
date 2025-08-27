@@ -1,0 +1,226 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+
+<style>
+
+
+/* Page Title Section */
+.page-title {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                url("{% static 'images/about2.jpg' %}") center center / cover no-repeat;
+    color: white;
+    padding: 120px 20px;
+    text-align: center;
+}
+.page-title h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+.breadcrumb {
+    background: transparent;
+    padding: 0;
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    text-align: center; /* Center text */
+    display: flex;
+    justify-content: center; /* Align items center horizontally */
+    gap: 8px; /* Optional spacing between breadcrumb items */
+    flex-wrap: wrap;
+}
+.breadcrumb li {
+    display: inline;
+}
+.breadcrumb a {
+    color: #f0f0f0;
+    text-decoration: none;
+}
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+.breadcrumb .active {
+    color: #ccc;
+}
+
+
+/* Intro Section */
+.section-snippet-services {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+.section-snippet-services .lead {
+    font-size: 1.2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* Image + Text Section */
+.imageblock {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 60px 0;
+    align-items: center;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.imageblock__content {
+    flex: 1 1 45%;
+    padding: 40px 40px 40px 60px; /* Adds space around the image */
+    box-sizing: border-box; /* Ensures padding doesn't break layout */
+}
+
+.imageblock__content img {
+    width: 100%;
+    height: auto; /* Use auto to maintain aspect ratio */
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.imageblock .text-content {
+    flex: 1 1 55%;
+    padding: 40px;
+}
+.imageblock p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+.imageblock ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+.imageblock li {
+    margin-bottom: 10px;
+     font-size: 1.1rem;
+}
+
+/* Cards Section */
+.section-snippet-benefits {
+    background-color: #f0f4f8;
+    padding: 80px 20px;
+    text-align: center;
+}
+.section-snippet-benefits h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    color: #222;
+}
+.section-snippet-benefits .card {
+    width: 300px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+    padding: 20px;
+}
+.section-snippet-benefits .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+.section-snippet-benefits .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+}
+.section-snippet-benefits .card:hover img {
+    transform: scale(1.05);
+}
+.section-snippet-benefits .card h5 {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.section-snippet-benefits .card p {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .imageblock {
+        flex-direction: column-reverse;
+    }
+    .imageblock .text-content {
+        padding: 20px;
+    }
+}
+</style>
+
+<!-- Page Title -->
+<section class="page-title">
+    <h1>About Us</h1>
+    <ol class="breadcrumb">
+        <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
+        <li class="active">|About Us</li>
+    </ol>
+</section>
+
+<!-- Intro Section -->
+<section class="section-snippet-services">
+    <p class="lead">
+        With a user-centric approach and a focus on customers and market demand, Neemkaroli Consulting builds models that blend technical excellence, digital innovation, and operational flexibility to bring your vision to life.
+    </p>
+</section>
+
+<!-- Image + Text -->
+<section class="imageblock">
+    <div class="imageblock__content">
+        <img src="{% static 'images/about2.jpg' %}" alt="About NKC">
+    </div>
+    <div class="text-content">
+        <p>
+            NKC is a Certified Microsoft Partner and a trailblazer in IT implementation, offering expert consultation services globally. We empower businesses through:
+        </p>
+        <ul>
+            <li>Established in 2017 in Noida; new Dev Center in Haldwani, Uttarakhand.</li>
+            <li>Certified IT consultation in Dynamics 365 Business Central & FinOps.</li>
+            <li>Prince Level Trainer in Microsoft Dynamics 365 Business Central & FinOps.</li>
+            <li>Trusted Dynamics 365 partner in our operating marketplaces.</li>
+            <li>Empathetic, diverse team with a solution-oriented mindset.</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Cards Section -->
+<section class="section-snippet-benefits">
+    <h3>Find Out More</h3>
+    <div class="row" style="display:flex; gap:30px; justify-content:center; flex-wrap:wrap;">
+        <div class="col-sm-4 card">
+            <a href="#">
+                <img src="{% static 'images/about2.jpg' %}" alt="Vision & Mission">
+                <h5>VISION & MISSION</h5>
+                <p>Learn about our guiding purpose and long-term goals.</p>
+            </a>
+        </div>
+        <div class="col-sm-4 card">
+            <a href="#">
+                <img src="{% static 'images/about2.jpg' %}" alt="Values">
+                <h5>VALUES</h5>
+                <p>Discover the principles that drive our decisions and culture.</p>
+            </a>
+        </div>
+        <div class="col-sm-4 card">
+            <a href="#">
+                <img src="{% static 'images/about2.jpg' %}" alt="People & Culture">
+                <h5>PEOPLE & CULTURE</h5>
+                <p>Meet the people behind NKC and our inclusive culture.</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
