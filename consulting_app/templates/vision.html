@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}Vision And Mission{% endblock %}
+{% block content %}
+<style>
+    .page-title {
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                    url("{% static 'images/home-bg-8.jpg' %}") center center / cover no-repeat;
+        color: white;
+        padding: 120px 20px;
+        text-align: center;
+    }
+    .page-title h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .breadcrumb {
+        background: transparent;
+        padding: 0;
+        margin-bottom: 0;
+        font-size: 1.1rem;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        color: #f0f0f0;
+    }
+    .breadcrumb li {
+        display: inline;
+    }
+    .breadcrumb a {
+        color: #f0f0f0;
+        text-decoration: none;
+    }
+    .breadcrumb a:hover {
+        text-decoration: underline;
+    }
+    .breadcrumb .active {
+        color: #ccc;
+    }
+
+    .vis-container {
+        padding: 60px 20px;
+    }
+    .vision, .mission {
+        padding: 20px;
+    }
+    .vision h2, .mission h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+        border-left: 4px solid #3a5594ff;
+        padding-left: 12px;
+    }
+    .vision p, .mission p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #555;
+        text-align: justify;
+    }
+
+    @media (max-width: 768px) {
+        .page-title h1 {
+            font-size: 2.5rem;
+        }
+        .vision h2, .mission h2 {
+            font-size: 1.5rem;
+        }
+        .vision p, .mission p {
+            font-size: 1rem;
+        }
+    }
+</style>
+
+<section class="page-title">
+    <h1>Vision And Mission</h1>
+    <ol class="breadcrumb">
+        <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
+        <li><a href="{% url 'consulting_app:about' %}">|About</a></li>
+        <li class="active">|Vision And Mission</li>
+    </ol>
+</section>
+<div class="container vis-container">
+    <div class="row">
+        <div class="col-lg-6 vision">
+            <h2>Vision</h2>
+            <p>To establish a socially responsible, glocal , and enterprising collective, recognized and reputed for its excellence in IT innovation, ethical practices, and user-centric approach to service providing.</p>
+        </div>
+        <div class="col-lg-6 mission">
+            <h2>Mission</h2>
+            <p>To be the most spearheading, adaptive, professional employer and service provider by timely and seamlessly delivering quality products and services, whilst upholding the highest standards of ethics and governance.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
