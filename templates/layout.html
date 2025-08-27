@@ -90,9 +90,10 @@
         <li class="nav-item"><a class="nav-link " href="{% url 'consulting_app:home_two' %}">Home</a></li>
         
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle px-3" href="{% url 'consulting_app:about' %}" id="servicesDropdown"
+          <a class="nav-link dropdown-toggle px-3" href="#" id="servicesDropdown"
              role="button" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
           <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'consulting_app:about' %}">About Us</a></li>
             <li><a class="dropdown-item" href="#">Vision And Mission</a></li>
             <li><a class="dropdown-item" href="#">Management</a></li>
             
