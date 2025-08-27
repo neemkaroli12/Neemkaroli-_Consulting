@@ -27,6 +27,12 @@
        color: #fff!important;
        font-size: 1.5rem;
     }
+    .dropdown-menu{
+      background-color: #051946ff; 
+    }
+    .dropdown-item{
+      color: #fff;
+    }
     .footer-custom {
       background-color: #1e3a5f;
       color: #ffffff;
@@ -53,7 +59,7 @@
   <div class="row align-items-center text-center text-lg-start">
     <div class="col-12 col-lg-2 d-flex justify-content-center justify-content-lg-start mb-2 mb-lg-0">
       <a class="navbar-brand fw-bold text-dark" href="#">
-        <img src="{% static 'images/logo.png' %}" alt="Logo" height="60" />
+        <img src="{% static 'images/logo.png' %}" alt="Logo" height="80" />
       </a>
     </div>
     <div class="col-12 col-lg-8 d-flex flex-column flex-lg-row justify-content-center align-items-center mb-2 mb-lg-0">
@@ -94,7 +100,7 @@
             <li><a class="dropdown-item" href="#">FAQ</a></li>
           </ul>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" >
           <a class="nav-link dropdown-toggle px-3" href="#" id="solutionsDropdown"
              role="button" data-bs-toggle="dropdown" aria-expanded="false">Business Solutions</a>
           <ul class="dropdown-menu">
@@ -102,7 +108,7 @@
             <li><a class="dropdown-item" href="#">CRM</a></li>
           </ul>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" >
           <a class="nav-link dropdown-toggle px-3" href="#" id="newsDropdown"
              role="button" data-bs-toggle="dropdown" aria-expanded="false">Newsroom</a>
           <ul class="dropdown-menu">
