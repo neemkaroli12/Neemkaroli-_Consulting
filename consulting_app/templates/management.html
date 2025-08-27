@@ -1,0 +1,150 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}Management{% endblock %}
+{% block content %}
+
+<style>
+    .page-title {
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                    url("{% static 'images/home-bg-8.jpg' %}") center center / cover no-repeat;
+        color: white;
+        padding: 80px 20px;
+        text-align: center;
+    }
+
+    .page-title h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .breadcrumb {
+        background: transparent;
+        padding: 0;
+        margin-bottom: 0;
+        font-size: 1.1rem;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        color: #f0f0f0;
+    }
+
+    .breadcrumb li {
+        display: inline;
+    }
+
+    .breadcrumb a {
+        color: #f0f0f0;
+        text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+        text-decoration: underline;
+    }
+
+    .breadcrumb .active {
+        color: #ccc;
+    }
+
+    /* Management Section */
+    .vis-container {
+        padding: 50px 20px;
+    }
+
+    .team-card {
+        margin-bottom: 50px;
+    }
+
+    .team-card img {
+        border-radius: 10px;
+        margin-bottom: 20px;
+        max-width: 300px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .team-card h2 {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    .team-card h4 {
+        font-size: 1.2rem;
+        color: #666;
+    }
+
+    .team-card p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #444;
+        text-align: justify;
+    }
+
+    @media (max-width: 768px) {
+        .page-title h1 {
+            font-size: 2.5rem;
+        }
+
+        .team-card {
+            text-align: center;
+        }
+
+        .team-card img {
+            max-width: 200px;
+        }
+    }
+</style>
+
+<!-- Page Title -->
+<section class="page-title">
+    <h1>Management</h1>
+    <ol class="breadcrumb">
+        <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
+        <li><a href="{% url 'consulting_app:about' %}">|About</a></li>
+        <li class="active">|Management</li>
+    </ol>
+</section>
+
+
+<div class="container vis-container">
+
+    <!-- Team Member 1 -->
+    <div class="row align-items-center team-card">
+        <div class="col-lg-5 text-center">
+            <img src="{% static 'images/team1.jpg' %}" alt="Jonathan Collins" class="img-fluid">
+        </div>
+        <div class="col-lg-7">
+            <h2 class="mb-2">Jonathan Collins</h2>
+            <h4 class="mb-3">CEO / Senior Partner</h4>
+            <p>
+                Partner advisors bring their wealth of knowledge and wisdom gained through years of experience 
+                to assist your business in a precise and measured manner. Our team comprises business owners, 
+                former ATO auditors and professionals.
+            </p>
+            <p><a href="mailto:john@partnerfinancial.net" class="text-primary">john@partnerfinancial.net</a></p>
+        </div>
+    </div>
+
+    <!-- Team Member 2 -->
+    <div class="row align-items-center team-card">
+       
+        <div class="col-lg-7">
+            <h2 class="mb-2">Sarah Smith</h2>
+            <h4 class="mb-3">Managing Partner</h4>
+            <p>
+                With strong leadership and extensive industry knowledge, Sarah oversees client relations and 
+                ensures seamless project delivery. She is committed to innovation and sustainable growth 
+                strategies for all our clients.
+            </p>
+            <p><a href="mailto:sarah@partnerfinancial.net" class="text-primary">sarah@partnerfinancial.net</a></p>
+        </div>
+         <div class="col-lg-5 text-center">
+            <img src="{% static 'images/team2.jpg' %}" alt="Sarah Smith" class="img-fluid">
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
