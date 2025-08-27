@@ -1,14 +1,8 @@
 {% extends "layout.html" %}
 {% load static %}
-
 {% block title %}About Us{% endblock %}
-
 {% block content %}
-
 <style>
-
-
-/* Page Title Section */
 .page-title {
     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
                 url("{% static 'images/home-bg-8.jpg' %}") center center / cover no-repeat;
@@ -27,10 +21,10 @@
     padding: 0;
     margin-bottom: 0;
     font-size: 1.1rem;
-    text-align: center; /* Center text */
+    text-align: center; 
     display: flex;
-    justify-content: center; /* Align items center horizontally */
-    gap: 8px; /* Optional spacing between breadcrumb items */
+    justify-content: center; 
+    gap: 8px;
     flex-wrap: wrap;
 }
 .breadcrumb li {
@@ -46,9 +40,6 @@
 .breadcrumb .active {
     color: #ccc;
 }
-
-
-/* Intro Section */
 .section-snippet-services {
     padding: 50px 20px;
     text-align: center;
@@ -61,8 +52,6 @@
     line-height: 1.8;
     color: #555;
 }
-
-/* Image + Text Section */
 .imageblock {
     display: flex;
     flex-wrap: wrap;
@@ -73,13 +62,13 @@
 }
 .imageblock__content {
     flex: 1 1 45%;
-    padding: 40px 40px 40px 60px; /* Adds space around the image */
-    box-sizing: border-box; /* Ensures padding doesn't break layout */
+    padding: 40px 40px 40px 60px; 
+    box-sizing: border-box; 
 }
 
 .imageblock__content img {
     width: 100%;
-    height: auto; /* Use auto to maintain aspect ratio */
+    height: auto; 
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -101,8 +90,6 @@
     margin-bottom: 10px;
      font-size: 1.1rem;
 }
-
-/* Cards Section */
 .section-snippet-benefits {
     background-color: #f0f4f8;
     padding: 80px 20px;
@@ -148,19 +135,22 @@
     font-size: 0.95rem;
     color: #666;
 }
-
-/* Responsive */
 @media (max-width: 768px) {
     .imageblock {
-        flex-direction: column-reverse;
+        flex-direction: column;
+        max-width: 350px;
     }
+    @media (max-width: 768px) {
+    .imageblock__content {
+        padding: 10px; /* Or a smaller value like 20px */
+    }
+}
+
     .imageblock .text-content {
         padding: 20px;
     }
 }
 </style>
-
-<!-- Page Title -->
 <section class="page-title">
     <h1>About Us</h1>
     <ol class="breadcrumb">
@@ -168,15 +158,11 @@
         <li class="active">|About Us</li>
     </ol>
 </section>
-
-<!-- Intro Section -->
 <section class="section-snippet-services">
     <p class="lead">
         With a user-centric approach and a focus on customers and market demand, Neemkaroli Consulting builds models that blend technical excellence, digital innovation, and operational flexibility to bring your vision to life.
     </p>
 </section>
-
-<!-- Image + Text -->
 <section class="imageblock">
     <div class="imageblock__content">
         <img src="{% static 'images/about2.jpg' %}" alt="About NKC">
@@ -194,8 +180,6 @@
         </ul>
     </div>
 </section>
-
-<!-- Cards Section -->
 <section class="section-snippet-benefits">
     <h3>Find Out More</h3>
     <div class="row" style="display:flex; gap:30px; justify-content:center; flex-wrap:wrap;">
@@ -222,5 +206,4 @@
         </div>
     </div>
 </section>
-
 {% endblock %}
