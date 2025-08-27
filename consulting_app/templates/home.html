@@ -1,0 +1,147 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}HOME{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div class="video-container">
+    <video autoplay muted loop playsinline>
+      <source src="{% static 'videos/12820568_3840_2160_25fps.mp4' %}" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <div class="floating-shape shape1"></div>
+  <div class="floating-shape shape2"></div>
+  <div class="floating-shape shape3"></div>
+
+  <div class="hero-content text-center">
+    <h1 class="hero-animated-text">Neemkaroli Consulting</h1>
+    <p class="hero-animated-text">Empowering businesses with innovative solutions</p>
+    <a href="#services" class="btn btn-primary-custom btn-lg">Explore Services</a>
+  </div>
+</section>
+
+<section id="about" class="py-5 bg-light">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6" data-aos="fade-right">
+        <img src="{% static 'images/pexels-divinetechygirl-1181396.jpg' %}" class="img-fluid rounded shadow" alt="About Us">
+      </div>
+      <div class="col-md-6" data-aos="fade-left">
+        <h2>About Us</h2>
+        <p>Neemkaroli Consulting helps businesses achieve growth and efficiency through strategic consulting, digital transformation, and innovative technology solutions.</p>
+        <a href="#contact" class="btn btn-outline-custom mt-3">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 data-aos="fade-up">Our Services</h2>
+      <p data-aos="fade-up" data-aos-delay="100">Solutions tailored for your business needs</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="flip-left" data-aos-delay="200">
+        <div class="card h-100 service-card shadow-sm border-0 text-center">
+          
+          <h5>Business Consulting</h5>
+          <p>Optimize strategy and operations with expert guidance.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="flip-left" data-aos-delay="300">
+        <div class="card h-100 service-card shadow-sm border-0 text-center">
+          
+          <h5>Digital Marketing</h5>
+          <p>Boost your online presence and reach more customers.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="flip-left" data-aos-delay="400">
+        <div class="card h-100 service-card shadow-sm border-0 text-center">
+          
+          <h5>Technology Solutions</h5>
+          <p>Streamline workflow using modern technology tools.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="testimonials" class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 data-aos="fade-up">What Our Clients Say</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="card shadow-sm p-4 h-100">
+          <p>"Neemkaroli Consulting transformed our business process and increased efficiency significantly!"</p>
+          <h6 class="mt-3 fw-bold">— John Doe</h6>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="card shadow-sm p-4 h-100">
+          <p>"Their digital marketing solutions helped us reach new customers and grow our revenue."</p>
+          <h6 class="mt-3 fw-bold">— Jane Smith</h6>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="card shadow-sm p-4 h-100">
+          <p>"Professional team, quick results, and excellent support throughout the project."</p>
+          <h6 class="mt-3 fw-bold">— Mike Lee</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="contact" class="py-5 text-white text-center" style="background-color: #01274d;">
+  <div class="container" data-aos="zoom-in">
+    <h2>Ready to grow your business?</h2>
+    <p class="lead mb-4">Contact us today for a free consultation!</p>
+    <a href="/contact" class="btn btn-primary-custom btn-lg">Contact Us</a>
+  </div>
+</section>
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 1000, once: true });
+</script>
+
+<style>
+:root {
+  --primary:#01274d;
+  --secondary:#1e3a5f;
+  --accent:#ffcc00;
+}
+
+.hero { position: relative; height:400px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.video-container { position:absolute; top:0; left:0; width:100%; height:100%; overflow:hidden; z-index:-2; }
+.video-container video { width:100%; height:400px; object-fit:cover; object-position:center; }
+.hero-overlay { position:absolute; top:0; left:0; width:100%; height:100%; background: rgba(1,39,77,0.5); z-index:-1; }
+.hero-content { position:relative; z-index:1; padding:20px; text-align:center; }
+.hero-content h1 { font-size:4rem; color:#fff; text-shadow:2px 2px 15px rgba(0,0,0,0.6); }
+.hero-content p { font-size:1.5rem; color:#fff; text-shadow:1px 1px 10px rgba(0,0,0,0.5); }
+
+.floating-shape { position:absolute; border-radius:50%; opacity:0.2; animation: float 6s ease-in-out infinite; }
+.shape1 { width:80px; height:80px; background: var(--accent); top:20%; left:10%; animation-delay:0s; }
+.shape2 { width:50px; height:50px; background: var(--accent); top:50%; left:80%; animation-delay:2s; }
+.shape3 { width:100px; height:100px; background: var(--accent); top:70%; left:30%; animation-delay:4s; }
+@keyframes float { 0%{transform:translateY(0px);}50%{transform:translateY(-20px);}100%{transform:translateY(0px);} }
+
+
+.btn-primary-custom { background: linear-gradient(135deg,var(--secondary),var(--primary)); border:none; color:#fff; font-weight:600; padding:12px 30px; border-radius:50px; box-shadow:0 6px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; }
+.btn-primary-custom:hover { transform:translateY(-5px); box-shadow:0 12px 25px rgba(0,0,0,0.4); background: linear-gradient(135deg,var(--primary),var(--secondary)); }
+.btn-outline-custom { border:2px solid #fff; color:#fff; background:transparent; padding:12px 30px; border-radius:50px; transition: all 0.3s;}
+.btn-outline-custom:hover { background: rgba(255,255,255,0.2); }
+.service-card { padding:30px; border-radius:20px; transition:0.3s; }
+.service-card:hover { transform:translateY(-15px) scale(1.05); box-shadow:0 25px 50px rgba(0,0,0,0.2); }
+@media(max-width:768px){
+  .hero-content h1{ font-size:2rem; }
+  .hero-content p{ font-size:1rem; }
+  .btn-primary-custom, .btn-outline-custom{ padding:10px 20px; font-size:0.9rem; }
+}
+</style>
+
+{% endblock %}
