@@ -23,13 +23,13 @@
   </div>
 </section>
 
-<section id="about" class="py-5 bg-light">
+<section id="about" class="py-4 bg-light">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-6" data-aos="fade-right">
         <img src="{% static 'images/pexels-divinetechygirl-1181396.jpg' %}" class="img-fluid rounded shadow" alt="About Us">
       </div>
-      <div class="col-md-6" data-aos="fade-left">
+      <div class="col-md-6 about" data-aos="fade-left">
         <h2>About Us</h2>
         <p>Neemkaroli Consulting helps businesses achieve growth and efficiency through strategic consulting, digital transformation, and innovative technology solutions.</p>
         <a href="#contact" class="btn btn-primary-custom mt-3">Contact Us</a>
@@ -141,6 +141,12 @@
   .hero-content h1{ font-size:2rem; }
   .hero-content p{ font-size:1rem; }
   .btn-primary-custom, .btn-outline-custom{ padding:10px 20px; font-size:0.9rem; }
+  
+}
+@media(max-width:576px){
+  .about{
+    margin-top:23px;
+  }
 }
 </style>
 
