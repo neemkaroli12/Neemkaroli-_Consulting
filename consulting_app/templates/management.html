@@ -5,31 +5,33 @@
 
 <style>
     .page-title {
-        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-                    url("{% static 'images/home-bg-8.jpg' %}") center center / cover no-repeat;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                    url("{% static 'images/home-bg-8.jpg' %}") center/cover no-repeat;
         color: white;
-        padding: 80px 20px;
+        padding: 100px 20px;
         text-align: center;
+        position: relative;
     }
 
     .page-title h1 {
         font-size: 3.5rem;
-        font-weight: 700;
-        margin-bottom: 10px;
+        font-weight: 800;
+        margin-bottom: 15px;
         text-transform: uppercase;
-        letter-spacing: 1px;
+        letter-spacing: 2px;
+        animation: fadeInDown 1s ease-in-out;
     }
 
     .breadcrumb {
         background: transparent;
         padding: 0;
-        margin-bottom: 0;
+        margin: 0;
         font-size: 1.1rem;
         display: flex;
         justify-content: center;
-        gap: 8px;
-        flex-wrap: wrap;
+        gap: 10px;
         color: #f0f0f0;
+        animation: fadeInUp 1s ease-in-out;
     }
 
     .breadcrumb li {
@@ -39,46 +41,87 @@
     .breadcrumb a {
         color: #f0f0f0;
         text-decoration: none;
+        font-weight: 500;
     }
 
     .breadcrumb a:hover {
-        text-decoration: underline;
+        color: #ffd369;
     }
 
     .breadcrumb .active {
         color: #ccc;
     }
-
-    /* Management Section */
     .vis-container {
-        padding: 50px 20px;
+        padding: 70px 20px;
     }
 
-    .team-card {
-        margin-bottom: 50px;
-    }
+    {% comment %} .team-card {
+        margin-bottom: 60px;
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        padding: 30px;
+        transition: all 0.3s ease;
+    } {% endcomment %}
+
+    {% comment %} .team-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    } {% endcomment %}
 
     .team-card img {
-        border-radius: 10px;
+        border-radius: 15px;
         margin-bottom: 20px;
-        max-width: 300px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        max-width: 280px;
+        transition: transform 0.3s ease;
+    }
+
+    .team-card img:hover {
+        transform: scale(1.05);
     }
 
     .team-card h2 {
         font-size: 2rem;
         font-weight: 700;
+        color: #222;
     }
 
     .team-card h4 {
         font-size: 1.2rem;
-        color: #666;
+        color: #777;
+        margin-bottom: 15px;
     }
 
     .team-card p {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: #444;
+        font-size:1.2rem !important;
+        line-height: 1.7;
+        color: #555;
+        text-align: justify;
+    }
+
+    .team-card a {
+        font-weight: 600;
+        color: black;
+        text-decoration: none;
+    }
+
+    .team-card a:hover {
+        color: #0056b3;
+        text-decoration: underline;
+    }
+    @keyframes fadeInDown {
+        0% { opacity: 0; transform: translateY(-30px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+        0% { opacity: 0; transform: translateY(30px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    .buisness-card p{
+        font-size:1.2rem !important;
+        line-height: 1.7;
+        color: #555;
         text-align: justify;
     }
 
@@ -86,31 +129,24 @@
         .page-title h1 {
             font-size: 2.5rem;
         }
-
         .team-card {
             text-align: center;
         }
-
         .team-card img {
             max-width: 200px;
         }
     }
 </style>
-
-<!-- Page Title -->
 <section class="page-title">
     <h1>Management</h1>
     <ol class="breadcrumb">
         <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
-        <li><a href="{% url 'consulting_app:about' %}">|About</a></li>
-        <li class="active">|Management</li>
+        <li><a href="{% url 'consulting_app:about' %}">| About</a></li>
+        <li class="active">| Management</li>
     </ol>
 </section>
 
-
 <div class="container vis-container">
-
-    <!-- Team Member 1 -->
     <div class="row align-items-center team-card">
         <div class="col-lg-5 text-center">
             <img src="{% static 'images/team1.jpg' %}" alt="Jonathan Collins" class="img-fluid">
@@ -123,13 +159,14 @@
                 to assist your business in a precise and measured manner. Our team comprises business owners, 
                 former ATO auditors and professionals.
             </p>
-            <p><a href="mailto:john@partnerfinancial.net" class="text-primary">john@partnerfinancial.net</a></p>
+            <p><a href="mailto:john@partnerfinancial.net">john@partnerfinancial.net</a></p>
+           
         </div>
     </div>
-
-    <!-- Team Member 2 -->
-    <div class="row align-items-center team-card">
-       
+    <div class="row align-items-center team-card flex-row-reverse">
+        <div class="col-lg-5 text-center">
+            <img src="{% static 'images/team2.jpg' %}" alt="Sarah Smith" class="img-fluid">
+        </div>
         <div class="col-lg-7">
             <h2 class="mb-2">Sarah Smith</h2>
             <h4 class="mb-3">Managing Partner</h4>
@@ -138,13 +175,47 @@
                 ensures seamless project delivery. She is committed to innovation and sustainable growth 
                 strategies for all our clients.
             </p>
-            <p><a href="mailto:sarah@partnerfinancial.net" class="text-primary">sarah@partnerfinancial.net</a></p>
-        </div>
-         <div class="col-lg-5 text-center">
-            <img src="{% static 'images/team2.jpg' %}" alt="Sarah Smith" class="img-fluid">
+            <p><a href="mailto:sarah@partnerfinancial.net" class="text-dark">sarah@partnerfinancial.net</a></p>  
         </div>
     </div>
-
 </div>
 
+<div class="container">
+    <div class="row">
+        <h1 class="text-center mb-3">Meet our business experts</h1>
+        <div class="col-lg-4">
+            <div class="card border-0 buisness-card">
+                <img src="{% static 'images/team3.jpg' %}" alt="">
+                <div class="card-text">
+                    <h3 class="mt-3">Luke Slater</h3>  
+                    <p class="mb-2">Business Growth Expert</p>
+                    <p>Partner advisors bring their wealth of knowledge and wisdom gained through years of experience to assist your business in a precise and measured manner. Our team comprises business owners, former ATO auditors and professionals.</p>
+                    <p><a href="mailto:luke@partnerfinancial.net">luke@partnerfinancial.net</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card border-0 buisness-card">
+                <img src="{% static 'images/team4.jpg' %}" alt="">
+                <div class="card-text">
+                    <h3 class="mt-3">Kelly Barber</h3>  
+                    <p class="mb-2">Senior Tax Advisor</p>
+                    <p>Partner advisors bring their wealth of knowledge and wisdom gained through years of experience to assist your business in a precise and measured manner. Our team comprises business owners, former ATO auditors and professionals.</p>
+                    <p><a href="mailto:kelly@partnerfinancial.net">kelly@partnerfinancial.net</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card border-0 buisness-card">
+                <img src="{% static 'images/team5.jpg' %}" alt="">
+                <div class="card-text" >
+                    <h3 class="mt-3">Elizabeth Pierce</h3>  
+                    <p class="mb-2">Senior Strategy Advisor</p>
+                    <p>Partner advisors bring their wealth of knowledge and wisdom gained through years of experience to assist your business in a precise and measured manner. Our team comprises business owners, former ATO auditors and professionals.</p>
+                    <p><a href="mailto:liz@partnerfinancial.net">liz@partnerfinancial.net</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
