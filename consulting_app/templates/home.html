@@ -50,7 +50,7 @@ ALTER USER myappuser CREATEDB;
 
 @media (max-width: 768px) {
   .hero {
-    height: 300px;
+    height: 350px;
   }
 
   .video-container video {
@@ -82,7 +82,8 @@ ALTER USER myappuser CREATEDB;
 
 @media (max-width: 576px) {
   .hero {
-    height: 250px;
+    height: 188px !important;
+    
   }
 .video-container video {
     width: 100vw;
@@ -95,8 +96,8 @@ ALTER USER myappuser CREATEDB;
   }
 
 
-  .hero-content h1 {
-    font-size: 1.5rem;
+  .hero h1 {
+    font-size: 1.1rem;
   }
 
   .hero-content p {
@@ -157,22 +158,42 @@ ALTER USER myappuser CREATEDB;
 
 </style>
 
-<section class="hero">
-  <div class="video-container">
-    <video autoplay muted loop playsinline>
-      <source src="{% static 'videos/7101913-uhd_2560_1440_25fps.mp4' %}" type="video/mp4">
-    </video>
-  </div>
-  <div class="hero-overlay"></div>
+<section id="hero" class="hero">
+  <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="1000">
+    <div class="carousel-inner">
 
-  <div class="floating-shape shape1"></div>
-  <div class="floating-shape shape2"></div>
-  <div class="floating-shape shape3"></div>
+      <div class="carousel-item active">
+        <video class="d-block w-100" autoplay muted loop playsinline>
+          <source src="{% static 'videos/14201353_1920_1080_30fps.mp4' %}" type="video/mp4">
+        </video>
+        <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+          <h1 class="text-white">Neemkaroli Consulting</h1>
+          <p class="text-white">Empowering businesses with innovative solutions</p>
+          <a href="#services" class="btn btn-primary-custom btn-lg">Explore Services</a>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <video class="d-block w-100" autoplay muted loop playsinline>
+          <source src="{% static 'videos/5680034-hd_1920_1080_24fps.mp4' %}" type="video/mp4">
+        </video>
+        <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+          <h1 class="text-white">Grow Your Business</h1>
+          <p class="text-white">With expert consulting and strategy</p>
+          <a href="#services" class="btn btn-primary-custom btn-lg">Explore Services</a>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <video class="d-block w-100" autoplay muted loop playsinline>
+          <source src="{% static 'videos/13398138_1920_1080_30fps.mp4' %}" type="video/mp4">
+        </video>
+        <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+          <h1 class="text-white">Digital & Technology Solutions</h1>
+          <p class="text-white">Innovative solutions for modern businesses</p>
+          <a href="#services" class="btn btn-primary-custom btn-lg">Explore Services</a>
+        </div>
+      </div>
 
-  <div class="hero-content text-center">
-    <h1 class="hero-animated-text">Neemkaroli Consulting</h1>
-    <p class="hero-animated-text">Empowering businesses with innovative solutions</p>
-    <a href="#services" class="btn btn-primary-custom btn-lg">Explore Services</a>
+    </div>
   </div>
 </section>
 
@@ -269,7 +290,7 @@ ALTER USER myappuser CREATEDB;
   --accent:#ffcc00;
 }
 
-.hero { position: relative; height:400px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.hero { position: relative; height:500px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
 .video-container { position:absolute; top:0; left:0; width:100%; height:100%; overflow:hidden; z-index:-2; }
 .video-container video { width:100%; height:400px; object-fit:cover; object-position:center; }
 .hero-overlay { position:absolute; top:0; left:0; width:100%; height:100%; background: rgba(1,39,77,0.5); z-index:-1; }
@@ -277,11 +298,6 @@ ALTER USER myappuser CREATEDB;
 .hero-content h1 { font-size:4rem; color:#fff; text-shadow:2px 2px 15px rgba(0,0,0,0.6); }
 .hero-content p { font-size:1.5rem; color:#fff; text-shadow:1px 1px 10px rgba(0,0,0,0.5); }
 
-.floating-shape { position:absolute; border-radius:50%; opacity:0.2; animation: float 6s ease-in-out infinite; }
-.shape1 { width:80px; height:80px; background: var(--accent); top:20%; left:10%; animation-delay:0s; }
-.shape2 { width:50px; height:50px; background: var(--accent); top:50%; left:80%; animation-delay:2s; }
-.shape3 { width:100px; height:100px; background: var(--accent); top:70%; left:30%; animation-delay:4s; }
-@keyframes float { 0%{transform:translateY(0px);}50%{transform:translateY(-20px);}100%{transform:translateY(0px);} }
 
 
 .btn-primary-custom { background: linear-gradient(135deg,var(--secondary),var(--primary)); border:none; color:#fff; font-weight:600; padding:12px 30px; border-radius:50px; box-shadow:0 6px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; }
