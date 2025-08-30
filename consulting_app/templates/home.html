@@ -5,7 +5,7 @@
 ALTER USER myappuser CREATEDB;
  {% endcomment %}
 {% block content %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
 <style>
   .video-container {
@@ -228,6 +228,25 @@ ALTER USER myappuser CREATEDB;
     transform: translateY(0);
   }
 }
+.service-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  background: white;
+}
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.service-link {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+}
+.service-link:hover {
+  color: #0d6efd; /* Bootstrap primary */
+}
 
 
 </style>
@@ -288,68 +307,117 @@ ALTER USER myappuser CREATEDB;
       </div>
       <div class="col-md-6 about" data-aos="fade-left">
         <h2>About Us</h2>
-        <p>Neemkaroli Consulting helps businesses achieve growth and efficiency through strategic consulting, digital transformation, and innovative technology solutions.</p>
+        <p>A multi-faceted collective which aims to employ our experience to produce products, tailored to your vision.
+
+With a plethora of knowledge of dynamic environments, we embrace and adapt to the ever-changing market and movement
+ within 
+the IT industry. Our user-centric approach ensures development of interaction and experience models which reflect our zeal for digital transformation, meticulous technical implementation, and our resilience to deliver your vision.
+
+Our purpose is to cultivate innovation whilst ensuring the highest degree of efficiency and user satisfaction.</p>
         <a href="#contact" class="btn btn-outline-primary mt-3">Contact Us</a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="services" class="py-5">
+<section id="services" class="py-5 bg-light">
   <div class="container">
     <div class="text-center mb-5">
-      <h2 data-aos="fade-up">Our Services</h2>
-      <p data-aos="fade-up" data-aos-delay="100">Solutions tailored for your business needs</p>
+      <h2 data-aos="fade-up" class="fw-bold">✨ Our Services</h2>
+      <p data-aos="fade-up" data-aos-delay="100" class="text-muted">
+        Smart solutions tailored for your business growth
+      </p>
     </div>
+
     <div class="row g-4">
-      <div class="col-md-4" data-aos="flip-left" data-aos-delay="200">
-        <div class="card h-100 service-card shadow-sm border-0 text-center">
-          
-          <h5>Business Consulting</h5>
-          <p>Optimize strategy and operations with expert guidance.</p>
+
+      <!-- Microsoft Dynamics -->
+      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class="card h-100 service-card shadow-lg border-0 text-center p-4 rounded-4">
+          <div class="icon mb-3">
+            <i class="bi bi-microsoft text-primary fs-1"></i>
+          </div>
+          <h5 class="fw-bold">Microsoft Dynamics Services</h5>
+          <ul class="list-unstyled mt-3">
+            <li><a href="#" class="service-link">⚡ Consulting</a></li>
+            <li><a href="#" class="service-link">⚡ Implementation</a></li>
+            <li><a href="#" class="service-link">⚡ Support</a></li>
+            <li><a href="#" class="service-link">⚡ Services</a></li>
+          </ul>
         </div>
       </div>
-      <div class="col-md-4" data-aos="flip-left" data-aos-delay="300">
-        <div class="card h-100 service-card shadow-sm border-0 text-center">
-          
-          <h5>Digital Marketing</h5>
-          <p>Boost your online presence and reach more customers.</p>
+
+      <!-- Odoo Services -->
+      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+        <div class="card h-100 service-card shadow-lg border-0 text-center p-4 rounded-4">
+          <div class="icon mb-3">
+            <i class="bi bi-diagram-3 text-success fs-1"></i>
+          </div>
+          <h5 class="fw-bold">Odoo Services</h5>
+          <ul class="list-unstyled mt-3">
+            <li><a href="#" class="service-link">⚡ Consulting</a></li>
+            <li><a href="#" class="service-link">⚡ Implementation</a></li>
+            <li><a href="#" class="service-link">⚡ Support</a></li>
+            <li><a href="#" class="service-link">⚡ Services</a></li>
+          </ul>
         </div>
       </div>
-      <div class="col-md-4" data-aos="flip-left" data-aos-delay="400">
-        <div class="card h-100 service-card shadow-sm border-0 text-center">
-          
-          <h5>Technology Solutions</h5>
-          <p>Streamline workflow using modern technology tools.</p>
+
+      <!-- Other Services -->
+      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="400">
+        <div class="card h-100 service-card shadow-lg border-0 text-center p-4 rounded-4">
+          <div class="icon mb-3">
+            <i class="bi bi-cloud-arrow-up text-warning fs-1"></i>
+          </div>
+          <h5 class="fw-bold">Other Services</h5>
+          <ul class="list-unstyled mt-3">
+            <li><a href="#" class="service-link">🚀 Automation, Data Analytics & AI</a></li>
+            <li><a href="#" class="service-link">🚀 Application Management</a></li>
+            <li><a href="#" class="service-link">🚀 Customization & Development</a></li>
+            <li><a href="#" class="service-link">🚀 Integration</a></li>
+            <li><a href="#" class="service-link">🚀 Cloud Services</a></li>
+            <li><a href="#" class="service-link">🚀 Training & Development</a></li>
+          </ul>
         </div>
       </div>
+
     </div>
   </div>
 </section>
-<section id="testimonials" class="py-5 bg-light">
-  <div class="container">
-    <div class="text-center mb-5">
-      <h2 data-aos="fade-up">What Our Clients Say</h2>
-    </div>
-    <div class="row g-4">
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="card shadow-sm p-4 h-100">
-          <p>"Neemkaroli Consulting transformed our business process and increased efficiency significantly!"</p>
-          <h6 class="mt-3 fw-bold">— John Doe</h6>
-        </div>
+
+
+<section id="counters" class="py-5 text-white" style="background: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover; position: relative;">
+  <!-- Overlay -->
+  <div style="position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(0, 25, 50, 0.8);"></div>
+
+  <div class="container position-relative">
+    <div class="row text-center">
+      
+      <div class="col-md-3 mb-4">
+        <i class="bi bi-people fs-1 mb-3 text-info"></i>
+        <h2 class="fw-bold counter" data-target="6000">0</h2>
+        <p>Corporate Customers</p>
       </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-        <div class="card shadow-sm p-4 h-100">
-          <p>"Their digital marketing solutions helped us reach new customers and grow our revenue."</p>
-          <h6 class="mt-3 fw-bold">— Jane Smith</h6>
-        </div>
+
+      <div class="col-md-3 mb-4">
+        <i class="bi bi-patch-check fs-1 mb-3 text-success"></i>
+        <h2 class="fw-bold counter" data-target="300">0</h2>
+        <p>Certified Consultants</p>
       </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
-        <div class="card shadow-sm p-4 h-100">
-          <p>"Professional team, quick results, and excellent support throughout the project."</p>
-          <h6 class="mt-3 fw-bold">— Mike Lee</h6>
-        </div>
+
+      <div class="col-md-3 mb-4">
+        <i class="bi bi-buildings fs-1 mb-3 text-warning"></i>
+        <h2 class="fw-bold counter" data-target="11">0</h2>
+        <p>Offices in 6 Countries</p>
       </div>
+
+      <div class="col-md-3 mb-4">
+        <!-- Handshake from Font Awesome -->
+        <i class="fa-solid fa-handshake fs-1 mb-3 text-warning"></i>
+        <h2 class="fw-bold counter" data-target="20">0</h2>
+        <p>Years Microsoft Gold Partner</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -401,5 +469,41 @@ ALTER USER myappuser CREATEDB;
   }
 }
 </style>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".counter");
+    const speed = 50; // Lower = faster
+
+    const animateCounters = () => {
+      counters.forEach(counter => {
+        const updateCount = () => {
+          const target = +counter.getAttribute("data-target");
+          const count = +counter.innerText.replace(/,/g, "");
+          const increment = Math.ceil(target / speed);
+
+          if (count < target) {
+            counter.innerText = new Intl.NumberFormat().format(count + increment);
+            setTimeout(updateCount, 30);
+          } else {
+            counter.innerText = new Intl.NumberFormat().format(target);
+          }
+        };
+        updateCount();
+      });
+    };
+
+    // Animate only when section is visible
+    const section = document.getElementById("counters");
+    let started = false;
+    window.addEventListener("scroll", () => {
+      const rect = section.getBoundingClientRect();
+      if (!started && rect.top < window.innerHeight) {
+        started = true;
+        animateCounters();
+      }
+    });
+  });
+</script>
+
 
 {% endblock %}
