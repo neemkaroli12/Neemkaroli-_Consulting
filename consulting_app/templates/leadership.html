@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% load static %}
-{% block title %}Management{% endblock %}
+{% block title %}Leadership Team{% endblock %}
 {% block content %}
 
 <style>
@@ -11,6 +11,7 @@
         padding: 100px 20px;
         text-align: center;
         position: relative;
+        height: 75vh;
     }
 
     .page-title h1 {
@@ -54,20 +55,6 @@
     .vis-container {
         padding: 70px 20px;
     }
-
-    {% comment %} .team-card {
-        margin-bottom: 60px;
-        background: #fff;
-        border-radius: 15px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-        padding: 30px;
-        transition: all 0.3s ease;
-    } {% endcomment %}
-
-    {% comment %} .team-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-    } {% endcomment %}
 
     .team-card img {
         border-radius: 15px;
@@ -118,6 +105,7 @@
         0% { opacity: 0; transform: translateY(30px); }
         100% { opacity: 1; transform: translateY(0); }
     }
+
     .buisness-card p{
         font-size:1.2rem !important;
         line-height: 1.7;
@@ -137,12 +125,14 @@
         }
     }
 </style>
+
 <section class="page-title">
-    <h1>Management</h1>
+    <h1>Our Leadership Team</h1>
+    <p class="mb-4">Our global leadership team plays a pivotal role in driving the direction of the company, shaping our strategic goals, and leading our talented workforce. Get to know more about the experienced Tectura Executive Leadership team and our esteemed Board of Directors, who work tirelessly to guide our vision and ensure our continued success.</p>
     <ol class="breadcrumb">
         <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
         <li><a href="{% url 'consulting_app:about' %}">| About</a></li>
-        <li class="active">| Management</li>
+        <li class="active">| Leadership</li>
     </ol>
 </section>
 
@@ -157,10 +147,9 @@
             <p>
                 Partner advisors bring their wealth of knowledge and wisdom gained through years of experience 
                 to assist your business in a precise and measured manner. Our team comprises business owners, 
-                former ATO auditors and professionals.
+                former ATO auditors, and professionals.
             </p>
             <p><a href="mailto:john@partnerfinancial.net">john@partnerfinancial.net</a></p>
-           
         </div>
     </div>
     <div class="row align-items-center team-card flex-row-reverse">
@@ -218,4 +207,74 @@
         </div>
     </div>
 </div>
+<section id="counters" class="py-5 text-white" style="background: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover; position: relative;">
+  <!-- Overlay -->
+  <div style="position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(0, 25, 50, 0.8);"></div>
+
+  <div class="container position-relative">
+    <div class="row text-center">
+      
+      <div class="col-md-3 mb-4">
+        <i class="bi bi-people fs-1 mb-3 text-info"></i>
+        <h2 class="fw-bold counter" data-target="6000">0</h2>
+        <p>Corporate Customers</p>
+      </div>
+
+      <div class="col-md-3 mb-4">
+        <i class="bi bi-patch-check fs-1 mb-3 text-success"></i>
+        <h2 class="fw-bold counter" data-target="300">0</h2>
+        <p>Certified Consultants</p>
+      </div>
+
+      <div class="col-md-3 mb-4">
+        <i class="bi bi-buildings fs-1 mb-3 text-warning"></i>
+        <h2 class="fw-bold counter" data-target="11">0</h2>
+        <p>Offices in 6 Countries</p>
+      </div>
+
+      <div class="col-md-3 mb-4">
+        <!-- Handshake from Font Awesome -->
+        <i class="fa-solid fa-handshake fs-1 mb-3 text-warning"></i>
+        <h2 class="fw-bold counter" data-target="20">0</h2>
+        <p>Years Microsoft Gold Partner</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".counter");
+    const speed = 50; // Lower = faster
+
+    const animateCounters = () => {
+      counters.forEach(counter => {
+        const updateCount = () => {
+          const target = +counter.getAttribute("data-target");
+          const count = +counter.innerText.replace(/,/g, "");
+          const increment = Math.ceil(target / speed);
+
+          if (count < target) {
+            counter.innerText = new Intl.NumberFormat().format(count + increment);
+            setTimeout(updateCount, 30);
+          } else {
+            counter.innerText = new Intl.NumberFormat().format(target);
+          }
+        };
+        updateCount();
+      });
+    };
+
+    // Animate only when section is visible
+    const section = document.getElementById("counters");
+    let started = false;
+    window.addEventListener("scroll", () => {
+      const rect = section.getBoundingClientRect();
+      if (!started && rect.top < window.innerHeight) {
+        started = true;
+        animateCounters();
+      }
+    });
+  });
+</script>
 {% endblock %}

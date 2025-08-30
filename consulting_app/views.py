@@ -9,5 +9,5 @@ def about(request):
 def vision(request):
     return render(request, "vision.html")
 
-def management(request):
-    return render(request, "management.html")
+def leadership(request):
+    return render(request, "leadership.html")
