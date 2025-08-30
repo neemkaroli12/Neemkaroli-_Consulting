@@ -113,15 +113,61 @@
         text-align: justify;
     }
 
-    @media (max-width: 768px) {
+   
+     @media (max-width: 768px) {
+       
+
+        .page-title p {
+            font-size: 1.1rem;
+            max-width: 90%;
+            margin: 0 auto;
+            text-align: justify;
+        }
+
+        .breadcrumb {
+            font-size: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .breadcrumb li {
+            margin-bottom: 5px;
+        }
+
+        .page-title {
+            padding: 80px 20px;
+            height: auto;
+        }
+
         .page-title h1 {
-            font-size: 2.5rem;
+            font-size: 1.2rem;
         }
         .team-card {
             text-align: center;
         }
         .team-card img {
             max-width: 200px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        
+
+        .page-title {
+            padding: 60px 20px;
+            height: auto;
+        }
+
+        .page-title h1 {
+            font-size: 1.2rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+        }
+
+        .page-title p {
+            font-size: 1rem;
+            padding: 0 10px;
         }
     }
 </style>
