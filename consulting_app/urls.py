@@ -7,4 +7,7 @@ urlpatterns = [
     path('vision/',views.vision ,name='vision'),
     path('leadership/',views.leadership ,name='leadership'),
     path('partnership/',views.partnership ,name='partnership'),
+    path('partnership/',views.partnership ,name='partnership'),
+    path('blog/',views.blog ,name='blog'),
+     path('blog/post/<int:post_id>/', views.blog_post, name='blog_post'),
 ]

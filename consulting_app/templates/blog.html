@@ -1,0 +1,221 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}NKCL Blog{% endblock %}
+{% block content %}
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-title {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                    url("{% static 'images/home-bg-8.jpg' %}") center/cover no-repeat;
+        color: white;
+        text-align: center;
+        padding: 80px 20px;
+    }
+
+    .page-title h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
+
+    .page-title p {
+        font-size: 1.2rem;
+        color: #f0f0f0;
+    }
+
+    .blog-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+        margin: 50px 0;
+        padding: 0 20px;
+    }
+
+    /* Blog Grid Section */
+    .blog-main {
+        flex: 0 0 75%;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .blog-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-8px);
+    }
+
+    .blog-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .blog-card-content {
+        padding: 20px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .blog-card h2 {
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: #007bff;
+        margin-bottom: 10px;
+    }
+
+    .blog-card .date {
+        font-size: 0.9rem;
+        color: #777;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
+
+    .blog-card p {
+        font-size: 1rem;
+        color: #555;
+        flex-grow: 1;
+        margin-bottom: 20px;
+    }
+
+    .blog-card a.read-more {
+        display: inline-block;
+        padding: 10px 18px;
+        background: #007bff;
+        color: white;
+        font-size: 0.9rem;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .blog-card a.read-more:hover {
+        background: #0056b3;
+    }
+
+    /* Sidebar */
+    .blog-sidebar {
+        flex: 0 0 25%;
+        padding: 20px;
+        background: #f4f4f4;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .blog-sidebar h3 {
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 5px;
+    }
+
+    .blog-sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .blog-sidebar li {
+        margin-bottom: 12px;
+    }
+
+    .blog-sidebar a {
+        font-size: 1rem;
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .blog-sidebar a:hover {
+        color: #ff6f61;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+        .blog-container {
+            flex-direction: column;
+        }
+        .blog-main {
+            flex: 1 0 100%;
+        }
+        .blog-sidebar {
+            flex: 1 0 100%;
+        }
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="page-title">
+    <h1>Latest Blog from NKCL</h1>
+    <p>Stay updated with the latest insights, trends, and strategies from NKCL's experts.</p>
+</section>
+
+<!-- Blog Layout -->
+<div class="container blog-container">
+    <!-- Blog Grid -->
+    <div class="blog-main">
+        {% for post in posts %}
+        <div class="blog-card">
+            {% if post.image %}
+                <img src="{{ post.image.url }}" alt="{{ post.title }}">
+            {% else %}
+                <img src="{% static 'images/default-blog.jpg' %}" alt="{{ post.title }}">
+            {% endif %}
+            <div class="blog-card-content">
+                <h2>{{ post.title }}</h2>
+                <div class="date">{{ post.created_at|date:"F d, Y" }}</div>
+                <p>{{ post.excerpt|truncatewords:25 }}</p>
+                <a href="{% url 'consulting_app:blog_post' post.id %}" class="read-more">Read More</a>
+            </div>
+        </div>
+        {% empty %}
+            <p>No blog posts available.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Sidebar -->
+    <div class="blog-sidebar">
+        <div class="recent-posts">
+            <h3>Recent Posts</h3>
+            <ul>
+                {% for post in posts|slice:":5" %}
+                     <li><a href="{% url 'consulting_app:blog_post' post.id %}">{{ post.title }}</a></li> 
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="archives">
+            <h3>Archives</h3>
+            <ul>
+                <li><a href="#">September 2025</a></li>
+                <li><a href="#">August 2025</a></li>
+                <li><a href="#">July 2025</a></li>
+            </ul>
+        </div>
+
+        <div class="tags">
+            <h3>Tags</h3>
+            <ul>
+                <li><a href="#">AI</a></li>
+                <li><a href="#">Business</a></li>
+                <li><a href="#">Technology</a></li>
+                <li><a href="#">Innovation</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
