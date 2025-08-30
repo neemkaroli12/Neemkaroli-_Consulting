@@ -3,6 +3,8 @@
 {% block title %}HOME{% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
 <style>
   .video-container {
     position: fixed;
@@ -152,48 +154,129 @@
     padding-bottom: 1.5rem !important;
   }
 }
+.hero img {
+  width: 100%;
+  height: 80vh;
+  object-fit: cover;
+  object-position: center;
+}
+.carousel-caption {
+  left: 8%;
+  right: auto;
+  text-align: left;
+  max-width: 650px;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.tagline {
+  font-size: 1rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #00d4ff;
+  font-weight: 600;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+.headline {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.headline span {
+  color: #00d4ff; /* highlight */
+}
+
+.subtext {
+  font-size: 1.2rem;
+  color: #f1f1f1;
+  margin-bottom: 25px;
+  max-width: 500px;
+}
+
+.btn-slider {
+  display: inline-block;
+  background: linear-gradient(45deg, #00d4ff, #0077ff);
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.btn-slider:hover {
+  background: linear-gradient(45deg, #0077ff, #00d4ff);
+  transform: translateY(-3px);
+}
+
+/* FadeIn Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 
 </style>
-
 <section id="hero" class="hero">
   <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="1000">
     <div class="carousel-inner">
 
+      <!-- Slide 1 -->
       <div class="carousel-item active">
-        <video class="d-block w-100" autoplay muted loop playsinline>
-          <source src="{% static 'videos/14201353_1920_1080_30fps.mp4' %}" type="video/mp4">
-        </video>
-        <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
-          <h1 class="text-white">Neemkaroli Consulting</h1>
-          <p class="text-white">Empowering businesses with innovative solutions</p>
-          <a href="#services" class="btn btn-primary-custom btn-lg">Explore Services</a>
+        <img src="https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?utm_source=chatgpt.com" class="d-block w-100" alt="Business Strategy">
+        <div class="carousel-caption d-flex flex-column justify-content-center h-100 align-items-start text-start">
+          <span class="tagline">Welcome to Neemkaroli Consulting</span>
+          <h1 class="headline">Empowering <span>Businesses</span><br/>with Innovation</h1>
+          <p class="subtext">Smart strategies, digital transformation & growth solutions for modern enterprises.</p>
+          <a href="#services" class="btn-slider">🚀 Explore Services</a>
         </div>
       </div>
+
+      <!-- Slide 2 -->
       <div class="carousel-item">
-        <video class="d-block w-100" autoplay muted loop playsinline>
-          <source src="{% static 'videos/5680034-hd_1920_1080_24fps.mp4' %}" type="video/mp4">
-        </video>
-        <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
-          <h1 class="text-white">Grow Your Business</h1>
-          <p class="text-white">With expert consulting and strategy</p>
-          <a href="#services" class="btn btn-primary-custom btn-lg">Explore Services</a>
+        <img src="https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg" class="d-block w-100" alt="Teamwork">
+        <div class="carousel-caption d-flex flex-column justify-content-center h-100 align-items-start text-start">
+          <span class="tagline">Grow with Experts</span>
+          <h1 class="headline">Building <span>Future-Ready</span><br/>Organizations</h1>
+          <p class="subtext">Leverage consulting, technology & strategy to stay ahead in a fast-changing world.</p>
+          <a href="#about" class="btn-slider">💡 Learn More</a>
         </div>
       </div>
+
+      <!-- Slide 3 -->
       <div class="carousel-item">
-        <video class="d-block w-100" autoplay muted loop playsinline>
-          <source src="{% static 'videos/13398138_1920_1080_30fps.mp4' %}" type="video/mp4">
-        </video>
-        <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
-          <h1 class="text-white">Digital & Technology Solutions</h1>
-          <p class="text-white">Innovative solutions for modern businesses</p>
-          <a href="#services" class="btn btn-primary-custom btn-lg">Explore Services</a>
+        <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg" class="d-block w-100" alt="Technology Solutions">
+        <div class="carousel-caption d-flex flex-column justify-content-center h-100 align-items-start text-start">
+          <span class="tagline">Digital Transformation</span>
+          <h1 class="headline">Innovative <span>Solutions</span><br/>for Modern Businesses</h1>
+          <p class="subtext">We help you harness the power of digital tools, automation & AI-driven solutions.</p>
+          <a href="#contact" class="btn-slider">📞 Get in Touch</a>
         </div>
       </div>
 
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+
   </div>
 </section>
+
 
 <section id="about" class="py-4 bg-light">
   <div class="container">
@@ -288,7 +371,7 @@
   --accent:#ffcc00;
 }
 
-.hero { position: relative; height:500px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+
 .video-container { position:absolute; top:0; left:0; width:100%; height:100%; overflow:hidden; z-index:-2; }
 .video-container video { width:100%; height:400px; object-fit:cover; object-position:center; }
 .hero-overlay { position:absolute; top:0; left:0; width:100%; height:100%; background: rgba(1,39,77,0.5); z-index:-1; }
@@ -298,8 +381,8 @@
 
 
 
-.btn-primary-custom { background: linear-gradient(135deg,var(--secondary),var(--primary)); border:none; color:#fff; font-weight:600; padding:12px 30px; border-radius:50px; box-shadow:0 6px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; }
-.btn-primary-custom:hover { transform:translateY(-5px); box-shadow:0 12px 25px rgba(0,0,0,0.4); background: linear-gradient(135deg,var(--primary),var(--secondary));color: white; }
+.btn-outline-primary { font-weight:600; padding:12px 30px;  box-shadow:0 6px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; }
+.btn-outline-primary:hover { transform:translateY(-5px); box-shadow:0 12px 25px rgba(0,0,0,0.4); background: linear-gradient(135deg,var(--primary),var(--secondary));color: white; }
 .btn-outline-custom { border:2px solid #fff; color:#fff; background:transparent; padding:12px 30px; border-radius:50px; transition: all 0.3s;}
 .btn-outline-custom:hover { background: rgba(255,255,255,0.2); }
 .service-card { padding:30px; border-radius:20px; transition:0.3s; }
