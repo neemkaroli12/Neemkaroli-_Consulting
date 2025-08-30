@@ -45,13 +45,29 @@
     .footer-custom a:hover {
       text-decoration: underline;
     }
-@media (max-width: 576px) {
-  [data-aos="fade-left"],
-  [data-aos="fade-right"] {
-    transform: none !important;
-    opacity: 1 !important;
-  }
-}
+    @media (max-width: 576px) {
+      [data-aos="fade-left"],
+      [data-aos="fade-right"] {
+        transform: none !important;
+        opacity: 1 !important;
+      }
+    }
+    .dropdown-submenu {
+      position: relative;
+    }
+
+    .dropdown-submenu > .dropdown-menu {
+      top: 0;
+      left: 100%; 
+      margin-top: -1px;
+      display: none; 
+    }
+
+    .dropdown-submenu.show > .dropdown-menu {
+      display: block;
+    }
+
+
   </style>
 </head>
 <body>
@@ -81,62 +97,104 @@
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #051946ff;">
   <div class="container">
+    <a class="navbar-brand d-lg-none fw-bold text-white" href="{% url 'consulting_app:home_two' %}">Neemkaroli</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
       aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse justify-content-center" id="mainNavbar">
       <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link " href="{% url 'consulting_app:home_two' %}">Home</a></li>
-        
+
+        <!-- Home -->
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'consulting_app:home_two' %}">Home</a>
+        </li>
+
+        <!-- About -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle px-3" href="#" id="servicesDropdown"
-             role="button" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
-          <ul class="dropdown-menu">
+          <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown">
+            About Us
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
             <li><a class="dropdown-item" href="{% url 'consulting_app:about' %}">About Us</a></li>
-            <li><a class="dropdown-item" href="{% url "consulting_app:vision" %}">Vision And Mission</a></li>
-            <li><a class="dropdown-item" href="{% url "consulting_app:management" %}">Management</a></li>
-            
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle px-3" href="#" id="servicesDropdown"
-             role="button" data-bs-toggle="dropdown" aria-expanded="false">Our Services</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Dynamics Version Upgrades</a></li>
-            <li><a class="dropdown-item" href="#">Implementation and Rollout</a></li>
-            <li><a class="dropdown-item" href="#">Cloud-based Services</a></li>
-            <li><a class="dropdown-item" href="#">Managed Teams</a></li>
-            <li><a class="dropdown-item" href="#">Support Offerings</a></li>
-            <li><a class="dropdown-item" href="#">Training & Education</a></li>
-            <li><a class="dropdown-item" href="#">Staffing Services</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown" >
-          <a class="nav-link dropdown-toggle px-3" href="#" id="solutionsDropdown"
-             role="button" data-bs-toggle="dropdown" aria-expanded="false">Business Solutions</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">ERP</a></li>
-            <li><a class="dropdown-item" href="#">CRM</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown" >
-          <a class="nav-link dropdown-toggle px-3" href="#" id="newsDropdown"
-             role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">News</a></li>
-            <li><a class="dropdown-item" href="#">Events</a></li>
+            <li><a class="dropdown-item" href="{% url 'consulting_app:vision' %}">Vision & Mission</a></li>
+            <li><a class="dropdown-item" href="{% url 'consulting_app:management' %}">Leadership Team</a></li>
+            <li><a class="dropdown-item" href="#">Partnership</a></li>
+            <li><a class="dropdown-item" href="#">Career</a></li>
+            <li><a class="dropdown-item" href="#">Blog</a></li>
           </ul>
         </li>
 
-        <li class="nav-item"><a class="nav-link px-3" href="#">Contact</a></li>
+        <!-- Services (Mega Menu) -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">
+            Services
+          </a>
+          <div class="dropdown-menu p-3" style="min-width:800px; background-color:#051946ff;">
+            <div class="row">
+              <div class="col-lg-4">
+                <h6 class="text-white">Microsoft Dynamic Services</h6>
+                <a class="dropdown-item" href="#">Consulting</a>
+                <a class="dropdown-item" href="#">Implementation</a>
+                <a class="dropdown-item" href="#">Support</a>
+                <a class="dropdown-item" href="#">Services</a>
+              </div>
+              <div class="col-lg-4">
+                <h6 class="text-white">Odoo Services</h6>
+                <a class="dropdown-item" href="#">Consulting</a>
+                <a class="dropdown-item" href="#">Implementation</a>
+                <a class="dropdown-item" href="#">Support</a>
+                <a class="dropdown-item" href="#">Services</a>
+              </div>
+              <div class="col-lg-4">
+                <h6 class="text-white">Other Services</h6>
+                <a class="dropdown-item" href="#">Automation, Data Analytics & AI</a>
+                <a class="dropdown-item" href="#">Application Management</a>
+                <a class="dropdown-item" href="#">Customization & Development</a>
+                <a class="dropdown-item" href="#">Integration</a>
+                <a class="dropdown-item" href="#">Change Management</a>
+                <a class="dropdown-item" href="#">Cloud Services</a>
+                <a class="dropdown-item" href="#">Health Check</a>
+                <a class="dropdown-item" href="#">Tectura Offshore</a>
+                <a class="dropdown-item" href="#">Performance Management</a>
+                <a class="dropdown-item" href="#">Release & Deployment</a>
+                <a class="dropdown-item" href="#">Version Management</a>
+                <a class="dropdown-item" href="#">Training & Development</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Industries (Multi-level) -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="industriesDropdown" role="button" data-bs-toggle="dropdown">
+            Industries
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="industriesDropdown">
+            <li class="dropdown-submenu">
+              <a class="dropdown-item dropdown-toggle" href="#">Manufacturing</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Option 1</a></li>
+                <li><a class="dropdown-item" href="#">Option 2</a></li>
+              </ul>
+            </li>
+            <li><a class="dropdown-item" href="#">EPC</a></li>
+            <li><a class="dropdown-item" href="#">Trading & Distribution</a></li>
+            <li><a class="dropdown-item" href="#">Education</a></li>
+            <li><a class="dropdown-item" href="#">Chemical</a></li>
+            <li><a class="dropdown-item" href="#">Oil & Gas</a></li>
+          </ul>
+        </li>
+
+        <!-- Others -->
+        <li class="nav-item"><a class="nav-link" href="#">Case Study</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Evaluate & Estimate Yourself</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
       </ul>
     </div>
   </div>
 </nav>
-
-
-
 
 
 {% block content %}
@@ -180,6 +238,25 @@ Uttarakhand:262139</p>
     </div>
   </div>
 </footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll('.dropdown-submenu > a').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation(); 
+
+      let parent = this.parentElement;
+      document.querySelectorAll('.dropdown-submenu').forEach(function (submenu) {
+        if (submenu !== parent) {
+          submenu.classList.remove('show');
+        }
+      });
+      parent.classList.toggle('show');
+    });
+  });
+});
+</script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
