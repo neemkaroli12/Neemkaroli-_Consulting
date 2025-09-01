@@ -8,36 +8,121 @@
 <section class="hero-section d-flex align-items-center justify-content-center text-white text-center">
   <div class="hero-overlay"></div>
   <div class="content" data-aos="fade-up">
-    <h1 class="display-4 fw-bold">Implementation Services</h1>
-    <p class="lead">Seamless Microsoft Dynamics integration tailored to your business needs</p>
-    <a href="#approach" class="btn btn-gradient mt-3">Explore More</a>
+    <h1 class="display-3 fw-bold">Microsoft Dynamics Implementation</h1>
+    <p class="lead mb-4">Seamless integration tailored to your business needs</p>
+    <a href="#approach" class="btn btn-gradient btn-lg">Explore More</a>
   </div>
   <canvas id="particles"></canvas>
 </section>
 
 <!-- Our Approach -->
 <section id="approach" class="py-5 container">
-  <div class="row g-4 align-items-center">
-    <!-- Text -->
+  <div class="row g-5 align-items-start">
     <div class="col-md-7" data-aos="fade-right">
-      <h2 class="fw-bold mb-3">Our Approach</h2>
+      <h2 class="fw-bold mb-3 text-warning">Our Approach</h2>
       <p class="text-dark opacity-75">
         From planning to deployment, we ensure smooth Microsoft Dynamics implementation 
         with minimal disruption to your operations.
       </p>
-      <ul class="list-group glass-card">
-        <li class="list-group-item bg-transparent border-0 text-black">✔ Requirement gathering & analysis</li>
-        <li class="list-group-item bg-transparent border-0 text-black">✔ Custom configuration</li>
-        <li class="list-group-item bg-transparent border-0 text-black">✔ Data migration</li>
-        <li class="list-group-item bg-transparent border-0 text-black">✔ End-user training</li>
-      </ul>
+      <div class="row g-3">
+        <div class="col-sm-6">
+          <div class="glass-card p-3 h-100 text-center">
+            <i class="bi bi-clipboard-check fs-1 text-warning"></i>
+            <h6 class="mt-2 text-dark">Requirement Analysis</h6>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="glass-card p-3 h-100 text-center">
+            <i class="bi bi-sliders fs-1 text-warning"></i>
+            <h6 class="mt-2 text-dark">Custom Configuration</h6>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="glass-card p-3 h-100 text-center">
+            <i class="bi bi-cloud-arrow-up fs-1 text-warning"></i>
+            <h6 class="mt-2 text-dark">Data Migration</h6>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="glass-card p-3 h-100 text-center">
+            <i class="bi bi-people fs-1 text-warning"></i>
+            <h6 class="mt-2 text-dark">End-user Training</h6>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- Card -->
+
+    <!-- Why Choose Us -->
     <div class="col-md-5" data-aos="fade-left">
-      <div class="glass-card p-3 shadow-lg text-center h-100">
-        <img src="{% static 'images/job-5382501_1280.jpg' %}" class="img-fluid rounded-3" alt="Implementation">
-        <h5 class="mt-3 text-warning">Why Choose Us?</h5>
-        <p class="text-dark opacity-75">Proven track record in Dynamics implementation with certified experts.</p>
+      <div class="glass-card p-4 shadow-lg text-center h-100">
+        <img src="{% static 'images/job-5382501_1280.jpg' %}" 
+             class="img-fluid rounded-3 mb-3" 
+             alt="Implementation">
+
+        <h4 class="text-warning fw-bold">Why Choose Us?</h4>
+        <div class="underline mx-auto mb-3"></div>
+
+        <ul class="list-unstyled text-start px-3">
+          <li class="mb-2 text-dark">
+            <i class="bi bi-check-circle-fill text-success me-2"></i>
+            Certified Microsoft Dynamics Experts
+          </li>
+          <li class="mb-2 text-dark">
+            <i class="bi bi-check-circle-fill text-success me-2"></i>
+            Proven Track Record of Successful Implementations
+          </li>
+          <li class="mb-2 text-dark">
+            <i class="bi bi-check-circle-fill text-success me-2"></i>
+            Customized Solutions for Every Business
+          </li>
+          <li class="text-dark">
+            <i class="bi bi-check-circle-fill text-success me-2"></i>
+            Continuous Support & Training
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Implementation Process -->
+<section class="process-section py-5">
+  <div class="container text-center" data-aos="fade-up">
+    <h2 class="fw-bold mb-3 text-dark">Implementation Process</h2>
+    <p class="mb-4 text-muted">A structured framework to ensure a seamless rollout.</p>
+    <div class="process-wrapper p-4 rounded shadow mb-4">
+      <img src="{% static 'images/image copy.png' %}" 
+           alt="Microsoft Dynamics Implementation Process" 
+           class="img-fluid rounded">
+    </div>
+    <!-- Example Steps -->
+    <div class="row g-4 mt-3">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <i class="bi bi-search fs-1 text-primary"></i>
+            <h6 class="mt-2">Data Audit & Assessment</h6>
+            <p class="small text-muted">Analyzing current systems & data readiness.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <i class="bi bi-box-seam fs-1 text-success"></i>
+            <h6 class="mt-2">Choosing D365 Solution</h6>
+            <p class="small text-muted">Selecting the right Dynamics 365 modules.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <i class="bi bi-diagram-3 fs-1 text-danger"></i>
+            <h6 class="mt-2">Model Selection</h6>
+            <p class="small text-muted">Defining the right implementation model.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -47,9 +132,12 @@
 <section class="cta-section text-center text-white py-5">
   <div class="overlay"></div>
   <div class="container" data-aos="zoom-in">
-    <h3 class="fw-bold">Ready to Transform Your Business?</h3>
-    <p class="mb-4">Contact us today to discuss your Microsoft Dynamics Implementation needs.</p>
-    <a href="/contact" class="btn btn-gradient btn-lg">Get in Touch</a>
+    <h3 class="fw-bold display-6">Ready to Transform Your Business?</h3>
+    <p class="mb-4 lead">Contact us today to discuss your Microsoft Dynamics Implementation needs.</p>
+    <div class="d-flex justify-content-center gap-3">
+      <a href="/contact" class="btn btn-gradient btn-lg">Get in Touch</a>
+      <a href="#approach" class="btn btn-outline-light btn-lg">Learn More</a>
+    </div>
   </div>
 </section>
 
@@ -62,34 +150,22 @@
   // Particles
   const canvas = document.getElementById("particles");
   const ctx = canvas.getContext("2d");
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  window.addEventListener("resize",resizeCanvas);resizeCanvas();
+  let particles=[];
+  for(let i=0;i<60;i++){
+    particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:2+Math.random()*2,dx:(Math.random()-.5),dy:(Math.random()-.5)});
   }
-  window.addEventListener("resize", resizeCanvas);
-  resizeCanvas();
-
-  let particles = [];
-  for (let i = 0; i < 60; i++) {
-    particles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: 2 + Math.random() * 2,
-      dx: (Math.random() - 0.5),
-      dy: (Math.random() - 0.5)
-    });
-  }
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(255,255,255,0.7)";
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle="rgba(255,255,255,0.7)";
       ctx.fill();
-      p.x += p.dx;
-      p.y += p.dy;
-      if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-      if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+      p.x+=p.dx; p.y+=p.dy;
+      if(p.x<0||p.x>canvas.width) p.dx*=-1;
+      if(p.y<0||p.y>canvas.height) p.dy*=-1;
     });
     requestAnimationFrame(draw);
   }
@@ -100,24 +176,46 @@
 /* Hero Section */
 .hero-section {
   position: relative;
-  height: 80vh;
-  background: url("{% static 'images/annie-spratt-QckxruozjRg-unsplash.jpg' %}") center/cover no-repeat;
+  height: 85vh;
+  background: url("{% static 'images/image.png' %}") center/cover no-repeat;
   overflow: hidden;
 }
 .hero-overlay {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.65);
 }
 .hero-section .content { position: relative; z-index: 2; }
 #particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
 
 /* Glassmorphism */
 .glass-card {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.1);
   backdrop-filter: blur(12px);
   border-radius: 15px;
-  color: #fff;
   border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  transition: 0.3s ease-in-out;
+}
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(0,198,255,0.4);
+}
+
+/* Underline style */
+.underline {
+  width: 60px;
+  height: 3px;
+  background: #ffc107;
+  border-radius: 5px;
+}
+
+/* Process Section */
+.process-section {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+.process-wrapper {
+  background: #fff;
+  border: 1px solid #dee2e6;
 }
 
 /* CTA */
@@ -127,7 +225,7 @@
 }
 .cta-section .overlay {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.65);
+  background: rgba(0,0,0,0.7);
 }
 .cta-section .container { position: relative; z-index: 2; }
 
@@ -135,7 +233,7 @@
 .btn-gradient {
   background: linear-gradient(45deg,#0072ff,#00c6ff);
   color: #fff; border: none;
-  padding: 10px 25px;
+  padding: 12px 28px;
   border-radius: 30px;
   transition: 0.4s;
   box-shadow: 0 0 15px rgba(0,114,255,0.6);
