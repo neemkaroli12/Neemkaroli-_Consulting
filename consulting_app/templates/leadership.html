@@ -3,261 +3,151 @@
 {% block title %}Leadership Team{% endblock %}
 {% block content %}
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
 <style>
+    /* Page Title */
     .page-title {
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
                     url("{% static 'images/home-bg-8.jpg' %}") center/cover no-repeat;
         color: white;
         padding: 100px 20px;
         text-align: center;
-        position: relative;
-        height: 75vh;
+        height: 90vh;
     }
+    .page-title h1 { font-size: 3.5rem; font-weight: 800; text-transform: uppercase; }
+    .page-title p { font-size: 1.125rem; margin-top: 20px; }
+    .breadcrumb { background: transparent; margin-top: 20px; font-size: 1.125rem; display: flex; justify-content: center; gap: 10px; color: #f0f0f0; }
+    .breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
+    .breadcrumb a:hover { color: #ffd369; }
+    .breadcrumb .active { color: #ccc; }
 
-    .page-title h1 {
-        font-size: 3.5rem;
-        font-weight: 800;
-        margin-bottom: 15px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        animation: fadeInDown 1s ease-in-out;
-    }
-     .page-title p {
-        font-size: 1.2rem;
-        margin-top: 20px;
-        z-index: 1;
-    }
+    /* Business Card */
+ .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
 
-
-    .breadcrumb {
-        background: transparent;
-        padding: 0;
-        margin: 0;
-        font-size: 1.1rem;
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        color: #f0f0f0;
-        animation: fadeInUp 1s ease-in-out;
-    }
-
-    .breadcrumb li {
-        display: inline;
-    }
-
-    .breadcrumb a {
-        color: #f0f0f0;
-        text-decoration: none;
-        font-weight: 500;
-    }
-
-    .breadcrumb a:hover {
-        color: #ffd369;
-    }
-
-    .breadcrumb .active {
-        color: #ccc;
-    }
-    .vis-container {
-        padding: 70px 20px;
-    }
-
-    .team-card img {
-        border-radius: 15px;
-        margin-bottom: 20px;
-        max-width: 280px;
-        transition: transform 0.3s ease;
-    }
-
-    .team-card img:hover {
-        transform: scale(1.05);
-    }
-
-    .team-card h2 {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #222;
-    }
-
-    .team-card h4 {
-        font-size: 1.2rem;
-        color: #777;
-        margin-bottom: 15px;
-    }
-
-    .team-card p {
-        font-size:1.2rem !important;
-        line-height: 1.7;
-        color: #555;
-        text-align: justify;
-    }
-
-    .team-card a {
-        font-weight: 600;
-        color: black;
-        text-decoration: none;
-    }
-
-    .team-card a:hover {
-        color: #0056b3;
-        text-decoration: underline;
-    }
-    @keyframes fadeInDown {
-        0% { opacity: 0; transform: translateY(-30px); }
-        100% { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-        0% { opacity: 0; transform: translateY(30px); }
-        100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .buisness-card p{
-        font-size:1.2rem !important;
-        line-height: 1.7;
-        color: #555;
-        text-align: justify;
-    }
-
-   
-     @media (max-width: 768px) {
-       
-
-        .page-title p {
-            font-size: 1.1rem;
-            max-width: 90%;
-            margin: 0 auto;
-            text-align: justify;
-        }
-
-        .breadcrumb {
-            font-size: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .breadcrumb li {
-            margin-bottom: 5px;
-        }
-
-        .page-title {
-            padding: 80px 20px;
-            height: auto;
-        }
-
-        .page-title h1 {
-            font-size: 1.2rem;
-        }
-        .team-card {
-            text-align: center;
-        }
-        .team-card img {
-            max-width: 200px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        
-
-        .page-title {
-            padding: 60px 20px;
-            height: auto;
-        }
-
-        .page-title h1 {
-            font-size: 1.2rem;
-        }
-
-        .breadcrumb {
-            font-size: 0.9rem;
-        }
-
-        .page-title p {
-            font-size: 1rem;
-            padding: 0 10px;
-        }
-    }
-    {% comment %} .buisness-card {
+.business-card {
+    width: 300px;   
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    height: 100%;
 }
-
 .buisness-card img {
-    width: 100%;
-    max-height: 280px;
-    object-fit: cover;
-    border-radius: 10px;
+    height: 250px;
+    width: 250px;
+    margin: 0 auto;      
+    object-fit: cover;  
+    margin-top: 50px;
 }
 
-.buisness-card h3 {
-    font-size: 1.5rem;
-    margin-top: 1rem;
-    font-weight: 700;
+.buisness-card .card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
-.buisness-card p {
-    font-size: 1rem;
-    color: #555;
-    text-align: justify;
-} {% endcomment %}
+.buisness-card .btn {
+    margin-top: auto;    
+}
 
+    .card-text { padding: 15px; text-align: center; }
+    .card-text h3 { font-size: 1.5rem; font-weight: bold; margin-top: 10px; }
+    .buisness-card p { font-size: 1rem; line-height: 1.6; color: #555; }
+
+    .read-more {
+        background: #2d2d2d;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        text-align: center;
+        padding: 10px 15px;
+        border-radius: 6px;
+        margin-top: 15px;
+        transition: all 0.3s ease;
+        display: block;
+        width: 100%;
+    }
+    .read-more:hover { background: #444; }
+
+    .more-info { display: none; margin-top: 15px; text-align: justify; }
+    .expanded .more-info { display: block; }
+
+    @media (max-width: 768px) {
+        .page-title h1 { font-size: 2rem; }
+        .page-title p { font-size: 1rem; }
+        .breadcrumb { font-size: 1rem; flex-wrap: wrap; }
+        .card-text h3 { font-size: 1.25rem; }
+    }
 </style>
 
 <section class="page-title">
     <h1>Our Leadership Team</h1>
-    <p class="mb-4">Our global leadership team plays a pivotal role in driving the direction of the company, shaping our strategic goals, and leading our talented workforce. Get to know more about the experienced NKCL Executive Leadership team and our esteemed Board of Directors, who work tirelessly to guide our vision and ensure our continued success.</p>
+    <p>Our global leadership team plays a pivotal role in driving the direction of the company, shaping our strategic goals, and leading our talented workforce.</p>
     <ol class="breadcrumb">
         <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
         <li><a href="{% url 'consulting_app:about' %}">| About</a></li>
         <li class="active">| Leadership</li>
     </ol>
 </section>
+
 <div class="container mt-5">
     <div class="row">
-        <div class="col-lg-4 d-flex align-items-stretch">
-            <div class="card border-0 buisness-card ">
-                <img src="{% static 'images/team1s.png' %}" alt="">
+
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card buisness-card">
+                <img src="{% static 'images/team1s.png' %}" alt="Sushir Mittal" class="img-fluid">
                 <div class="card-text">
-                    <h3 class="mt-3 mb-3">SUSHIR MITTAL</h3>  
-                    <p class="mb-4">Menor And Operation Head</p>
-                    <p>M.Tech. (Computer Science and Technology) – I.I.T, Roorkee and  successfully completed Management executive programs from IIM (Ahmedabad) .</p>
-                        <p>He has been awarded Top 10 most  respected CIO of 2011 by World's  CIO Council and CIO Association of India  and have been associated with India's top brand  like CSIR, NTPC, Aditya Birla Group, Reliance Industries Ltd ,Pantaloons , Dangote Group of Industries (Nigera's  No. 1 Company)  , SAMTEL Group , Gujarat State Petroleum Corporation (GSPC) and Cloud Planet Technology Pvt. Ltd. and had around 34  years of experience in IT Strategy, aligned with Business  , planning and managing  IT , Information Security and business systems like SAP , BI and MIS , P & L responsible for  IT  Company .</p>
+                    <h3>SUSHIR MITTAL</h3>
+                    <p>Mentor and Operation Head</p>
+                    <div class="read-more" role="button" tabindex="0" aria-expanded="false">
+                        <i class="fa-solid fa-plus me-2"></i> More Info
+                    </div>
+                    <div class="more-info">
+                        <p>M.Tech. (Computer Science and Technology) – I.I.T, Roorkee and successfully completed Management executive programs from IIM (Ahmedabad) .</p>
+                        <p>He has been awarded Top 10 most respected CIO of 2011 by World's CIO Council and CIO Association of India and have been associated with India's top brand like CSIR, NTPC, Aditya Birla Group, Reliance Industries Ltd ,Pantaloons , Dangote Group of Industries (Nigera's No. 1 Company) , SAMTEL Group , Gujarat State Petroleum Corporation (GSPC) and Cloud Planet Technology Pvt. Ltd. and had around 34 years of experience in IT Strategy, aligned with Business , planning and managing IT , Information Security and business systems like SAP , BI and MIS , P & L responsible for IT Company .</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
-            <div class="card border-0 buisness-card">
-                <img src="{% static 'images/team3p.png' %}" alt="" height="350px">
+
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card buisness-card">
+                <img src="{% static 'images/team3p.png' %}" alt="Paritosh Rohatgi" class="img-fluid">
                 <div class="card-text">
-                    <h3 class="mt-3">PARITOSH ROHATGI</h3>  
-                    <p class="mb-2">Microsoft Dynamics Visionary | Influencer & Product Architect</p>
-                    <p>Postgraduate from BITS Pilani and holder of a PGDBM (MBA) in Systems & Finance from the Institute of Management Technology, I bring over 28 years of proven success as a technocrat and strategic leader in the enterprise technology space.
-Having worked with top-tier multinational corporations including EY, Computer Associates, Fujitsu, and Trident Group, I have consistently delivered transformative outcomes across large and mid-sized enterprises.
-My core expertise lies in end-to-end project management and ERP implementations, with deep functional and technical proficiency in platforms such as: Odoo ERP, Microsoft Dynamics 365.
-Retail & Distribution, Oil & Gas, Manufacturing
-Asset & Fleet Management, Equipment Leasing & Renting.
-I specialize in aligning technology with business strategy—driving operational excellence, financial visibility, and scalable growth through tailored ERP solutions.
-</p>
-                    
+                    <h3>PARITOSH ROHATGI</h3>
+                    <p>MS Dynamics Visionary|Product Architect</p>
+                    <div class="read-more" role="button" tabindex="0" aria-expanded="false">
+                        <i class="fa-solid fa-plus me-2"></i> More Info
+                    </div>
+                    <div class="more-info">
+                        <p>Postgraduate from BITS Pilani and holder of a PGDBM (MBA) in Systems & Finance from the Institute of Management Technology, I bring over 28 years of proven success as a technocrat and strategic leader in the enterprise technology space. Having worked with top-tier multinational corporations including EY, Computer Associates, Fujitsu, and Trident Group, I have consistently delivered transformative outcomes across large and mid-sized enterprises. My core expertise lies in end-to-end project management and ERP implementations, with deep functional and technical proficiency in platforms such as: Odoo ERP, Microsoft Dynamics 365. Retail & Distribution, Oil & Gas, Manufacturing Asset & Fleet Management, Equipment Leasing & Renting. I specialize in aligning technology with business strategy—driving operational excellence, financial visibility, and scalable growth through tailored ERP solutions.</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
-            <div class="card border-0 buisness-card">
-                <img src="{% static 'images/team2o.png' %}" alt="">
-                <div class="card-text" >
-                    <h3 class="mt-3">PRAVEEN UPADHAYAYA </h3>  
-                    <p class="m-0">Odoo ERP Visionary | Influencer & Product Architect</p>
-                    <p>B.Tech in Computer Science, backed by 16 years of expertise in Odoo implementation and customization. I’ve architected and developed numerous applications, seamlessly integrating Odoo with a wide range of external tools and platforms. My experience also includes real-time data synchronization with machines, leveraging AI/ML technologies to drive intelligent automation.</p>
-<p>My core strengths include product strategy, software architecture, and the ability to align technology with business goals—all while mentoring and leading high-performing teams. Today, I channel this experience to empower organizations in their digital transformation journey, fostering innovation and sustainable success.
-</p>
+
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card buisness-card">
+                <img src="{% static 'images/team2o.png' %}" alt="Praveen Upadhayaya" class="img-fluid">
+                <div class="card-text">
+                    <h3>PRAVEEN UPADHAYAYA</h3>
+                    <p>Odoo ERP Visionary | Product Architect</p>
+                    <div class="read-more" role="button" tabindex="0" aria-expanded="false">
+                        <i class="fa-solid fa-plus me-2"></i> More Info
+                    </div>
+                    <div class="more-info">
+                        <p>B.Tech in Computer Science, backed by 16 years of expertise in Odoo implementation and customization. I’ve architected and developed numerous applications, seamlessly integrating Odoo with a wide range of external tools and platforms. My experience also includes real-time data synchronization with machines, leveraging AI/ML technologies to drive intelligent automation.</p>
+                        <p>My core strengths include product strategy, software architecture, and the ability to align technology with business goals—all while mentoring and leading high-performing teams. Today, I channel this experience to empower organizations in their digital transformation journey, fostering innovation and sustainable success.</p>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 <section id="counters" class="py-5 text-white" style="background: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover; position: relative;">
@@ -286,7 +176,7 @@ I specialize in aligning technology with business strategy—driving operational
       </div>
 
       <div class="col-md-3 mb-4">
-        
+        <!-- Handshake from Font Awesome -->
         <i class="fa-solid fa-handshake fs-1 mb-3 text-warning"></i>
         <h2 class="fw-bold counter" data-target="20">0</h2>
         <p>Years Microsoft Gold Partner</p>
@@ -296,7 +186,21 @@ I specialize in aligning technology with business strategy—driving operational
   </div>
 </section>
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('.buisness-card .read-more').forEach(button => {
+    button.addEventListener('click', () => {
+      const card = button.closest('.buisness-card');
+      card.classList.toggle('expanded');
+      const isExpanded = card.classList.contains('expanded');
+      button.innerHTML = `
+        <i class="fa-solid ${isExpanded ? 'fa-minus' : 'fa-plus'} me-2"></i>
+        ${isExpanded ? 'Less Info' : 'More Info'}
+      `;
+      button.setAttribute('aria-expanded', isExpanded);
+    });
+  });
+});
+document.addEventListener("DOMContentLoaded", () => {
     const counters = document.querySelectorAll(".counter");
     const speed = 50; // Lower = faster
 

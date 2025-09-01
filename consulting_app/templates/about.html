@@ -4,165 +4,126 @@
 {% block content %}
 <style>
 .page-title {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
                 url("{% static 'images/home-bg-8.jpg' %}") center center / cover no-repeat;
     color: white;
-    padding: 120px 20px;
+    padding: 180px 20px;
     text-align: center;
 }
 .page-title h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 10px;
+    font-size: 4.2rem;
+    font-weight: 800;
+    margin-bottom: 15px;
     text-transform: uppercase;
+    letter-spacing: 2px;
 }
 .breadcrumb {
     background: transparent;
     padding: 0;
-    margin-bottom: 0;
-    font-size: 1.1rem;
-    text-align: center; 
+    font-size: 1.2rem;
     display: flex;
-    justify-content: center; 
-    gap: 8px;
+    justify-content: center;
+    gap: 10px;
     flex-wrap: wrap;
-}
-.breadcrumb li {
-    display: inline;
 }
 .breadcrumb a {
     color: #f0f0f0;
     text-decoration: none;
 }
-  .breadcrumb a:hover {
-        color: #ffd369;
-    }
+.breadcrumb a:hover {
+    color: #ffd369;
+}
 .breadcrumb .active {
     color: #ccc;
 }
 .section-snippet-services {
-    padding: 50px 20px;
+    padding: 60px 30px;
     text-align: center;
-    text-align: justify;
+    background-color: #ffffff;
 }
 .section-snippet-services .lead {
-    font-size: 1.2rem;
+    font-size: 1.125rem;
     max-width: 1000px;
     margin: 0 auto;
-    line-height: 1.8;
-    color: #555;
+    line-height: 2;
+    color: #444;
+    font-weight: 400;
 }
 .imageblock {
     display: flex;
     flex-wrap: wrap;
-    margin: 60px 0;
+    margin: 80px 0;
     align-items: center;
     border-radius: 15px;
     overflow: hidden;
+    background-color: #f9f9f9;
 }
 .imageblock__content {
     flex: 1 1 45%;
-    padding: 40px 40px 40px 60px; 
-    box-sizing: border-box; 
+    padding: 40px;
+    box-sizing: border-box;
 }
-
 .imageblock__content img {
     width: 100%;
-    height: auto; 
+    height: auto;
     object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
-
 .imageblock .text-content {
     flex: 1 1 55%;
-    padding: 40px;
+    padding: 50px;
+    font-size: 1.125rem;
+    color: #333;
 }
-.imageblock p {
-    font-size: 1.1rem;
-    margin-bottom: 15px;
+.imageblock .text-content p {
+    font-size: 1.125rem;
+    margin-bottom: 20px;
+    font-weight: 500;
 }
 .imageblock ul {
     list-style: disc;
     padding-left: 20px;
 }
 .imageblock li {
-    margin-bottom: 10px;
-     font-size: 1.1rem;
-}
-.section-snippet-benefits {
-    background-color: #f0f4f8;
-    padding: 80px 20px;
-    text-align: center;
-}
-.section-snippet-benefits h3 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 50px;
-    color: #222;
-}
-.section-snippet-benefits .card {
-    width: 300px;
-    background-color: #ffffff;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    text-align: center;
-    padding: 20px;
-}
-.section-snippet-benefits .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-}
-.section-snippet-benefits .card img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    transition: transform 0.3s;
-}
-.section-snippet-benefits .card:hover img {
-    transform: scale(1.05);
-}
-.section-snippet-benefits .card h5 {
-    font-weight: 600;
-    font-size: 1.2rem;
-    margin-top: 10px;
-    margin-bottom: 5px;
-}
-.section-snippet-benefits .card p {
-    font-size: 0.95rem;
-    color: #666;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    line-height: 1.7;
 }
 @media (max-width: 768px) {
     .imageblock {
         flex-direction: column;
-        max-width: 350px;
     }
-    @media (max-width: 768px) {
-    .imageblock__content {
-        padding: 10px; /* Or a smaller value like 20px */
-    }
-}
-
+    .imageblock__content,
     .imageblock .text-content {
         padding: 20px;
     }
+    .page-title h1 {
+        font-size: 2.5rem;
+    }
+    .section-snippet-services .lead {
+        font-size: 1.1rem;
+    }
+    .imageblock .text-content p {
+        font-size: 1.15rem;
+    }
 }
 </style>
+
 <section class="page-title">
     <h1>About Us</h1>
     <ol class="breadcrumb">
         <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
-        <li class="active">|About Us</li>
+        <li class="active">| About Us</li>
     </ol>
 </section>
+
 <section class="section-snippet-services">
     <p class="lead">
         With a user-centric approach and a focus on customers and market demand, Neemkaroli Consulting builds models that blend technical excellence, digital innovation, and operational flexibility to bring your vision to life.
     </p>
 </section>
+
 <section class="imageblock">
     <div class="imageblock__content">
         <img src="{% static 'images/about2.jpg' %}" alt="About NKC">
@@ -178,32 +139,6 @@
             <li>Trusted Dynamics 365 partner in our operating marketplaces.</li>
             <li>Empathetic, diverse team with a solution-oriented mindset.</li>
         </ul>
-    </div>
-</section>
-<section class="section-snippet-benefits">
-    <h3>Find Out More</h3>
-    <div class="row" style="display:flex; gap:30px; justify-content:center; flex-wrap:wrap;">
-        <div class="col-sm-4 card">
-            <a href="#">
-                <img src="{% static 'images/about2.jpg' %}" alt="Vision & Mission">
-                <h5>VISION & MISSION</h5>
-                <p>Learn about our guiding purpose and long-term goals.</p>
-            </a>
-        </div>
-        <div class="col-sm-4 card">
-            <a href="#">
-                <img src="{% static 'images/about2.jpg' %}" alt="Values">
-                <h5>VALUES</h5>
-                <p>Discover the principles that drive our decisions and culture.</p>
-            </a>
-        </div>
-        <div class="col-sm-4 card">
-            <a href="#">
-                <img src="{% static 'images/about2.jpg' %}" alt="People & Culture">
-                <h5>PEOPLE & CULTURE</h5>
-                <p>Meet the people behind NKC and our inclusive culture.</p>
-            </a>
-        </div>
     </div>
 </section>
 {% endblock %}
