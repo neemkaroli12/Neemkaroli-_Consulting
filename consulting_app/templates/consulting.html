@@ -5,12 +5,13 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="hero-section text-white text-center d-flex align-items-center justify-content-center" 
-         style="background: url('{% static 'images/consulting-bg.jpg' %}') center/cover no-repeat; height: 60vh; position: relative;">
-  <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background: rgba(5,25,70,0.7);"></div>
+<section class="hero-section text-white d-flex align-items-end justify-content-start"
+         style="background: url('{% static 'images/pexels-startup-stock-photos-7075.jpg' %}') center/cover no-repeat; height: 65vh; position: relative;">
+  <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0;
+       "></div>
   <div class="content position-relative" data-aos="fade-up">
-    <h1 class="display-4 fw-bold">Consulting Services</h1>
-    <p class="lead">Guiding businesses with strategy, innovation, and technology expertise</p>
+    <h1 class=" mb-3 animate__animated animate__fadeInDown mb-3 ms-2">Consulting </h1>
+    <p class="lead mb-0 animate__animated animate__fadeInUp animate__delay-1s mb-5 ms-2">Guiding businesses with strategy, innovation, and technology expertise</p>
   </div>
 </section>
 
@@ -19,16 +20,16 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
-        <img src="{% static 'images/consulting-team.jpg' %}" class="img-fluid rounded shadow" alt="Consulting Team">
+        <img src="{% static 'images/pexels-vlada-karpovich-7433822.jpg' %}" class="img-fluid rounded shadow-lg" alt="Consulting Team">
       </div>
       <div class="col-lg-6" data-aos="fade-left">
-        <h2 class="fw-bold mb-3">Why Choose Our Consulting?</h2>
-        <p>We partner with businesses to identify challenges, uncover opportunities, and deliver solutions that drive real growth. Our consulting services are designed to provide practical strategies aligned with your business goals.</p>
+        <h2 class="fw-bold mb-4 text-primary">Why Choose Our Consulting?</h2>
+        <p class="mb-3 text-muted">We partner with businesses to identify challenges, uncover opportunities, and deliver solutions that drive real growth. Our consulting services are designed to provide practical strategies aligned with your business goals.</p>
         <ul class="list-unstyled">
-          <li><i class="bi bi-check-circle-fill text-primary"></i> Business Strategy & Roadmap</li>
-          <li><i class="bi bi-check-circle-fill text-primary"></i> Technology Advisory</li>
-          <li><i class="bi bi-check-circle-fill text-primary"></i> Digital Transformation</li>
-          <li><i class="bi bi-check-circle-fill text-primary"></i> Operations Optimization</li>
+          <li class="mb-3"><i class="bi bi-check2-circle text-success fs-5 me-2"></i><strong>Business Strategy & Roadmap</strong></li>
+          <li class="mb-3"><i class="bi bi-check2-circle text-success fs-5 me-2"></i><strong>Technology Advisory</strong></li>
+          <li class="mb-3"><i class="bi bi-check2-circle text-success fs-5 me-2"></i><strong>Digital Transformation</strong></li>
+          <li class="mb-3"><i class="bi bi-check2-circle text-success fs-5 me-2"></i><strong>Operations Optimization</strong></li>
         </ul>
       </div>
     </div>
@@ -41,24 +42,30 @@
     <h2 class="text-center fw-bold mb-5" data-aos="fade-up">Our Consulting Expertise</h2>
     <div class="row g-4">
       <div class="col-md-4" data-aos="zoom-in">
-        <div class="card shadow h-100 text-center p-4">
-          <i class="bi bi-bar-chart-line display-4 text-primary mb-3"></i>
-          <h5 class="fw-bold">Business Strategy</h5>
-          <p>Helping organizations plan their long-term growth with actionable strategies.</p>
+        <div class="card shadow h-100 text-center p-4 border-0 rounded-4 hover-card">
+          <div class="icon-circle bg-primary text-white mb-3 mx-auto">
+            <i class="bi bi-bar-chart-line fs-2"></i>
+          </div>
+          <h5 class="fw-bold mb-2">Business Strategy</h5>
+          <p class="text-muted">Helping organizations plan their long-term growth with actionable strategies.</p>
         </div>
       </div>
       <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
-        <div class="card shadow h-100 text-center p-4">
-          <i class="bi bi-cpu display-4 text-primary mb-3"></i>
-          <h5 class="fw-bold">Technology Consulting</h5>
-          <p>Advising on the right digital tools and platforms for efficiency and innovation.</p>
+        <div class="card shadow h-100 text-center p-4 border-0 rounded-4 hover-card">
+          <div class="icon-circle bg-primary text-white mb-3 mx-auto">
+            <i class="bi bi-cpu fs-2"></i>
+          </div>
+          <h5 class="fw-bold mb-2">Technology Consulting</h5>
+          <p class="text-muted">Advising on the right digital tools and platforms for efficiency and innovation.</p>
         </div>
       </div>
       <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-        <div class="card shadow h-100 text-center p-4">
-          <i class="bi bi-people-fill display-4 text-primary mb-3"></i>
-          <h5 class="fw-bold">Change Management</h5>
-          <p>Supporting smooth transitions during organizational and digital transformations.</p>
+        <div class="card shadow h-100 text-center p-4 border-0 rounded-4 hover-card">
+          <div class="icon-circle bg-primary text-white mb-3 mx-auto">
+            <i class="bi bi-people-fill fs-2"></i>
+          </div>
+          <h5 class="fw-bold mb-2">Change Management</h5>
+          <p class="text-muted">Supporting smooth transitions during organizational and digital transformations.</p>
         </div>
       </div>
     </div>
@@ -66,11 +73,35 @@
 </section>
 
 <!-- Call to Action -->
-<section class="py-5 text-white" style="background-color:#051946ff;">
+<section class="py-5 text-white cta-section">
   <div class="container text-center" data-aos="fade-up">
     <h2 class="fw-bold mb-3">Ready to Transform Your Business?</h2>
-    <p class="mb-4">Let our experts guide you through every step of your growth journey.</p>
-    <a href="{% url 'consulting_app:contact' %}" class="btn btn-light btn-lg fw-bold">Contact Us</a>
+    <p class="mb-4 fs-5">Let our experts guide you through every step of your growth journey.</p>
+    <a href="#" class="btn btn-light btn-lg fw-bold px-4 py-2 shadow">Contact Us</a>
   </div>
 </section>
+
+<!-- Extra CSS -->
+<style>
+  .hover-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+  }
+  .hover-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+  }
+  .icon-circle {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .cta-section {
+    background: linear-gradient(135deg, #051946, #0a2a80, #1a4dd8);
+    box-shadow: inset 0 0 50px rgba(255,255,255,0.1);
+  }
+</style>
 {% endblock %}

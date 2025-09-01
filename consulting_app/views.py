@@ -36,7 +36,8 @@ def blog_post(request, post_id):
 def implementation(request):
     return render(request, "implementation.html")
 
-
+def cons(request):
+    return render(request,"consulting.html")
 
 def career(request):
     if request.method == "POST":
