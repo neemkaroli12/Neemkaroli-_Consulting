@@ -1,0 +1,400 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}NKCL Career{% endblock %}
+{% block content %}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<style>
+    .page-title {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                    url("{% static 'images/career.png' %}") center/cover no-repeat;
+        color: white;
+        padding: 120px 20px;
+        text-align: center;
+        position: relative;
+        height: 75vh;
+    }
+
+    .page-title h1 {
+        font-size: 3.6rem;
+        font-weight: 900;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+    }
+
+    .breadcrumb {
+        background: transparent;
+        padding: 0;
+        margin: 0;
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        color: #f0f0f0;
+    }
+
+    .breadcrumb a {
+        color: #f0f0f0;
+        text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+        color: #ffd369;
+    }
+
+    .breadcrumb .active {
+        color: #ccc;
+    }
+
+    .statistics {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin: 50px auto;
+        max-width: 1200px;
+    }
+
+    .stat-card {
+        text-align: center;
+        padding: 40px;
+        background: #f4f4f4;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-card i {
+        font-size: 3.5rem;
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    .stat-card h2 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #333;
+    }
+
+    .stat-card p {
+        font-size: 1.2rem;
+        color: #777;
+    }
+
+    .jobs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 25px;
+        max-width: 1200px;
+        margin: 40px auto;
+    }
+
+    .job-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 30px 25px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: default;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .job-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(0, 123, 255, 0.3);
+    }
+
+    .job-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: #222;
+    }
+
+    .job-card p {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .job-card i {
+        color: #007bff;
+        font-size: 1.1rem;
+    }
+
+    .apply-button {
+        margin-top: 20px;
+        align-self: flex-start;
+        background: #007bff;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        border: none;
+    }
+
+    .apply-button i {
+        transition: transform 0.3s ease;
+    }
+
+    .apply-button:hover {
+        background-color: #0056b3;
+        transform: translateX(6px);
+    }
+
+    .apply-button:hover i {
+        transform: translateX(4px);
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+        background-color: #fff;
+        margin: 10% auto;
+        padding: 30px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 500px;
+        position: relative;
+    }
+
+    .modal-content h2 {
+        margin-top: 0;
+    }
+
+    .close-modal {
+        position: absolute;
+        right: 20px;
+        top: 15px;
+        font-size: 1.5rem;
+        color: #999;
+        cursor: pointer;
+    }
+
+    .modal-content input,
+    .modal-content textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .modal-content button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .modal-content button:hover {
+        background-color: #0056b3;
+    }
+
+    .modal-content small {
+        display: block;
+        margin-top: -10px;
+        margin-bottom: 10px;
+        color: #999;
+        font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+        .statistics {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .page-title h1 {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .statistics {
+            grid-template-columns: 1fr;
+        }
+
+        .page-title {
+            padding: 60px 20px;
+        }
+
+        .page-title h1 {
+            font-size: 1.6rem;
+        }
+    }
+</style>
+
+<section class="page-title">
+    <h1>Join Us</h1>
+    <ol class="breadcrumb">
+        <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
+        <li><a href="{% url 'consulting_app:about' %}">| About</a></li>
+        <li class="active">| Career</li>
+    </ol>
+</section>
+
+<div class="container">
+    <div class="jobs-grid">
+        <div class="job-card">
+            <h3>Functional Consultant – Microsoft Dynamics D365 F&O (AX) / Business Central (NAV)</h3>
+            <p><i class="fas fa-briefcase"></i> <strong>Experience:</strong> 2 to 4+ Years</p>
+            <p><i class="fas fa-map-marker-alt"></i> <strong>Locations:</strong> China, Hong Kong, India, Japan, Malaysia, Singapore, Taiwan</p>
+            <button class="apply-button" onclick="openModal()">Apply Now <i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <div class="job-card">
+            <h3>Technical Consultant – Microsoft Dynamics D365 F&O (AX) / Business Central (NAV)</h3>
+            <p><i class="fas fa-briefcase"></i> <strong>Experience:</strong> 2 to 3+ Years</p>
+            <p><i class="fas fa-map-marker-alt"></i> <strong>Locations:</strong> China, Hong Kong, India, Japan, Malaysia, Singapore, Taiwan</p>
+            <button class="apply-button" onclick="openModal()">Apply Now <i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <div class="job-card">
+            <h3>Regional Sales Manager – India South</h3>
+            <p><i class="fas fa-briefcase"></i> <strong>Experience:</strong> 6 to 8+ Years</p>
+            <p><i class="fas fa-map-marker-alt"></i> <strong>Locations:</strong> Bangalore, Chennai</p>
+            <button class="apply-button" onclick="openModal()">Apply Now <i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <div class="job-card">
+            <h3>MS Dynamics D365 F&O Presales Manager</h3>
+            <p><i class="fas fa-briefcase"></i> <strong>Experience:</strong> 8 to 15+ Years</p>
+            <p><i class="fas fa-map-marker-alt"></i> <strong>Locations:</strong> Bangalore, Noida, Mumbai, Chennai</p>
+            <button class="apply-button" onclick="openModal()">Apply Now <i class="fas fa-arrow-right"></i></button>
+        </div>
+    </div>
+</div>
+
+<div id="applyModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <h2>Apply Now</h2>
+        <p>Submit your application via email:</p>
+        <form method="post" enctype="multipart/form-data" action="{% url 'consulting_app:career' %}">
+            {% csrf_token %}
+
+            <input type="text" name="name" placeholder="Your Name" required value="{{ form.name.value|default_if_none:'' }}">
+            {% if form.name.errors %}
+                <div style="color: red;">{{ form.name.errors }}</div>
+            {% endif %}
+
+            <input type="email" name="email" placeholder="Your Email" required value="{{ form.email.value|default_if_none:'' }}">
+            {% if form.email.errors %}
+                <div style="color: red;">{{ form.email.errors }}</div>
+            {% endif %}
+
+            <textarea name="message" rows="4" placeholder="Write a short message...">{{ form.message.value|default_if_none:'' }}</textarea>
+            {% if form.message.errors %}
+                <div style="color: red;">{{ form.message.errors }}</div>
+            {% endif %}
+
+            <input type="file" name="resume" accept=".pdf,.doc,.docx">
+            {% if form.resume.errors %}
+                <div style="color: red;">{{ form.resume.errors }}</div>
+            {% endif %}
+
+            <button type="submit">Send Application</button>
+        </form>
+
+        {% if success %}
+            <div style="margin-top: 15px; color: green;">
+                Thank you {{ applicant_name }}! Your application has been submitted successfully.
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="container">
+    <div class="statistics">
+        <div class="stat-card">
+            <i class="fas fa-users"></i>
+            <h2 class="count" data-count="400">0</h2>
+            <p>Employees internationally</p>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-briefcase"></i>
+            <h2 class="count" data-count="11">0</h2>
+            <p>Offices internationally</p>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-building"></i>
+            <h2 class="count" data-count="6">0</h2>
+            <p>Different countries offices</p>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-globe"></i>
+            <h2 class="count" data-count="46">0</h2>
+            <p>Countries to implement solutions</p>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-users"></i>
+            <h2 class="count" data-count="6000">0</h2>
+            <p>Customers globally</p>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-cogs"></i>
+            <h2 class="count" data-count="25000">0</h2>
+            <p>Users of NKCL software</p>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Count up animation
+    const counters = document.querySelectorAll('.count');
+    function countUp(counter) {
+        const target = +counter.getAttribute('data-count');
+        let count = 0;
+        const increment = target / 100;
+        const interval = setInterval(() => {
+            count += increment;
+            counter.textContent = Math.round(count);
+            if (count >= target) {
+                clearInterval(interval);
+                counter.textContent = target;
+            }
+        }, 10);
+    }
+    window.addEventListener('load', () => {
+        counters.forEach(countUp);
+    });
+
+    // Modal Functions
+    function openModal() {
+        document.getElementById('applyModal').style.display = 'block';
+    }
+    function closeModal() {
+        document.getElementById('applyModal').style.display = 'none';
+    }
+    window.onclick = function(event) {
+        const modal = document.getElementById('applyModal');
+        if (event.target === modal) {
+            closeModal();
+        }
+    };
+</script>
+
+{% endblock %}

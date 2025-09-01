@@ -1,5 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import BlogPost
+from django.core.mail import EmailMessage
+from django.conf import settings
+from .forms import CareerApplicationForm
 
 def home_two(request):
     return render(request, "home.html")
@@ -20,7 +23,6 @@ from django.shortcuts import render
 from .models import BlogPost
 
 def blog(request):
-    # Render the blog listing page
     posts = BlogPost.objects.all()  # Get all blog posts
     return render(request, 'blog.html', {'posts': posts})
 
@@ -33,3 +35,41 @@ def blog_post(request, post_id):
     })
 def implementation(request):
     return render(request, "implementation.html")
+
+
+
+def career(request):
+    if request.method == "POST":
+        form = CareerApplicationForm(request.POST, request.FILES)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            resume = form.cleaned_data.get('resume')
+
+            email_subject = f"New Career Application from {name}"
+            email_body = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
+
+            email_message = EmailMessage(
+                email_subject,
+                email_body,
+                settings.DEFAULT_FROM_EMAIL,
+                ['neemkaroligroup@gmail.com'],  # Change to your recipient email
+                reply_to=[email],
+            )
+
+            if resume:
+                email_message.attach(resume.name, resume.read(), resume.content_type)
+
+            email_message.send()
+
+            return render(request, 'career.html', {
+                'form': CareerApplicationForm(),  # reset form
+                'success': True,
+                'applicant_name': name
+            })
+
+    else:
+        form = CareerApplicationForm()
+
+    return render(request, 'career.html', {'form': form})
