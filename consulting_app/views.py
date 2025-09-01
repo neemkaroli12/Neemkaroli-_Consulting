@@ -39,6 +39,9 @@ def implementation(request):
 def cons(request):
     return render(request,"consulting.html")
 
+def support(request):
+    return render(request,"micro_support.html")
+    
 def career(request):
     if request.method == "POST":
         form = CareerApplicationForm(request.POST, request.FILES)
