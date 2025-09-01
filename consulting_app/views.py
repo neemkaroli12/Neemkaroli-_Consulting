@@ -31,3 +31,5 @@ def blog_post(request, post_id):
         "post": post,
         "recent_posts": recent_posts
     })
+def implementation(request):
+    return render(request, "implementation.html")

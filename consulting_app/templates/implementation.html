@@ -1,0 +1,148 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}Microsoft Dynamics - Implementation{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section d-flex align-items-center justify-content-center text-white text-center">
+  <div class="hero-overlay"></div>
+  <div class="content" data-aos="fade-up">
+    <h1 class="display-4 fw-bold">Implementation Services</h1>
+    <p class="lead">Seamless Microsoft Dynamics integration tailored to your business needs</p>
+    <a href="#approach" class="btn btn-gradient mt-3">Explore More</a>
+  </div>
+  <canvas id="particles"></canvas>
+</section>
+
+<!-- Our Approach -->
+<section id="approach" class="py-5 container">
+  <div class="row g-4 align-items-center">
+    <!-- Text -->
+    <div class="col-md-7" data-aos="fade-right">
+      <h2 class="fw-bold mb-3">Our Approach</h2>
+      <p class="text-dark opacity-75">
+        From planning to deployment, we ensure smooth Microsoft Dynamics implementation 
+        with minimal disruption to your operations.
+      </p>
+      <ul class="list-group glass-card">
+        <li class="list-group-item bg-transparent border-0 text-black">✔ Requirement gathering & analysis</li>
+        <li class="list-group-item bg-transparent border-0 text-black">✔ Custom configuration</li>
+        <li class="list-group-item bg-transparent border-0 text-black">✔ Data migration</li>
+        <li class="list-group-item bg-transparent border-0 text-black">✔ End-user training</li>
+      </ul>
+    </div>
+    <!-- Card -->
+    <div class="col-md-5" data-aos="fade-left">
+      <div class="glass-card p-3 shadow-lg text-center h-100">
+        <img src="{% static 'images/job-5382501_1280.jpg' %}" class="img-fluid rounded-3" alt="Implementation">
+        <h5 class="mt-3 text-warning">Why Choose Us?</h5>
+        <p class="text-dark opacity-75">Proven track record in Dynamics implementation with certified experts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section text-center text-white py-5">
+  <div class="overlay"></div>
+  <div class="container" data-aos="zoom-in">
+    <h3 class="fw-bold">Ready to Transform Your Business?</h3>
+    <p class="mb-4">Contact us today to discuss your Microsoft Dynamics Implementation needs.</p>
+    <a href="/contact" class="btn btn-gradient btn-lg">Get in Touch</a>
+  </div>
+</section>
+
+<!-- AOS & Particles -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 1000, once: true });
+
+  // Particles
+  const canvas = document.getElementById("particles");
+  const ctx = canvas.getContext("2d");
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
+
+  let particles = [];
+  for (let i = 0; i < 60; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: 2 + Math.random() * 2,
+      dx: (Math.random() - 0.5),
+      dy: (Math.random() - 0.5)
+    });
+  }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(255,255,255,0.7)";
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+</script>
+
+<style>
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 80vh;
+  background: url("{% static 'images/annie-spratt-QckxruozjRg-unsplash.jpg' %}") center/cover no-repeat;
+  overflow: hidden;
+}
+.hero-overlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+}
+.hero-section .content { position: relative; z-index: 2; }
+#particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+
+/* Glassmorphism */
+.glass-card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 15px;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* CTA */
+.cta-section {
+  position: relative;
+  background: url("{% static 'images/pexels-nietjuhart-796602.jpg' %}") center/cover no-repeat;
+}
+.cta-section .overlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.65);
+}
+.cta-section .container { position: relative; z-index: 2; }
+
+/* Button */
+.btn-gradient {
+  background: linear-gradient(45deg,#0072ff,#00c6ff);
+  color: #fff; border: none;
+  padding: 10px 25px;
+  border-radius: 30px;
+  transition: 0.4s;
+  box-shadow: 0 0 15px rgba(0,114,255,0.6);
+}
+.btn-gradient:hover {
+  box-shadow: 0 0 25px rgba(0,198,255,0.9);
+  transform: scale(1.05);
+}
+</style>
+{% endblock %}

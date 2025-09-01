@@ -10,4 +10,5 @@ urlpatterns = [
     path('partnership/',views.partnership ,name='partnership'),
     path('blog/',views.blog ,name='blog'),
      path('blog/post/<int:post_id>/', views.blog_post, name='blog_post'),
+    path("services/implementation/", views.implementation, name="implementation"),
 ]
