@@ -83,3 +83,6 @@ def micro_service(request):
 
 def odoo_service(request):
     return render(request,'odoo_Professional.html')
+
+def odoo_upgrade(request):
+    return render(request,'odoo_upgrade.html')
