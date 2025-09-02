@@ -77,3 +77,6 @@ def career(request):
         form = CareerApplicationForm()
 
     return render(request, 'career.html', {'form': form})
+
+def micro_service(request):
+    return render(request, "micro_service.html")
