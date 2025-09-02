@@ -80,3 +80,6 @@ def career(request):
 
 def micro_service(request):
     return render(request, "micro_service.html")
+
+def odoo_service(request):
+    return render(request,'odoo_Professional.html')
