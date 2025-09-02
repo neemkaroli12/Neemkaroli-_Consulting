@@ -6,7 +6,7 @@
 <style>
     .page-title {
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                    url("{% static 'images/home-bg-8.jpg' %}") center/cover no-repeat;
+         url("{% static 'images/home-bg-8.jpg' %}") center/cover no-repeat;
         color: white;
         padding: 120px 20px;
         text-align: center;
@@ -85,12 +85,20 @@
         text-align: justify;
     }
 
-    .partnership-logo img {
-        width: 220px;
-        margin-bottom: 20px;
-        border-radius: 5px;
+    .partnership-logo {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
     }
 
+    .partnership-logo img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    object-fit: contain;
+    display: block;
+    }
     .partnership-card {
         padding: 40px;
         margin-bottom: 30px;
@@ -225,7 +233,7 @@
 
 <div class="container partnership-section">
     <div class="partnership-logo">
-        <img src="{% static 'images/microsoft.png' %}" alt="Microsoft Partner Logo">
+        <img src="{% static 'images/microsoft-log.png' %}" alt="Microsoft Partner Logo">
     </div>
     <h2>Our Partnership with Microsoft</h2>
     <p>As a premier Microsoft partner, NKCL advances and adds value to Microsoft's leading business solutions and client relationships. We ensure that companies get the highest level of attention, expertise, and results from Microsoft technology. With over 2,000 client engagements, we leverage our deep expertise in Microsoft Dynamics and Microsoft technology to deliver a competitive edge to organizations worldwide.</p>
