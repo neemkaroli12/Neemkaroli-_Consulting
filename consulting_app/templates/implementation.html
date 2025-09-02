@@ -4,158 +4,96 @@
 {% block title %}Microsoft Dynamics - Implementation{% endblock %}
 
 {% block content %}
+
 <!-- Hero Section -->
-<section class="hero-section d-flex align-items-end justify-content-start text-white ">
+<section class="hero-section d-flex align-items-end justify-content-start text-white">
+  <canvas id="particles"></canvas>
   <div class="hero-overlay"></div>
-  <div class="content" data-aos="fade-up">
-    <h1 class="ms-3 ">Microsoft Dynamics Implementation</h1>
-    <p class="lead mb-5 ms-3">Seamless integration tailored to your business needs</p>
-   
-  </div>
-  
-</section>
-
-<!-- Our Approach -->
-<section id="approach" class="py-5 container">
-  <div class="row g-5 align-items-start">
-    <div class="col-md-7" data-aos="fade-right">
-      <h2 class="fw-bold mb-3 text-warning">Our Approach</h2>
-      <p class="text-dark opacity-75">
-        From planning to deployment, we ensure smooth Microsoft Dynamics implementation 
-        with minimal disruption to your operations.
-      </p>
-      <div class="row g-3">
-        <div class="col-sm-6">
-          <div class="glass-card p-3 h-100 text-center">
-            <i class="bi bi-clipboard-check fs-1 text-warning"></i>
-            <h6 class="mt-2 text-dark">Requirement Analysis</h6>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="glass-card p-3 h-100 text-center">
-            <i class="bi bi-sliders fs-1 text-warning"></i>
-            <h6 class="mt-2 text-dark">Custom Configuration</h6>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="glass-card p-3 h-100 text-center">
-            <i class="bi bi-cloud-arrow-up fs-1 text-warning"></i>
-            <h6 class="mt-2 text-dark">Data Migration</h6>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="glass-card p-3 h-100 text-center">
-            <i class="bi bi-people fs-1 text-warning"></i>
-            <h6 class="mt-2 text-dark">End-user Training</h6>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Why Choose Us -->
-    <div class="col-md-5" data-aos="fade-left">
-      <div class="glass-card p-4 shadow-lg text-center h-100">
-        <img src="{% static 'images/job-5382501_1280.jpg' %}" 
-             class="img-fluid rounded-3 mb-3" 
-             alt="Implementation">
-
-        <h4 class="text-warning fw-bold">Why Choose Us?</h4>
-        <div class="underline mx-auto mb-3"></div>
-
-        <ul class="list-unstyled text-start px-3">
-          <li class="mb-2 text-dark">
-            <i class="bi bi-check-circle-fill text-success me-2"></i>
-            Certified Microsoft Dynamics Experts
-          </li>
-          <li class="mb-2 text-dark">
-            <i class="bi bi-check-circle-fill text-success me-2"></i>
-            Proven Track Record of Successful Implementations
-          </li>
-          <li class="mb-2 text-dark">
-            <i class="bi bi-check-circle-fill text-success me-2"></i>
-            Customized Solutions for Every Business
-          </li>
-          <li class="text-dark">
-            <i class="bi bi-check-circle-fill text-success me-2"></i>
-            Continuous Support & Training
-          </li>
-        </ul>
-      </div>
-    </div>
+  <div class="content p-4" data-aos="fade-up">
+    <h1 class="fw-bold">Microsoft Dynamics Implementation</h1>
+    <p class="lead mb-4">Seamless integration tailored to your business needs</p>
   </div>
 </section>
 
-<!-- Implementation Process -->
+<!-- Process Section -->
 <section class="process-section py-5">
-  <div class="container text-center" data-aos="fade-up">
-    <h2 class="fw-bold mb-3 text-dark">Implementation Process</h2>
-    <p class="mb-4 text-muted">A structured framework to ensure a seamless rollout.</p>
-    <div class="process-wrapper p-4 rounded shadow mb-4">
-      <img src="{% static 'images/image copy.png' %}" 
-           alt="Microsoft Dynamics Implementation Process" 
-           class="img-fluid rounded">
-    </div>
-    <!-- Example Steps -->
-    <div class="row g-4 mt-3">
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm border-0">
-          <div class="card-body">
-            <i class="bi bi-search fs-1 text-primary"></i>
-            <h6 class="mt-2">Data Audit & Assessment</h6>
-            <p class="small text-muted">Analyzing current systems & data readiness.</p>
-          </div>
-        </div>
+  <div class="container" data-aos="fade-up">
+    <h2 class="fw-bold mb-3 text-dark text-center">Implementation Process</h2>
+    <div class="underline mx-auto mb-4"></div>
+    <p class="mb-5 text-muted text-center">A structured framework to ensure a seamless rollout.</p>
+
+    <!-- Single Card with Image + Text -->
+    <div class="process-card bg-white rounded shadow p-4" data-aos="zoom-in">
+      <!-- Image -->
+      <div class="text-center mb-4">
+        <img src="{% static 'images/image copy.png' %}" 
+             alt="Microsoft Dynamics Implementation Process" 
+             class="process-img">
       </div>
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm border-0">
-          <div class="card-body">
-            <i class="bi bi-box-seam fs-1 text-success"></i>
-            <h6 class="mt-2">Choosing D365 Solution</h6>
-            <p class="small text-muted">Selecting the right Dynamics 365 modules.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm border-0">
-          <div class="card-body">
-            <i class="bi bi-diagram-3 fs-1 text-danger"></i>
-            <h6 class="mt-2">Model Selection</h6>
-            <p class="small text-muted">Defining the right implementation model.</p>
-          </div>
-        </div>
+
+      <!-- Text -->
+      <div class="process-text">
+        <h3 class="fw-bold mb-3 text-dark">Empowering Your Success with Expertise That Delivers</h3>
+        <p>
+          At <strong>NKCL</strong>, our certified professionals are deeply committed to your success. 
+          With proven expertise in AI, ERP, and CRM implementations, we ensure your Azure AI and 
+          Microsoft Dynamics solutions are deployed seamlessly—maximizing value from day one.
+        </p>
+        <p>
+          Our seasoned consultants bring rich domain knowledge and hands-on experience across Azure AI, 
+          Data, and Microsoft Dynamics platforms. Focused on operational excellence, we help you 
+          streamline workflows, eliminate inefficiencies, boost productivity, and enhance decision-making 
+          through cutting-edge predictive AI tools.
+        </p>
+        <p>
+          But we go beyond implementation. From strategic program management and business process 
+          optimization to effective change management, our clients rely on our consulting acumen to 
+          unlock value across their entire enterprise.
+        </p>
+        <p class="fw-semibold text-primary mb-0">
+          Our comprehensive rollout services cover every phase—from process and strategy consulting, scope 
+          definition, and cost-effective technical execution to post-implementation support including 
+          training and knowledge transfer. With a track record of flawless go-lives, NKCL offers not just 
+          solutions—but peace of mind.
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
+<!-- CTA Section -->
 <section class="cta-section text-center text-white py-5">
   <div class="overlay"></div>
   <div class="container" data-aos="zoom-in">
     <h3 class="fw-bold display-6">Ready to Transform Your Business?</h3>
     <p class="mb-4 lead">Contact us today to discuss your Microsoft Dynamics Implementation needs.</p>
-    <div class="d-flex justify-content-center gap-3">
-      <a href="/contact" class="btn btn-gradient btn-lg">Get in Touch</a>
-      <a href="#approach" class="btn btn-outline-light btn-lg">Learn More</a>
-    </div>
+    <a href="/contact" class="btn btn-gradient btn-lg">Get in Touch</a>
   </div>
 </section>
 
-<!-- AOS & Particles -->
+<!-- AOS -->
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init({ duration: 1000, once: true });
 
-  // Particles
+  // Particles Animation
   const canvas = document.getElementById("particles");
   const ctx = canvas.getContext("2d");
   function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
   window.addEventListener("resize",resizeCanvas);resizeCanvas();
+
   let particles=[];
   for(let i=0;i<60;i++){
-    particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:2+Math.random()*2,dx:(Math.random()-.5),dy:(Math.random()-.5)});
+    particles.push({
+      x:Math.random()*canvas.width,
+      y:Math.random()*canvas.height,
+      r:2+Math.random()*2,
+      dx:(Math.random()-.5),
+      dy:(Math.random()-.5)
+    });
   }
+
   function draw(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
     particles.forEach(p=>{
@@ -176,57 +114,52 @@
 /* Hero Section */
 .hero-section {
   position: relative;
-  height: 60vh;
+  height: 65vh;
   background: url("{% static 'images/imple.png' %}") center/cover no-repeat;
   overflow: hidden;
 }
-
 .hero-section .content { position: relative; z-index: 2; }
-#particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
-
-/* Glassmorphism */
-.glass-card {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(12px);
-  border-radius: 15px;
-  border: 1px solid rgba(255,255,255,0.2);
-  color: #fff;
-  transition: 0.3s ease-in-out;
+.hero-overlay {
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  background: rgba(0,0,0,0.55);
+  z-index:1;
 }
-.glass-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 25px rgba(0,198,255,0.4);
-}
-
-/* Underline style */
-.underline {
-  width: 60px;
-  height: 3px;
-  background: #ffc107;
-  border-radius: 5px;
-}
+#particles { position:absolute;top:0;left:0;width:100%;height:100%;z-index:0; }
 
 /* Process Section */
 .process-section {
   background: linear-gradient(135deg, #f8f9fa, #e9ecef);
 }
-.process-wrapper {
-  background: #fff;
+.process-card {
   border: 1px solid #dee2e6;
 }
+.process-img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
 
-/* CTA */
+/* Underline */
+.underline {
+  width: 70px;
+  height: 3px;
+  background: #0072ff;
+  border-radius: 5px;
+}
+
+/* CTA Section */
 .cta-section {
   position: relative;
   background: url("{% static 'images/pexels-nietjuhart-796602.jpg' %}") center/cover no-repeat;
 }
 .cta-section .overlay {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.7);
+  position: absolute;top:0;left:0;width:100%;height:100%;
+  background: rgba(0,0,0,0.75);
 }
 .cta-section .container { position: relative; z-index: 2; }
 
-/* Button */
+/* Gradient Button */
 .btn-gradient {
   background: linear-gradient(45deg,#0072ff,#00c6ff);
   color: #fff; border: none;
