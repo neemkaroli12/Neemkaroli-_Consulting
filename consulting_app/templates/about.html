@@ -4,19 +4,28 @@
 {% block content %}
 <style>
 .page-title {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-                url("{% static 'images/home-bg-8.jpg' %}") center center / cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url("{% static 'images/about.png' %}") ;
     color: white;
-    padding: 180px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    box-sizing: border-box;
+    padding: 20px;
+    position: relative;
+    background-size:cover;
+    height: 80vh;
 }
+
 .page-title h1 {
-    font-size: 4.2rem;
+    font-size: 4rem;
     font-weight: 800;
-    margin-bottom: 15px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    margin-bottom: 10px;
 }
+
 .breadcrumb {
     background: transparent;
     padding: 0;
@@ -25,9 +34,11 @@
     justify-content: center;
     gap: 10px;
     flex-wrap: wrap;
+    color: white;
 }
+
 .breadcrumb a {
-    color: #f0f0f0;
+    color: white;
     text-decoration: none;
 }
 .breadcrumb a:hover {
@@ -120,25 +131,30 @@
 
 <section class="section-snippet-services">
     <p class="lead">
-        With a user-centric approach and a focus on customers and market demand, Neemkaroli Consulting builds models that blend technical excellence, digital innovation, and operational flexibility to bring your vision to life.
+        Neemkaroli Consulting LLP (NKC) is a Certified Microsoft Partner and a trusted leader in global IT implementation, committed to helping organizations embrace digital transformation with confidence and clarity.
     </p>
 </section>
 
 <section class="imageblock">
-    <div class="imageblock__content">
-        <img src="{% static 'images/about2.jpg' %}" alt="About NKC">
-    </div>
+   <div class="container">
     <div class="text-content">
         <p>
-            NKC is a Certified Microsoft Partner and a trailblazer in IT implementation, offering expert consultation services globally. We empower businesses through:
+            Founded in <strong>2017</strong> in <strong>Noida</strong>, and now operating from our newly established <strong>state-of-the-art Development Center in Haldwani, Uttarakhand</strong>, NKC has evolved into a name synonymous with innovation, excellence, and integrity in enterprise consulting.
         </p>
+        <p>Our core strengths include:</p>
         <ul>
-            <li>Established in 2017 in Noida; new Dev Center in Haldwani, Uttarakhand.</li>
-            <li>Certified IT consultation in Dynamics 365 Business Central & FinOps.</li>
-            <li>Prince Level Trainer in Microsoft Dynamics 365 Business Central & FinOps.</li>
-            <li>Trusted Dynamics 365 partner in our operating marketplaces.</li>
-            <li>Empathetic, diverse team with a solution-oriented mindset.</li>
+            <li>💼 <strong>Microsoft Dynamics 365</strong> – Deep expertise in Business Central and Finance & Operations, delivering tailored, end-to-end ERP solutions.</li>
+            <li>🎓 <strong>Prince-Level Training & Leadership</strong> – Empowering professionals with industry-leading technical and functional mastery.</li>
+            <li>🤝 <strong>Strategic Alliances</strong> – A preferred Microsoft Dynamics 365 partner across global marketplaces.</li>
+            <li>🧠 <strong>Odoo Implementation Services</strong> – Agile, scalable ERP deployments customized to your business needs.</li>
+            <li>🌍 <strong>Human-Centered Innovation</strong> – A diverse, empathetic team with a future-ready, problem-solving mindset.</li>
         </ul>
+        <p>
+            At NKC, we believe digital transformation is not just about implementing systems—<strong>it’s about enabling people</strong>. Every project is built on trust, collaboration, and a shared vision for success. 
+            <br><br>
+            We don’t just deliver solutions—<strong>we co-create the future of business</strong>.
+        </p>
+    </div>
     </div>
 </section>
 {% endblock %}
