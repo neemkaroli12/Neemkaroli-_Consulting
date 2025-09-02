@@ -146,10 +146,13 @@
             </div>
             
           </div>
-          <div class="d-flex gap-3 mb-2 mt-3">
+          <div class="d-flex gap-3 mt-3">
+            
             <img src="{% static 'images/microsoft-log.png' %}" alt="Microsoft Partner" style="height: 60px; width: auto;" />
-            <img src="{% static 'images/microsoft-log.png' %}" alt="Microsoft Partner" style="height: 60px; width: auto;" />
-            <a href="#" class="text-dark fs-5 mt-3"><i class="bi bi-facebook mt-3"></i></a>
+            <hr style="border:1px solid black; display:flex-column">
+            <img src="{% static 'images/OIP__1_-removebg-preview.png' %}" alt="Microsoft Partner" style="height: 70px; width: auto;"  />
+            <hr style="border:1px solid black; display:flex-column">
+            <a href="#" class="text-dark fs-5 mt-3 ms-1"><i class="bi bi-facebook mt-3"></i></a>
             <a href="#" class="text-dark fs-5 mt-3"><i class="bi bi-linkedin mt-3"></i></a>
             <a href="#" class="text-dark fs-5 mt-3"><i class="bi bi-instagram mt-3"></i></a>
           </div>
@@ -202,7 +205,7 @@
                   <div class="col-lg-4">
                     <h6 class="text-white">Odoo Services</h6>
                     <a class="dropdown-item" href="{% url 'consulting_app:odoo_service' %}">Odoo ERP Professional Services</a>
-                    <a class="dropdown-item" href="#">Odoo ERP Upgrade</a>
+                    <a class="dropdown-item" href="{% url 'consulting_app:odoo_upgrade' %}">Odoo ERP Upgrade</a>
                     <a class="dropdown-item" href="#">Odoo ERP Support</a>
                     <a class="dropdown-item" href="#">Odoo ERP Implementation</a>
                     <a class="dropdown-item" href="#">Odoo ERP Consulting</a>

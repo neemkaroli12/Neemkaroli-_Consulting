@@ -15,4 +15,5 @@ urlpatterns = [
     path("support/", views.support, name='support'),
     path('service/',views.micro_service,name='micro_service'),
     path('odoo-service/',views.odoo_service,name='odoo_service'),
+    path('odoo_upgrade/',views.odoo_upgrade,name='odoo_upgrade'),
 ]
