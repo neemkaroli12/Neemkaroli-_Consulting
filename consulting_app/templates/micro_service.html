@@ -1,0 +1,120 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}Microsoft Dynamics Support{% endblock %}
+{% block content %}
+<style>
+/* Hero Section */
+.hero-banner {
+  position: relative;
+  background: url("{% static 'images/pexels-hillaryfox-1595387.jpg' %}") center center/cover no-repeat;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+}
+
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 1.5s ease-out;
+}
+
+
+/* Fade-Up Animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+section h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #0078D7; /* Microsoft blue */
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+</style>
+
+<!-- Hero Banner with Background Image -->
+<section class="hero-banner d-flex align-items-end justify-content-start text-white"> 
+    <div class="hero-overlay"></div>
+     <div class="container"> 
+        <h1 class="ms-3">Microsoft Dynamics Service</h1> 
+    <p class="lead ms-3 mb-5">AI | Data | Automation | ERP | CRM Solutions</p> 
+</div> 
+</section>
+
+<!-- Main Content -->
+<main class="py-5">
+  <div class="container">
+    <div class="row me-0">
+      <div class="service">
+        <h2 class="fw-bold mb-3">
+          Your Trusted Partner for Comprehensive AI, Data, Automation & Microsoft Dynamics Solutions
+        </h2>
+        <p>
+          In today’s fast-paced digital landscape, businesses demand more than just software—they expect measurable outcomes and unwavering support. 
+          As a Microsoft Dynamics Gold Partner specializing in AI, Data Analytics, ERP, and CRM, NKCL delivers transformative value that drives real business impact.
+          Backed by over a million hours of hands-on experience, our global team of business and technology consultants works closely with clients to align cutting-edge solutions with their unique goals. 
+          From AI-powered insights to seamless automation and robust analytics platforms, we ensure your operations run at peak performance.
+        </p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Approach Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row me-0">
+      <div class="service-detail">
+        <h2 class="fw-bold mb-3 text-center">Our Approach</h2>
+        <p>
+          NKCL brings together deep industry knowledge and advanced technical capabilities across AI,
+          Data Analytics, Automation, Power Platform, and Microsoft Dynamics ERP & CRM. 
+          Our global delivery framework is designed to meet the distinct needs of each client—ensuring secure, confidential, and high-impact deployments of Azure AI and Microsoft Dynamics technologies.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What Sets Us Apart Section -->
+<section class="py-5">
+  <div class="container service-section">
+    <h2 class="fw-bold mb-4 text-center">What Sets Us Apart</h2>
+    <div class="row text-center">
+      <div class="col-md-4 mb-4">
+        <div class="p-4 h-100 shadow rounded bg-white">
+          <h3 class="fs-5 text-primary">🏢 Vertical-Focused Centers of Excellence</h3>
+          <p>Tailored solutions built on deep domain expertise</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="p-4 h-100 shadow rounded bg-white">
+          <h3 class="fs-5 text-primary">🔍 Strategic Business Pain Point Analysis</h3>
+          <p>Targeted interventions that drive meaningful change</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="p-4 h-100 shadow rounded bg-white">
+          <h3 class="fs-5 text-primary">💡 Unmatched Microsoft Dynamics Expertise</h3>
+          <p>Proven success across diverse industries and complex implementations</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
