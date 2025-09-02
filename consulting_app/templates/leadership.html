@@ -14,8 +14,17 @@
         text-align: center;
         height: 90vh;
     }
-    .page-title h1 { font-size: 3.5rem; font-weight: 800; text-transform: uppercase; }
-    .page-title p { font-size: 1.125rem; margin-top: 20px; }
+    .page-title h1 { 
+      font-size: 3.5rem; 
+      font-weight: 800; 
+      text-transform: uppercase; 
+    }
+     .page-title p {
+        font-size: 1.2rem;
+        margin-top: 20px;
+        z-index: 1;
+        text-align: center;
+    }
     .breadcrumb { background: transparent; margin-top: 20px; font-size: 1.125rem; display: flex; justify-content: center; gap: 10px; color: #f0f0f0; }
     .breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
     .breadcrumb a:hover { color: #ffd369; }
@@ -154,8 +163,8 @@
   <!-- Overlay -->
   <div style="position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(0, 25, 50, 0.8);"></div>
 
-  <div class="container position-relative">
-    <div class="row text-center">
+  <div class="container position-relative ">
+    <div class="row text-center"  style="height: 300px; display: flex; align-items: center; justify-content: center;" >
       
       <div class="col-md-3 mb-4">
         <i class="bi bi-people fs-1 mb-3 text-info"></i>
