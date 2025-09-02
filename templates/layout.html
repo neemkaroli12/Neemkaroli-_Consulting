@@ -136,22 +136,22 @@
         <div class="d-flex align-items-center mb-2 mb-md-0" style="min-width: 120px;">
           <img src="{% static 'images/logo.png' %}" alt="Company Logo" style="height: 80px; width: auto;" />
         </div>
-        <div class="d-flex align-items-center mb-2 mb-md-0" style="min-width: 200px; justify-content: center; flex-grow: 1;">
-          <img src="{% static 'images/microsoft-log.png' %}" alt="Microsoft Partner" style="height: 60px; width: auto;" />
-        </div>
+        
         <div class="d-flex flex-column align-items-end" style="min-width: 180px;">
-          <div class="d-flex gap-3 mb-2">
-            <a href="#" class="text-dark fs-5"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="text-dark fs-5"><i class="bi bi-linkedin"></i></a>
-            <a href="#" class="text-dark fs-5"><i class="bi bi-instagram"></i></a>
-          </div>
+          
           <div class="text-end">
             <div>
               <i class="bi bi-telephone-fill"></i> <a href="tel:+919389149580" class="text-dark text-decoration-none">+91 9389149580</a>
+              <i class="bi bi-envelope-fill ms-2"></i> <a href="mailto:info@neemkaroliconsulting.com" class="text-dark text-decoration-none">info@neemkaroliconsulting.com</a>
             </div>
-            <div>
-              <i class="bi bi-envelope-fill"></i> <a href="mailto:info@neemkaroliconsulting.com" class="text-dark text-decoration-none">info@neemkaroliconsulting.com</a>
-            </div>
+            
+          </div>
+          <div class="d-flex gap-3 mb-2 mt-3">
+            <img src="{% static 'images/microsoft-log.png' %}" alt="Microsoft Partner" style="height: 60px; width: auto;" />
+            <img src="{% static 'images/microsoft-log.png' %}" alt="Microsoft Partner" style="height: 60px; width: auto;" />
+            <a href="#" class="text-dark fs-5 mt-3"><i class="bi bi-facebook mt-3"></i></a>
+            <a href="#" class="text-dark fs-5 mt-3"><i class="bi bi-linkedin mt-3"></i></a>
+            <a href="#" class="text-dark fs-5 mt-3"><i class="bi bi-instagram mt-3"></i></a>
           </div>
         </div>
       </div>
@@ -201,7 +201,7 @@
                   </div>
                   <div class="col-lg-4">
                     <h6 class="text-white">Odoo Services</h6>
-                    <a class="dropdown-item" href="#">Odoo ERP Professional Services</a>
+                    <a class="dropdown-item" href="{% url 'consulting_app:odoo_service' %}">Odoo ERP Professional Services</a>
                     <a class="dropdown-item" href="#">Odoo ERP Upgrade</a>
                     <a class="dropdown-item" href="#">Odoo ERP Support</a>
                     <a class="dropdown-item" href="#">Odoo ERP Implementation</a>
