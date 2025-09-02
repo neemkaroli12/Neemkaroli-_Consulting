@@ -1,297 +1,360 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{% block title %}Consulting{% endblock %}</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block title %}
+        Consulting
+      {% endblock %}
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
 
-  <style>
-    body {
-      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    }
-
-    .navbar-custom {
-      background-color: #fff;
-    }
-
-    .navbar-nav {
-      margin: 0 auto;
-    }
-
-    .nav-link {
-      color: #fff !important;
-      font-size: 1.2rem;
-      font-weight: 500;
-      padding-left: 20px !important;
-      padding-right: 20px !important;
-    }
-
-    .nav-link:hover {
-      color: orange !important;
-      transition: color 0.3s ease !important;
-    }
-
-    .dropdown-menu {
-      background-color: #051946ff;
-    }
-
-    .dropdown-item {
-      color: #fff;
-      font-size: 0.95rem;
-    }
-
-    .footer-custom {
-      background-color: #1e3a5f;
-      color: #ffffff;
-      padding: 40px 0;
-    }
-
-    .footer-custom a {
-      color: #ffffff;
-      text-decoration: none;
-    }
-
-    .footer-custom a:hover {
-      text-decoration: underline;
-    }
-
-    @keyframes flash {
-      0% {
-        opacity: 1;
+    <style>
+      body {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
       }
-
-      50% {
-        opacity: 0.3;
+      .navbar-custom {
+        background-color: #fff;
       }
-
-      100% {
-        opacity: 1;
+      
+      .nav-link {
+        color: #fff !important;
+        font-size: 1.2rem;
+        font-weight: 500;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
       }
-    }
-
-    .flash-badge {
-      animation: flash 1s infinite;
-      font-size: 0.7rem;
-      font-weight: bold;
-    }
-
-    @media (max-width: 576px) {
-      [data-aos="fade-left"],
-      [data-aos="fade-right"] {
-        transform: none !important;
-        opacity: 1 !important;
+      
+      .nav-link:hover {
+        color: orange !important;
+        transition: color 0.3s ease !important;
       }
-    }
+      
+      .dropdown-menu {
+        background-color: #051946ff;
+      }
+      .dropdown-item {
+        color: #fff;
+        font-size: 0.95rem;
+      }
+      .footer-custom {
+        background-color: #1e3a5f;
+        color: #ffffff;
+        padding: 40px 0;
+      }
+      .footer-custom a {
+        color: #ffffff;
+        text-decoration: none;
+      }
+      .footer-custom a:hover {
+        text-decoration: underline;
+      }
+      @keyframes flash {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      
+      .flash-badge {
+        animation: flash 1s infinite;
+        font-size: 0.7rem;
+        font-weight: bold;
+      }
+      
+      @media (max-width: 576px) {
+        [data-aos='fade-left'],
+        [data-aos='fade-right'] {
+          transform: none !important;
+          opacity: 1 !important;
+        }
+      }
+      .dropdown-submenu {
+        position: relative;
+      }
+      
+      .dropdown-submenu > .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -1px;
+        display: none;
+      }
+      
+      .dropdown-submenu.show > .dropdown-menu {
+        display: block;
+      }
+      /* Keep dropdown and sub-dropdown background dark */
+.dropdown-menu {
+  background-color: #051946ff !important;
+  border: none;
+}
 
-    .dropdown-submenu {
-      position: relative;
-    }
+/* Change text color to orange on hover */
+.dropdown-item:hover,
+.dropdown-item:focus {
+  color: orange !important;
+  background-color: transparent !important;
+}
 
-    .dropdown-submenu>.dropdown-menu {
-      top: 0;
-      left: 100%;
-      margin-top: -1px;
-      display: none;
-    }
+/* Optional: Keep all dropdown items white by default */
+.dropdown-item {
+  color: white !important;
+}
 
-    .dropdown-submenu.show>.dropdown-menu {
-      display: block;
-    }
-  </style>
-</head>
+/* Maintain submenu background color and remove white flash */
+.dropdown-submenu > .dropdown-menu {
+  background-color: #051946ff !important;
+}
 
-<body>
-  <div class="container">
-    <div class="row align-items-center justify-content-between text-lg-start text-center py-2">
-      <div class="col-12 col-lg-2 d-flex justify-content-center justify-content-lg-start mb-2 mb-lg-0">
-        <a class="navbar-brand fw-bold text-dark" href="#">
-          <img src="{% static 'images/logo.png' %}" alt="Logo" height="80" />
-        </a>
-      </div>
+      
+      .animated-gradient-text {
+        background: linear-gradient(90deg, orange, white, yellow, green, blue, indigo, violet, red);
+        background-size: 400% 100%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientShift 5s linear infinite;
+      }
+      
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 0%;
+        }
+        100% {
+          background-position: 400% 0%;
+        }
+      }
+  .contact-hover, a.text-dark {
+    transition: color 0.3s ease;
+  }
 
-      <div class="col-12 col-lg-4 text-lg-end order-lg-2">
-        <div class="d-flex flex-column align-items-lg-end align-items-center">
-          <div class="d-flex align-items-center mb-2">
-            <i class="bi bi-telephone-fill text-dark me-2"></i>
-            <span class="text-dark">+91 9389149580</span>
-          </div>
-          <div class="d-flex align-items-center mb-2">
-            <i class="bi bi-envelope-fill text-dark me-2"></i>
-            <span class="text-dark">info@neemkaroliconsulting.com</span>
-          </div>
-          <div>
+  .contact-hover:hover,
+  a.text-dark:hover,
+  a.text-dark:focus {
+    color: #0d6efd !important; 
+  }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row align-items-center text-center text-lg-start">
+        <div class="col-12 col-lg-2 d-flex justify-content-center justify-content-lg-start mb-2 mb-lg-0">
+          <a class="navbar-brand fw-bold text-dark" href="#"><img src="{% static 'images/logo.png' %}" alt="Logo" height="80" /></a>
+        </div>
+        <div class="col-12 col-lg-10 text-lg-end">
+          <div class="d-flex justify-content-center justify-content-lg-end">
             <a href="#" class="fw-bold text-dark me-3" style="font-size:1.2rem;"><i class="bi bi-facebook"></i></a>
             <a href="#" class="text-dark me-3" style="font-size:1.2rem;"><i class="bi bi-linkedin"></i></a>
             <a href="#" class="text-dark" style="font-size:1.2rem;"><i class="bi bi-instagram"></i></a>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Marquee -->
- 
-
-  <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #051946ff;">
-    <div class="container">
-      <a class="navbar-brand d-lg-none fw-bold text-white" href="{% url 'consulting_app:home_two' %}">Neemkaroli</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-        aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
-        <ul class="navbar-nav">
-
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'consulting_app:home_two' %}">Home</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown">
-              About Us
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
-              <li><a class="dropdown-item" href="{% url 'consulting_app:about' %}">About Us</a></li>
-              <li><a class="dropdown-item" href="{% url 'consulting_app:vision' %}">Vision & Mission</a></li>
-              <li><a class="dropdown-item" href="{% url 'consulting_app:leadership' %}">Leadership Team</a></li>
-              <li><a class="dropdown-item" href="{% url 'consulting_app:partnership' %}">Partnership</a></li>
-              <li><a class="dropdown-item" href="{% url 'consulting_app:career' %}">Career</a></li>
-              <li><a class="dropdown-item" href="{% url 'consulting_app:blog' %}">Blog</a></li>
-            </ul>
-          </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">
-            Services
-          </a>
-          <div class="dropdown-menu p-3" style="min-width:800px; background-color:#051946ff;">
-            <div class="row">
-              <div class="col-lg-4">
-                <h6 class="text-white">Microsoft Dynamic Services</h6>
-                <a class="dropdown-item" href="{% url 'consulting_app:cons' %}">Consulting</a>
-                <a class="dropdown-item" href="{% url 'consulting_app:implementation' %}">Implementation</a>
-                <a class="dropdown-item" href="{% url 'consulting_app:support' %}">Support</a>
-                <a class="dropdown-item" href="#">Services</a>
-              </div>
-              <div class="col-lg-4">
-                <h6 class="text-white">Odoo Services</h6>
-                <a class="dropdown-item" href="#">Consulting</a>
-                <a class="dropdown-item" href="#">Implementation</a>
-                <a class="dropdown-item" href="#">Support</a>
-                <a class="dropdown-item" href="#">Services</a>
-              </div>
-              <div class="col-lg-4">
-                <h6 class="text-white">Other Services</h6>
-                <a class="dropdown-item" href="#">Automation, Data Analytics & AI</a>
-                <a class="dropdown-item" href="#">Application Management</a>
-                <a class="dropdown-item" href="#">Customization & Development</a>
-                <a class="dropdown-item" href="#">Integration</a>
-                <a class="dropdown-item" href="#">Change Management</a>
-                <a class="dropdown-item" href="#">Cloud Services</a>
-                <a class="dropdown-item" href="#">Health Check</a>
-                <a class="dropdown-item" href="#">Performance Management</a>
-                <a class="dropdown-item" href="#">Release & Deployment</a>
-                <a class="dropdown-item" href="#">Version Management</a>
-                <a class="dropdown-item" href="#">Training & Development</a>
-              </div>
+          <div class="d-flex flex-column align-items-center align-items-lg-end mb-2">
+            <div class="d-flex align-items-center mb-2">
+              <i class="bi bi-telephone-fill text-dark me-2"></i>
+              <span class="text-dark contact-hover">+91 9389149580</span>
+            </div>
+            <div class="d-flex align-items-center">
+              <i class="bi bi-envelope-fill text-dark me-2"></i>
+              <span class="text-dark contact-hover">info@neemkaroliconsulting.com</span>
             </div>
           </div>
-        </li>
+        </div>
+      </div>
+    </div>
 
-       
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="industriesDropdown" role="button" data-bs-toggle="dropdown">
-            Industries
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="industriesDropdown">
-            <li class="dropdown-submenu">
-              <a class="dropdown-item dropdown-toggle" href="#">Manufacturing</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Discrete Manufacturing</a></li>
-                <li><a class="dropdown-item" href="#">Process Manufacturing</a></li>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #051946ff;">
+      <div class="container">
+        <a class="navbar-brand d-lg-none fw-bold text-white" href="{% url 'consulting_app:home_two' %}">Neemkaroli</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse justify-content-center" id="mainNavbar">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'consulting_app:home_two' %}">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown">About Us</a>
+              <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                <li>
+                  <a class="dropdown-item" href="{% url 'consulting_app:about' %}">About Us</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'consulting_app:vision' %}">Vision & Mission</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'consulting_app:leadership' %}">Leadership Team</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'consulting_app:partnership' %}">Partnership</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'consulting_app:career' %}">Career</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'consulting_app:blog' %}">Blog</a>
+                </li>
               </ul>
             </li>
-            <li><a class="dropdown-item" href="#">EPC</a></li>
-            <li><a class="dropdown-item" href="#">Trading & Distribution</a></li>
-            <li><a class="dropdown-item" href="#">Education</a></li>
-            <li><a class="dropdown-item" href="#">Chemical</a></li>
-            <li><a class="dropdown-item" href="#">Oil & Gas</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">Services</a>
+              <div class="dropdown-menu p-3" style="min-width:800px; background-color:#051946ff;">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <h6 class="text-white">Microsoft Dynamic Services</h6>
+                    <a class="dropdown-item" href="{% url 'consulting_app:cons' %}">Consulting</a>
+                    <a class="dropdown-item" href="{% url 'consulting_app:implementation' %}">Implementation</a>
+                    <a class="dropdown-item" href="{% url 'consulting_app:support' %}">Support</a>
+                    <a class="dropdown-item" href="#">Services</a>
+                  </div>
+                  <div class="col-lg-4">
+                    <h6 class="text-white">Odoo Services</h6>
+                    <a class="dropdown-item" href="#">Consulting</a>
+                    <a class="dropdown-item" href="#">Implementation</a>
+                    <a class="dropdown-item" href="#">Support</a>
+                    <a class="dropdown-item" href="#">Services</a>
+                  </div>
+                  <div class="col-lg-4">
+                    <h6 class="text-white">Other Services</h6>
+                    <a class="dropdown-item" href="#">Automation, Data Analytics & AI</a>
+                    <a class="dropdown-item" href="#">Application Management</a>
+                    <a class="dropdown-item" href="#">Customization & Development</a>
+                    <a class="dropdown-item" href="#">Integration</a>
+                    <a class="dropdown-item" href="#">Change Management</a>
+                    <a class="dropdown-item" href="#">Cloud Services</a>
+                    <a class="dropdown-item" href="#">Health Check</a>
+                    <a class="dropdown-item" href="#">Performance Management</a>
+                    <a class="dropdown-item" href="#">Release & Deployment</a>
+                    <a class="dropdown-item" href="#">Version Management</a>
+                    <a class="dropdown-item" href="#">Training & Development</a>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="industriesDropdown" role="button" data-bs-toggle="dropdown">Industries</a>
+              <ul class="dropdown-menu" aria-labelledby="industriesDropdown">
+                <li class="dropdown-submenu">
+                  <a class="dropdown-item dropdown-toggle" href="#">Manufacturing</a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item" href="#">Discrete Manufacturing</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">Process Manufacturing</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">EPC</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Trading & Distribution</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Education</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Chemical</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Oil & Gas</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Case Study</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-inline-flex align-items-center animated-gradient-text" href="#">Evaluate & Estimate Yourself</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
           </ul>
-        </li>
-
-          <li class="nav-item"><a class="nav-link" href="#">Case Study</a></li>
-           <marquee behavior="scroll" direction="left" style="background-color: #051946; color: orange; font-weight: bold; padding: 8px 0;">
-    Estimate your business needs with our self-assessment tool – Click here to explore!
-  </marquee>
-          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-
-        </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+    {% block content %}
 
-  {% block content %}
-  {% endblock %}
-
-  <footer class="footer-custom">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 mb-3">
-          <h5 class="fw-bold">Neemkaroli Consulting</h5>
-          <p>Helping businesses grow with expert consulting, training, and digital solutions.</p>
-        </div>
-        <div class="col-md-4 mb-3">
-          <h5 class="fw-bold">Quick Links</h5>
-          <ul class="list-unstyled">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </div>
-        <div class="col-md-4 mb-3">
-          <h5 class="fw-bold">Contact</h5>
-          <p><i class="bi bi-geo-alt"></i> Neemkaroli House, Haldwani, Uttarakhand: 262139</p>
-          <p><i class="bi bi-telephone"></i> +91 9389149580</p>
-          <p><i class="bi bi-envelope"></i> info@neemkaroliconsulting.com</p>
-          <div>
-            <a href="#"><i class="bi bi-facebook me-3"></i></a>
-            <a href="#"><i class="bi bi-twitter me-3"></i></a>
-            <a href="#"><i class="bi bi-linkedin me-3"></i></a>
-            <a href="#"><i class="bi bi-instagram"></i></a>
+    {% endblock %}
+    <footer class="footer-custom">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <h5 class="fw-bold">Neemkaroli Consulting</h5>
+            <p>Helping businesses grow with expert consulting, training, and digital solutions.</p>
+          </div>
+          <div class="col-md-4 mb-3">
+            <h5 class="fw-bold">Quick Links</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#">Home</a>
+              </li>
+              <li>
+                <a href="#">About</a>
+              </li>
+              <li>
+                <a href="#">Services</a>
+              </li>
+              <li>
+                <a href="#">Blog</a>
+              </li>
+              <li>
+                <a href="#">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4 mb-3">
+            <h5 class="fw-bold">Contact</h5>
+            <p>
+              <i class="bi bi-geo-alt"></i> Neemkaroli House,Haldwani, Uttarakhand:262139
+            </p>
+            <p>
+              <i class="bi bi-telephone"></i> +91 9389149580
+            </p>
+            <p>
+              <i class="bi bi-envelope"></i> info@neemkaroliconsulting.com
+            </p>
+            <div>
+              <a href="#"><i class="bi bi-facebook me-3"></i></a>
+              <a href="#"><i class="bi bi-twitter me-3"></i></a>
+              <a href="#"><i class="bi bi-linkedin me-3"></i></a>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+            </div>
           </div>
         </div>
-      </div>
-      <hr class="border-light">
-      <div class="text-center">
-        <small>© 2025 Neemkaroli Consulting. All Rights Reserved.</small>
-      </div>
-    </div>
-  </footer>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      document.querySelectorAll('.dropdown-submenu > a').forEach(function (el) {
-        el.addEventListener('click', function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-          let parent = this.parentElement;
-          document.querySelectorAll('.dropdown-submenu').forEach(function (submenu) {
-            if (submenu !== parent) {
-              submenu.classList.remove('show');
-            }
-          });
-          parent.classList.toggle('show');
-        });
-      });
-    });
-  </script>
+        <hr class="border-light" />
+        <div class="text-center">
+          <small>© 2025 Neemkaroli Consulting. All Rights Reserved.</small>
+        </div>
+      </div>
+    </footer>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.dropdown-submenu > a').forEach(function (el) {
+          el.addEventListener('click', function (e) {
+            e.preventDefault()
+            e.stopPropagation()
+      
+            let parent = this.parentElement
+            document.querySelectorAll('.dropdown-submenu').forEach(function (submenu) {
+              if (submenu !== parent) {
+                submenu.classList.remove('show')
+              }
+            })
+            parent.classList.toggle('show')
+          })
+        })
+      })
+    </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
