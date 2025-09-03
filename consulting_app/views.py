@@ -170,13 +170,9 @@ def get_modules(request):
     return JsonResponse(modules, safe=False)
 
 
-
+def odoo_imple(request):
+    return render(request,'odoo_imple.html')
 
 def odoo_support(request):
     return render(request,'odoo_support.html')
 
-<<<<<<< HEAD
-def odoo_imple(request):
-    return render(request,'odoo_imple.html')
-=======
->>>>>>> 9634641093ca44ecc0f9ba5ed818d0a2fa830b7f
