@@ -3,7 +3,7 @@
 {% block title %}Microsoft Dynamics Support{% endblock %}
 {% block content %}
 <style>
-/* Hero Section */
+
 .hero-banner {
   position: relative;
   background: url("{% static 'images/pexels-hillaryfox-1595387.jpg' %}") center center/cover no-repeat;
@@ -21,8 +21,6 @@
   animation: fadeUp 1.5s ease-out;
 }
 
-
-/* Fade-Up Animation */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -42,22 +40,27 @@ section h2::after {
   display: block;
   width: 60px;
   height: 3px;
-  background: #0078D7; /* Microsoft blue */
+  background: #0078D7; 
   margin: 8px auto 0;
   border-radius: 2px;
 }
 </style>
 
-<!-- Hero Banner with Background Image -->
-<section class="hero-banner d-flex align-items-end justify-content-start text-white"> 
-    <div class="hero-overlay"></div>
-     <div class="container"> 
-        <h1 class="ms-3">Microsoft Dynamics Service</h1> 
-    <p class="lead ms-3 mb-5">AI | Data | Automation | ERP | CRM Solutions</p> 
-</div> 
+<section class="hero-banner d-flex align-items-end justify-content-start text-white" style="position: relative;"> 
+    <div class="hero-overlay" style="
+        position:absolute; 
+        top:0; 
+        left:0; 
+        right:0; 
+        bottom:0; 
+        background: rgba(0,0,0,0.55);
+        z-index:1;">
+    </div>
+    <div class="container" style="position: relative; z-index:2;"> 
+        <h1 class="fw-bold ms-3 text-white">Microsoft Dynamics Service</h1> 
+        <p class="lead ms-3 mb-5 text-white">AI | Data | Automation | ERP | CRM Solutions</p> 
+    </div> 
 </section>
-
-<!-- Main Content -->
 <main class="py-5">
   <div class="container">
     <div class="row me-0">
@@ -75,8 +78,6 @@ section h2::after {
     </div>
   </div>
 </main>
-
-<!-- Approach Section -->
 <section class="py-5 bg-light">
   <div class="container">
     <div class="row me-0">
@@ -91,8 +92,6 @@ section h2::after {
     </div>
   </div>
 </section>
-
-<!-- What Sets Us Apart Section -->
 <section class="py-5">
   <div class="container service-section">
     <h2 class="fw-bold mb-4 text-center">What Sets Us Apart</h2>
