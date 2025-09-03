@@ -176,3 +176,5 @@ def odoo_imple(request):
 def odoo_support(request):
     return render(request,'odoo_support.html')
 
+def odoo_consulting(request):
+    return render(request,'odoo_consulting.html')

@@ -1,0 +1,110 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title%}Odoo ERP Consulting{% endblock  %}
+{% block content %}
+<style>
+.breadcrumb { background: transparent;  gap:2px; font-size:1.2rem; color: #f0f0f0; }
+.breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { color: #ffd369; }
+.breadcrumb .active { color: #ccc; }
+</style>
+<!-- Hero Header Image -->
+
+<section class="hero-section text-white d-flex align-items-end justify-content-start"
+         style="background: url('{% static 'images/pexels-kindelmedia-7688360.jpg' %}') center/cover no-repeat; height: 60vh; position: relative;">
+  <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5);"></div>
+  <div class="content position-relative text-start p-4 container" data-aos="fade-up">
+    <h1 class=" fw-bold animate__animated animate__fadeInDown">Odoo ERP consulting</h1>
+    <ol class="breadcrumb">
+        <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
+        <li><a href="{% url 'consulting_app:odoo_imple' %}">| Odoo ERP consulting</a></li>  
+    </ol>
+  </div>
+</section>
+
+<!-- Proof of Value Section -->
+<section class="py-5">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-12">
+        <h1 class=" mb-4">Proof of Value (POV): Validating Business Impact with Confidence</h1>
+        <p class="text-muted fs-6">
+          At NKCL, we define Proof of Value (POV) as the tangible evidence that confirms Odoo’s alignment with your business requirements—and vice versa. 
+          This strategic exercise not only validates solution fit but also helps educate and influence stakeholders toward meaningful adoption of new processes or technologies.
+        </p>
+        <p class="text-muted fs-6">
+          Our POV methodology combines creative thinking with deep technological expertise to ensure your business expectations are met with precision. 
+          Whether addressing new requirements or refining existing workflows, NKCL’s POV services enhance the product’s relevance and performance.
+        </p>
+        <p class="text-muted fs-6 mb-0">
+          Designed to showcase clear value propositions and measurable Return on Investment (ROI), our POV engagements empower you to make informed decisions with confidence—
+          laying the foundation for successful implementation and long-term growth.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Highlights Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="fw-bold mb-5 text-center">Highlights</h2>
+    <div class="row g-4 text-center">
+      
+      <div class="col-md-4">
+        <div class="p-4 shadow rounded bg-white h-100">
+          <i class="fas fa-laptop-code fa-2x text-primary mb-3"></i>
+          <h5>Live demo with expert assistance</h5>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="p-4 shadow rounded bg-white h-100">
+          <i class="fas fa-book-open fa-2x text-success mb-3"></i>
+          <h5>Case Studies</h5>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="p-4 shadow rounded bg-white h-100">
+          <i class="fas fa-balance-scale fa-2x text-warning mb-3"></i>
+          <h5>Comparison of edition</h5>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="p-4 shadow rounded bg-white h-100">
+          <i class="fas fa-cloud fa-2x text-danger mb-3"></i>
+          <h5>Free trial On Cloud</h5>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="p-4 shadow rounded bg-white h-100">
+          <i class="fas fa-file-alt fa-2x text-info mb-3"></i>
+          <h5>FIT GAP reports</h5>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="p-4 shadow rounded bg-white h-100">
+          <i class="fas fa-lightbulb fa-2x text-secondary mb-3"></i>
+          <h5>Proof Of concept in 4 Weeks</h5>
+        </div>
+      </div>
+      
+      <div class="col-md-4 mx-auto">
+        <div class="p-4 shadow rounded bg-white h-100">
+          <i class="fas fa-file-signature fa-2x text-primary mb-3"></i>
+          <h5>Estimation and proposal</h5>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- FontAwesome for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+{% endblock %}
