@@ -11,7 +11,10 @@
   <div class="hero-overlay"></div>
   <div class="content p-4 container" data-aos="fade-up">
     <h1 class="fw-bold">Microsoft Dynamics Implementation</h1>
-    <p class="lead mb-4">Seamless integration tailored to your business needs</p>
+    <ol class="breadcrumb">
+        <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
+        <li><a href="{% url 'consulting_app:implementation' %}">|implementation</a></li>  
+    </ol>
   </div>
 </section>
 
@@ -113,10 +116,14 @@
 <style>
 .hero-section {
   position: relative;
-  height: 60vh;
+  height: 70vh;
   background: url("{% static 'images/imple.png' %}") center/cover no-repeat;
   overflow: hidden;
 }
+.breadcrumb { background: transparent;  gap:2px; font-size:1.2rem; color: #f0f0f0; }
+.breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { color: #ffd369; }
+.breadcrumb .active { color: #ccc; }
 .hero-section .content { position: relative; z-index: 2; }
 .hero-overlay {
   position:absolute;top:0;left:0;right:0;bottom:0;

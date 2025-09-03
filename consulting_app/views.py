@@ -127,3 +127,7 @@ def get_modules(request):
     product_id = request.GET.get('product_id')
     modules = Module.objects.filter(product_id=product_id).values('id', 'name')
     return JsonResponse(list(modules), safe=False)
+
+def odoo_support(request):
+    return render(request,'odoo_support.html')
+

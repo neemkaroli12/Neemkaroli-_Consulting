@@ -7,7 +7,7 @@
 .hero-banner {
   position: relative;
   background: url("{% static 'images/pexels-hillaryfox-1595387.jpg' %}") center center/cover no-repeat;
-  height: 60vh;
+  height: 70vh;
   display: flex;
   align-items: center;
   
@@ -31,7 +31,10 @@
     transform: translateY(0);
   }
 }
-
+.breadcrumb { background: transparent;  gap:2px; font-size:1.2rem; color: #f0f0f0; }
+.breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { color: #ffd369; }
+.breadcrumb .active { color: #ccc; }
 
 
 
@@ -56,9 +59,12 @@ section h2::after {
         background: rgba(0,0,0,0.55);
         z-index:1;">
     </div>
-    <div class="container" style="position: relative; z-index:2;"> 
+    <div class="container mb-4" style="position: relative; z-index:2;"> 
         <h1 class="fw-bold ms-3 text-white">Microsoft Dynamics Service</h1> 
-        <p class="lead ms-3 mb-5 text-white">AI | Data | Automation | ERP | CRM Solutions</p> 
+        <ol class="breadcrumb ms-3">
+          <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
+          <li><a href="{% url 'consulting_app:micro_service' %}">|Microsoft Dynamics service</a></li>  
+    </ol>
     </div> 
 </section>
 <main class="py-5">
