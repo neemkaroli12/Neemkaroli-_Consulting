@@ -85,3 +85,6 @@ def odoo_service(request):
 
 def odoo_upgrade(request):
     return render(request,'odoo_upgrade.html')
+
+def odoo_support(request):
+    return render(request,'odoo_support.html')

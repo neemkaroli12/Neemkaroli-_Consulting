@@ -3,13 +3,14 @@
 {% block title %}Microsoft Dynamics Support{% endblock %}
 
 {% block content %}
-<section class="hero-section d-flex align-items-end justify-content-start text-center" style="height: 60vh; background: url('{% static 'images/pexels-a-darmel-7710185.jpg' %}') center/cover no-repeat; position: relative;">
+<section class="hero-section d-flex align-items-end justify-content-start text-center" style="height: 70vh; background: url('{% static 'images/pexels-a-darmel-7710185.jpg' %}') center/cover no-repeat; position: relative;">
   <div style="position:absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.55);"></div>
     <div class="content position-relative text-start p-4 container text-white" data-aos="fade-up">
     <h1 class=" fw-bold animate__animated animate__fadeInDown">Microsoft Dynamics 365 Support</h1>
-    <p class="lead animate__animated animate__fadeInUp animate__delay-1s">
-      Reliable, expert assistance for uninterrupted business operations.
-    </p>
+    <ol class="breadcrumb">
+        <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
+        <li><a href="{% url 'consulting_app:support' %}">|Microsoft Dynamics Support</a></li>  
+    </ol>
   </div>
  
 </section>
@@ -74,6 +75,10 @@ With a proven track record in maintaining and supporting Microsoft Dynamics envi
     transform: translateY(-8px);
     box-shadow: 0 12px 25px rgba(0,0,0,0.15);
   }
+.breadcrumb { background: transparent;  gap:2px; font-size:1.2rem; color: #f0f0f0; }
+.breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { color: #ffd369; }
+.breadcrumb .active { color: #ccc; }
 </style>
 
 {% endblock %}

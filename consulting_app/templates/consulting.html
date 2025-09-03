@@ -4,15 +4,22 @@
 {% block title %}Consulting Services{% endblock %}
 
 {% block content %}
+<style>
+.breadcrumb { background: transparent;  gap:2px; font-size:1.2rem; color: #f0f0f0; }
+.breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { color: #ffd369; }
+.breadcrumb .active { color: #ccc; }
+</style>
 
 <section class="hero-section text-white d-flex align-items-end justify-content-start"
-         style="background: url('{% static 'images/pexels-startup-stock-photos-7075.jpg' %}') center/cover no-repeat; height: 60vh; position: relative;">
+         style="background: url('{% static 'images/pexels-startup-stock-photos-7075.jpg' %}') center/cover no-repeat; height: 70vh; position: relative;">
   <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0;"></div>
   <div class="content position-relative text-start p-4 container" data-aos="fade-up">
     <h1 class="display-4 fw-bold animate__animated animate__fadeInDown">Consulting</h1>
-    <p class="lead animate__animated animate__fadeInUp animate__delay-1s">
-      Guiding businesses with strategy, innovation, and technology expertise
-    </p>
+    <ol class="breadcrumb">
+        <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
+        <li><a href="{% url 'consulting_app:cons' %}">|consulting</a></li>  
+    </ol>
   </div>
 </section>
 
