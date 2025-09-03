@@ -4,18 +4,22 @@
 
 {% block content %}
 <style>
+    
     .page-title {
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                    url("{% static 'images/home-bg-8.jpg' %}") center/cover no-repeat;
-        color: white;
-        text-align: center;
-        padding: 80px 20px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url("{% static 'images/home-bg-8.jpg' %}");
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;   
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 20px;
+    position: relative;
+    background-size: cover;
+    height: 60vh;
     }
-    .page-title h1 {
-        font-size: 2.5rem;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
+    
     .page-title .date {
         font-size: 1.125rem;
         color: #f0f0f0;
@@ -97,8 +101,10 @@
 
 <!-- Hero Section -->
 <section class="page-title">
+    <div class="container">
     <h1>{{ post.title }}</h1>
     <p class="date">{{ post.created_at|date:"F d, Y" }}</p>
+    </div>
 </section>
 
 <!-- Blog Content -->

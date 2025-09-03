@@ -5,25 +5,17 @@
 <style>
 .page-title {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                url("{% static 'images/about.png' %}") ;
+                url("{% static 'images/about.png' %}");
     color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    justify-content: flex-end;   
+    align-items: flex-start;
     box-sizing: border-box;
     padding: 20px;
     position: relative;
-    background-size:cover;
-    height: 80vh;
-}
-
-.page-title h1 {
-    font-size: 4rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    margin-bottom: 10px;
+    background-size: cover;
+    height: 60vh;
 }
 
 .breadcrumb {
@@ -31,7 +23,7 @@
     padding: 0;
     font-size: 1.2rem;
     display: flex;
-    justify-content: center;
+    justify-content:flex-start;
     gap: 10px;
     flex-wrap: wrap;
     color: white;
@@ -53,8 +45,8 @@
     background-color: #ffffff;
 }
 .section-snippet-services .lead {
-    font-size: 1.125rem;
-    max-width: 1000px;
+   
+    max-width: 1300px;
     margin: 0 auto;
     line-height: 2;
     color: #444;
@@ -67,6 +59,7 @@
     border-radius: 15px;
     overflow: hidden;
     background-color: #f9f9f9;
+    max-width: 1300px;
 }
 .imageblock__content {
     flex: 1 1 45%;
@@ -121,17 +114,21 @@
 </style>
 
 <section class="page-title">
+    <div class="container">
     <h1>About Us</h1>
     <ol class="breadcrumb">
         <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
         <li class="active">| About Us</li>
     </ol>
+    </div>
 </section>
 
 <section class="section-snippet-services">
+    <div class="container">
     <p class="lead">
         Neemkaroli Consulting LLP (NKC) is a Certified Microsoft Partner and a trusted leader in global IT implementation, committed to helping organizations embrace digital transformation with confidence and clarity.
     </p>
+    </div>
 </section>
 
 <section class="imageblock">

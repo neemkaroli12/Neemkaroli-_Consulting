@@ -10,4 +10,4 @@ class CareerApplicationForm(forms.Form):
 class estimateForm(forms.Form):
     name = forms.CharField(max_length=100, label="Full Name", widget=forms.TextInput(attrs={'placeholder': 'Your Name'}))
     email = forms.EmailField(label="Email Address", widget=forms.EmailInput(attrs={'placeholder': 'Your Email'}))
-   
+    mobile = forms.IntegerField(label="Mobile Number",)

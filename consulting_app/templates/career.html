@@ -6,31 +6,31 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
 <style>
-    .page-title {
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                    url("{% static 'images/career.png' %}") center/cover no-repeat;
-        color: white;
-        padding: 120px 20px;
-        text-align: center;
-        position: relative;
-        height: 75vh;
+    
+     .page-title {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url("{% static 'images/career.png' %}");
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;   
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 20px;
+    position: relative;
+    background-size: cover;
+    height: 60vh;
     }
+    
 
-    .page-title h1 {
-        font-size: 3.6rem;
-        font-weight: 900;
-        margin-bottom: 20px;
-        text-transform: uppercase;
-        letter-spacing: 4px;
-    }
-
+   
     .breadcrumb {
         background: transparent;
         padding: 0;
         margin: 0;
         font-size: 1.2rem;
         display: flex;
-        justify-content: center;
+        justify-content:flex-start;
         gap: 10px;
         color: #f0f0f0;
     }
@@ -247,12 +247,14 @@
 </style>
 
 <section class="page-title">
+    <div class="container">
     <h1>Join Us</h1>
     <ol class="breadcrumb">
         <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
         <li><a href="{% url 'consulting_app:about' %}">| About</a></li>
         <li class="active">| Career</li>
     </ol>
+    </div>
 </section>
 
 <div class="container">

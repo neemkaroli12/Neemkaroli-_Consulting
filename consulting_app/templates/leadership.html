@@ -5,32 +5,33 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
 <style>
-    /* Page Title */
-    .page-title {
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                    url("{% static 'images/home-bg-8.jpg' %}") center/cover no-repeat;
-        color: white;
-        padding: 100px 20px;
-        text-align: center;
-        height: 90vh;
+    
+    
+     .page-title {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url("{% static 'images/home-bg-8.jpg' %}");
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;   
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 20px;
+    position: relative;
+    background-size: cover;
+    height: 60vh;
     }
-    .page-title h1 { 
-      font-size: 3.5rem; 
-      font-weight: 800; 
-      text-transform: uppercase; 
-    }
+    
      .page-title p {
-        font-size: 1.2rem;
-        margin-top: 20px;
+        font-size: 1.25rem;
         z-index: 1;
-        text-align: center;
+        text-align:justify;
     }
-    .breadcrumb { background: transparent; margin-top: 20px; font-size: 1.125rem; display: flex; justify-content: center; gap: 10px; color: #f0f0f0; }
+    .breadcrumb { background: transparent;  font-size: 1.125rem; display: flex; justify-content:flex-start; gap: 10px; color: #f0f0f0; }
     .breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
     .breadcrumb a:hover { color: #ffd369; }
     .breadcrumb .active { color: #ccc; }
 
-    /* Business Card */
  .cards-container {
     display: flex;
     flex-wrap: wrap;
@@ -69,7 +70,7 @@
     .buisness-card p { font-size: 1rem; line-height: 1.6; color: #555; }
 
     .read-more {
-        background: #2d2d2d;
+        background: #051946ff;
         color: #fff;
         font-weight: 600;
         cursor: pointer;
@@ -81,7 +82,16 @@
         display: block;
         width: 100%;
     }
-    .read-more:hover { background: #444; }
+   
+
+.read-more:hover {
+    outline: 2px solid #051946ff; 
+    outline-offset: 3px;
+    background: white;         
+    color: black;                 
+}
+
+
 
     .more-info { display: none; margin-top: 15px; text-align: justify; }
     .expanded .more-info { display: block; }
@@ -95,6 +105,7 @@
 </style>
 
 <section class="page-title">
+  <div class="container">
     <h1>Our Leadership Team</h1>
     <p>Our global leadership team plays a pivotal role in driving the direction of the company, shaping our strategic goals, and leading our talented workforce.</p>
     <ol class="breadcrumb">
@@ -102,6 +113,7 @@
         <li><a href="{% url 'consulting_app:about' %}">| About</a></li>
         <li class="active">| Leadership</li>
     </ol>
+  </div>
 </section>
 
 <div class="container mt-5">
@@ -142,7 +154,7 @@
 
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
             <div class="card buisness-card">
-                <img src="{% static 'images/team3o.jpg' %}" alt="Praveen Upadhayaya" class="img-fluid">
+                <img src="{% static 'images/team2o.jpg' %}" alt="Praveen Upadhayaya" class="img-fluid">
                 <div class="card-text">
                     <h3>PRAVEEN UPADHAYAYA</h3>
                     <p>Odoo ERP Visionary | Product Architect</p>

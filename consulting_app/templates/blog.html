@@ -3,28 +3,20 @@
 {% block title %}NKCL Blog{% endblock %}
 {% block content %}
 <style>
-    body {
-        font-family: 'Arial', sans-serif;
-        background-color: #f9f9f9;
-        margin: 0;
-        padding: 0;
+  .page-title {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url("{% static 'images/home-bg-8.jpg' %}");
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;   
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 20px;
+    position: relative;
+    background-size: cover;
+    height: 60vh;
     }
-
-    .page-title {
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                    url("{% static 'images/home-bg-8.jpg' %}") center/cover no-repeat;
-        color: white;
-        text-align: center;
-        padding: 80px 20px;
-    }
-
-    .page-title h1 {
-        font-size: 3rem;
-        font-weight: bold;
-        margin-bottom: 15px;
-        text-transform: uppercase;
-    }
-
     .page-title p {
         font-size: 1.125rem;
         color: #f0f0f0;
@@ -37,8 +29,6 @@
         margin: 50px 0;
         padding: 0 20px;
     }
-
-    /* Blog Grid Section */
     .blog-main {
         flex: 0 0 75%;
         display: grid;
@@ -74,9 +64,9 @@
     }
 
     .blog-card h2 {
-        font-size: 1.4rem;
+        
         font-weight: bold;
-        color: #007bff;
+        color: black;
         margin-bottom: 10px;
     }
 
@@ -97,7 +87,7 @@
     .blog-card a.read-more {
         display: inline-block;
         padding: 10px 18px;
-        background: #007bff;
+        background: #051946ff;
         color: white;
         font-size: 0.9rem;
         border-radius: 5px;
@@ -106,10 +96,8 @@
     }
 
     .blog-card a.read-more:hover {
-        background: #0056b3;
+        background: #051946ff;
     }
-
-    /* Sidebar */
     .blog-sidebar {
         flex: 0 0 25%;
         padding: 20px;
@@ -121,7 +109,7 @@
     .blog-sidebar h3 {
         margin-bottom: 15px;
         font-size: 1.125rem;
-        border-bottom: 2px solid #007bff;
+        border-bottom: 2px solid #051946ff;
         padding-bottom: 5px;
     }
 
@@ -136,15 +124,13 @@
 
     .blog-sidebar a {
         font-size: 1.125rem;
-        color: #007bff;
+        color: black;
         text-decoration: none;
     }
 
     .blog-sidebar a:hover {
-        color: #ff6f61;
+        color: blue;
     }
-
-    /* Responsive */
     @media (max-width: 992px) {
         .blog-container {
             flex-direction: column;
@@ -157,16 +143,13 @@
         }
     }
 </style>
-
-<!-- Hero Section -->
 <section class="page-title">
+    <div class="container">
     <h1>Latest Blog from NKCL</h1>
     <p>Stay updated with the latest insights, trends, and strategies from NKCL's experts.</p>
+    </div>
 </section>
-
-<!-- Blog Layout -->
 <div class="container blog-container">
-    <!-- Blog Grid -->
     <div class="blog-main">
         {% for post in posts %}
         <div class="blog-card">
@@ -186,8 +169,6 @@
             <p>No blog posts available.</p>
         {% endfor %}
     </div>
-
-    <!-- Sidebar -->
     <div class="blog-sidebar">
         <div class="recent-posts">
             <h3>Recent Posts</h3>

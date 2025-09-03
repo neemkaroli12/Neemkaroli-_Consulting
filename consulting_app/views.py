@@ -16,8 +16,7 @@ def vision(request):
 def leadership(request):
     return render(request, "leadership.html")
 
-def partnership(request):
-    return render(request, "partnership.html")
+
 
 from django.shortcuts import render
 from .models import BlogPost
