@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.views.generic import TemplateView   
 app_name='consulting_app'
 urlpatterns = [
     path('',views.home_two ,name='home_two'),
@@ -19,4 +20,6 @@ urlpatterns = [
     path('get-modules/', views.get_modules, name='get_modules'),
     path('odoo_support/',views.odoo_support,name='odoo_support'),
     path('odoo_imple/',views.odoo_imple,name='odoo_imple'),
+    path('estimate/success/', TemplateView.as_view(template_name="success.html"), name="estimate_success"),
+
 ]

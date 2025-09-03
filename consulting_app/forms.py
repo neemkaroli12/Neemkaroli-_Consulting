@@ -8,7 +8,6 @@ class CareerApplicationForm(forms.Form):
     email = forms.EmailField(label="Email Address", widget=forms.EmailInput(attrs={'placeholder': 'Your Email'}))
     message = forms.CharField(label="Message", widget=forms.Textarea(attrs={'placeholder': 'Write a short message...'}), required=False)
     resume = forms.FileField(label="Upload Resume", required=False)
-
 class EstimateForm(forms.Form):
     name = forms.CharField(
         max_length=100,
@@ -20,6 +19,15 @@ class EstimateForm(forms.Form):
         label="Company Name",
         widget=forms.TextInput(attrs={'placeholder': 'Company Name'})
     )
+    branches = forms.CharField(
+    required=False,
+    widget=forms.Textarea(attrs={
+        'placeholder': 'Enter branch locations separated by commas',
+        'rows': 2,
+        'cols': 10
+    })
+)
+
     location = forms.CharField(
         max_length=100,
         label="Location",
@@ -33,15 +41,14 @@ class EstimateForm(forms.Form):
         empty_label="Select Company Type"
     )
     type_other = forms.CharField(
-    max_length=100,
-    label="Other Company Type",
-    required=False,
-    widget=forms.TextInput(attrs={
-        'placeholder': 'Please specify',
-        'id': 'id_type_other'  # set explicit id for easy JS targeting
-    })
-)
-
+        max_length=100,
+        label="Other Company Type",
+        required=False,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Please specify',
+            'id': 'id_type_other'
+        })
+    )
 
     Employees_no = forms.IntegerField(
         label="Number of Employees",
@@ -64,25 +71,25 @@ class EstimateForm(forms.Form):
         label="Email Address",
         widget=forms.EmailInput(attrs={'placeholder': 'you@example.com'})
     )
+
     EXISTING_APPLI_CHOICES = [
-    ('', 'Please select'),  
-    ('Tally', 'Tally'),
-    ('SAP', 'SAP'),
-    ('Other', 'Other'),
+        ('', 'Please select'),
+        ('Tally', 'Tally'),
+        ('SAP', 'SAP'),
+        ('Other', 'Other'),
     ]
-
     existing_appli = forms.ChoiceField(
-    choices=EXISTING_APPLI_CHOICES,
-    label="Existing Applications",
-    widget=forms.Select(attrs={'id': 'id_existing_appli'}),
-    required=True, 
+        choices=EXISTING_APPLI_CHOICES,
+        label="Existing Applications",
+        widget=forms.Select(attrs={'id': 'id_existing_appli'}),
+        required=True,
     )
-
     existing_appli_other = forms.CharField(
         max_length=100,
         label="Other Application",
         required=False,
-        widget=forms.TextInput(attrs={'placeholder': 'Please specify'})
+        widget=forms.TextInput(attrs={'placeholder': 'Please specify',
+                                      'id': 'id_existing_appli_other'})
     )
 
     no_of_users = forms.IntegerField(
@@ -97,17 +104,9 @@ class EstimateForm(forms.Form):
         empty_label="Select Product Type"
     )
 
-    module = forms.MultipleChoiceField(
-        choices=[],
-        label="Modules",
-        required=False,
-        widget=forms.CheckboxSelectMultiple(attrs={'id': 'id_module'})
-    )
+    
 
-    branches = forms.CharField(
-        required=False,
-        widget=forms.Textarea(attrs={'placeholder': 'Enter branch locations separated by commas'})
-    )
+   
 
     def clean_mobile_no(self):
         mobile = self.cleaned_data['mobile_no']
@@ -121,7 +120,7 @@ class EstimateForm(forms.Form):
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        allowed_domains = ['company.com', 'example.org']
+        allowed_domains = ['gmail.com']
         domain = email.split('@')[-1]
         if domain not in allowed_domains:
             raise forms.ValidationError("Please use your company email address.")
@@ -141,3 +140,5 @@ class EstimateForm(forms.Form):
         existing_appli_other = cleaned_data.get('existing_appli_other')
         if existing_appli == 'Other' and not existing_appli_other:
             self.add_error('existing_appli_other', "Please specify the other application.")
+
+        return cleaned_data

@@ -84,46 +84,43 @@ def odoo_service(request):
 def odoo_upgrade(request):
     return render(request,'odoo_upgrade.html')
 
-from django.core.mail import send_mail
-from django.conf import settings
-from django.http import JsonResponse
-from django.shortcuts import render
-
 def estimate_view(request):
-    selected_modules = []  # default empty
+    selected_modules = []
 
     if request.method == 'POST':
         form = EstimateForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
 
-            # 👇 Company type handle karo
-            company_type = data['type']
-            if company_type.lower() == "other":
-                company_type = request.POST.get('other_company_type', company_type)
-
-            # 👇 Existing application handle karo
+            company_type = data['type'] if data['type'] else data.get('type_other')
             existing_app = data['existing_appli']
-            if existing_app.lower() == "other":
-                existing_app = request.POST.get('other_existing_app', existing_app)
+            if existing_app == "Other":
+                existing_app = data.get('existing_appli_other')
 
             estimate = Estimate.objects.create(
                 name=data['name'],
                 company_name=data['company_name'],
                 location=data['location'],
-                type=company_type,   # 👈 updated
+                type=data['type'],  # ForeignKey
                 Employees_no=data['Employees_no'],
                 turnover=data['turnover'],
                 designation=data['designation'],
                 mobile_no=data['mobile_no'],
                 email=data['email'],
-                existing_appli=existing_app,   # 👈 updated
+                existing_appli=existing_app,
                 no_of_users=data['no_of_users'],
                 product=data['product'],
-                module=", ".join(request.POST.getlist('module'))
+                module=", ".join(request.POST.getlist('module'))  # ✅ module list save
             )
 
-            # Send confirmation email
+            # Branches save
+            branches = data.get('branches', "")
+            if branches:
+                branch_list = [b.strip() for b in branches.split(",") if b.strip()]
+                for loc in branch_list:
+                    Branch.objects.create(estimate=estimate, location=loc)
+
+            # Confirmation email
             subject = "Estimate Submission Confirmation"
             message = (
                 f"Hello {estimate.name},\n\n"
@@ -133,15 +130,12 @@ def estimate_view(request):
                 f"Modules: {estimate.module}\n\nBest Regards,\nYour Company"
             )
             recipient_list = [estimate.email]
-
             send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
 
-            return render(request, 'success.html')  # or redirect
+            return render(request, 'success.html')
 
         else:
-            # If form invalid, keep selected modules to re-populate checkboxes
             selected_modules = request.POST.getlist('module')
-
     else:
         form = EstimateForm()
 
@@ -153,30 +147,20 @@ def estimate_view(request):
 def get_modules(request):
     product_id = request.GET.get('product_id')
     modules = []
-
     try:
-        if not product_id:  
-            # Agar product select hi nahi hua -> unlinked modules dikhao
-            modules = list(Module.objects.filter(product__isnull=True).values('id', 'name'))
-        else:
+        if product_id:
             product = Product.objects.get(id=product_id)
-            if product.name == "NA":
-                modules = list(Module.objects.filter(product__isnull=True).values('id', 'name'))
-            else:
-                modules = list(product.modules.values('id', 'name'))
+            modules = list(product.modules.values('id', 'name'))
+        else:
+            modules = []
     except Product.DoesNotExist:
         modules = []
-
     return JsonResponse(modules, safe=False)
-
-
-
 
 def odoo_support(request):
     return render(request,'odoo_support.html')
 
-<<<<<<< HEAD
+
 def odoo_imple(request):
     return render(request,'odoo_imple.html')
-=======
->>>>>>> 9634641093ca44ecc0f9ba5ed818d0a2fa830b7f
+

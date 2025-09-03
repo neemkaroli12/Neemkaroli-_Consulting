@@ -107,31 +107,35 @@
 
 <form method="POST">
     {% csrf_token %}
+
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for field, error in form.errors.items %}
+                    <li>{{ field }}: {{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
     {% for field in form %}
-        {% if field.name == 'type_other' %}
-            <div id="type_other_wrapper" class="form-group">
-                {{ field.label_tag }}
-                {{ field }}
-            </div>
-        {% elif field.name == 'existing_appli_other' %}
-            <div id="existing_appli_other_wrapper" class="form-group">
-                {{ field.label_tag }}
-                {{ field }}
-            </div>
-        {% elif field.name == 'module' %}
-            <div class="form-group">
-                <label>{{ field.label }}</label>
-                <div id="id_module"></div>
-            </div>
-        {% else %}
+        {% if field.name not in "module" %}
             <div class="form-group">
                 {{ field.label_tag }}
                 {{ field }}
             </div>
         {% endif %}
     {% endfor %}
+
+    <!-- Module container (dynamic via JS) -->
+    <div class="form-group">
+        <label for="id_module">Modules</label>
+        <div id="id_module"></div>
+    </div>
+
     <button type="submit">Submit</button>
 </form>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -146,8 +150,10 @@ document.addEventListener("DOMContentLoaded", function() {
     function toggleCompanyType() {
         if (companyTypeSelect.value && companyTypeSelect.options[companyTypeSelect.selectedIndex].text.toLowerCase() === "other") {
             otherCompanyInput.style.display = "block";
+            otherCompanyInput.required = true;
         } else {
             otherCompanyInput.style.display = "none";
+            otherCompanyInput.required = false;
         }
     }
 
@@ -155,51 +161,57 @@ document.addEventListener("DOMContentLoaded", function() {
     function toggleExistingAppli() {
         if (existingAppliSelect.value === "Other") {
             existingAppliOtherInput.style.display = "block";
+            existingAppliOtherInput.required = true;
         } else {
             existingAppliOtherInput.style.display = "none";
+            existingAppliOtherInput.required = false;
         }
     }
 
     // Load modules dynamically when product changes
     function loadModules(productId) {
         fetch(`/get-modules/?product_id=${productId}`)
-        .then(response => response.json())
-        .then(data => {
-            moduleContainer.innerHTML = ""; // clear old
-
-            if (data.length === 0) {
-                let noOpt = document.createElement("p");
-                noOpt.textContent = "No modules available.";
-                moduleContainer.appendChild(noOpt);
-            } else {
-                data.forEach(module => {
-                    let label = document.createElement("label");
-                    let checkbox = document.createElement("input");
-                    checkbox.type = "checkbox";
-                    checkbox.name = "module";
-                    checkbox.value = module.id;
-                    label.appendChild(checkbox);
-                    label.append(" " + module.name);
-                    moduleContainer.appendChild(label);
-                    moduleContainer.appendChild(document.createElement("br"));
-                });
-            }
-        });
+            .then(response => response.json())
+            .then(data => {
+                moduleContainer.innerHTML = "";
+                if (data.length === 0) {
+                    moduleContainer.innerHTML = "<p>No modules available.</p>";
+                } else {
+                    data.forEach(module => {
+                        let label = document.createElement("label");
+                        let checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.name = "module";
+                        checkbox.value = module.id;
+                        label.appendChild(checkbox);
+                        label.append(" " + module.name);
+                        moduleContainer.appendChild(label);
+                        moduleContainer.appendChild(document.createElement("br"));
+                    });
+                }
+            });
     }
 
     // Initial state
     toggleCompanyType();
     toggleExistingAppli();
-    loadModules(productSelect.value || "");  // 👈 agar blank ho to bhi unlinked modules load honge
+    if (productSelect && productSelect.value) {
+        loadModules(productSelect.value);
+    }
 
     // Events
     companyTypeSelect.addEventListener("change", toggleCompanyType);
     existingAppliSelect.addEventListener("change", toggleExistingAppli);
-    productSelect.addEventListener("change", function() {
-        loadModules(this.value);
-    });
+    if (productSelect) {
+        productSelect.addEventListener("change", function() {
+            loadModules(this.value);
+        });
+    }
 });
+
+
 </script>
+
 
 
 {% endblock %}
