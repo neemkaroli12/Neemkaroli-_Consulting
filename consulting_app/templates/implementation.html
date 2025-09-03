@@ -115,10 +115,17 @@
 
 <style>
 .hero-section {
-  position: relative;
-  height: 60vh;
-  background: url("{% static 'images/imple.png' %}") center/cover no-repeat;
-  overflow: hidden;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url("{% static 'images/about.png' %}");
+    color: white;
+    display: flex;
+    justify-content:end;   
+    align-items:start;
+    box-sizing: border-box;
+    padding: 20px;
+    position: relative;
+    background-size: cover;
+    height: 60vh;
 }
 .breadcrumb { background: transparent;  gap:2px; font-size:1.2rem; color: #f0f0f0; }
 .breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
