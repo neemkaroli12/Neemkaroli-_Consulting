@@ -1,0 +1,205 @@
+{% extends 'layout.html' %}
+{% block title %}Estimate And Evaluate Yourself{% endblock %}
+{% block content %}
+<style>
+    form {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 25px;
+        background: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: #333;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    textarea,
+    select {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1.5px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+        box-sizing: border-box;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="number"]:focus,
+    textarea:focus,
+    select:focus {
+        outline: none;
+        border-color: #3b82f6; /* nice blue */
+        box-shadow: 0 0 5px rgba(59, 130, 246, 0.4);
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+
+    /* MODULE CHECKBOXES INLINE AND RESPONSIVE */
+    #id_module div {
+        display: inline-flex;
+        align-items: center;
+        margin-right: 20px;
+        margin-bottom: 10px;
+    }
+
+    #id_module input[type="checkbox"] {
+        margin-right: 6px;
+        transform: scale(1.2);
+        cursor: pointer;
+    }
+
+    @media (max-width: 640px) {
+        #id_module div {
+            display: flex;
+            margin-right: 0;
+        }
+    }
+
+    button[type="submit"] {
+        background-color: #3b82f6;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #2563eb;
+    }
+
+    @media (max-width: 640px) {
+        form {
+            padding: 15px;
+            margin: 10px;
+        }
+    }
+
+    /* Hide Other fields by default */
+    #id_type_other,
+    label[for="id_type_other"],
+    #id_existing_appli_other,
+    label[for="id_existing_appli_other"] {
+        display: none;
+    }
+
+</style>
+
+<form method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+        {% if field.name == 'type_other' %}
+            <div id="type_other_wrapper" class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+            </div>
+        {% elif field.name == 'existing_appli_other' %}
+            <div id="existing_appli_other_wrapper" class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+            </div>
+        {% elif field.name == 'module' %}
+            <div class="form-group">
+                <label>{{ field.label }}</label>
+                <div id="id_module"></div>
+            </div>
+        {% else %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+            </div>
+        {% endif %}
+    {% endfor %}
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    let companyTypeSelect = document.getElementById("id_type");
+    let otherCompanyInput = document.getElementById("id_type_other");
+    let existingAppliSelect = document.getElementById("id_existing_appli");
+    let existingAppliOtherInput = document.getElementById("id_existing_appli_other");
+    let productSelect = document.getElementById("id_product");
+    let moduleContainer = document.getElementById("id_module");
+
+    // Toggle "Other Company Type"
+    function toggleCompanyType() {
+        if (companyTypeSelect.value && companyTypeSelect.options[companyTypeSelect.selectedIndex].text.toLowerCase() === "other") {
+            otherCompanyInput.style.display = "block";
+        } else {
+            otherCompanyInput.style.display = "none";
+        }
+    }
+
+    // Toggle "Other Existing Application"
+    function toggleExistingAppli() {
+        if (existingAppliSelect.value === "Other") {
+            existingAppliOtherInput.style.display = "block";
+        } else {
+            existingAppliOtherInput.style.display = "none";
+        }
+    }
+
+    // Load modules dynamically when product changes
+    function loadModules(productId) {
+        fetch(`/get-modules/?product_id=${productId}`)
+        .then(response => response.json())
+        .then(data => {
+            moduleContainer.innerHTML = ""; // clear old
+
+            if (data.length === 0) {
+                let noOpt = document.createElement("p");
+                noOpt.textContent = "No modules available.";
+                moduleContainer.appendChild(noOpt);
+            } else {
+                data.forEach(module => {
+                    let label = document.createElement("label");
+                    let checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    checkbox.name = "module";
+                    checkbox.value = module.id;
+                    label.appendChild(checkbox);
+                    label.append(" " + module.name);
+                    moduleContainer.appendChild(label);
+                    moduleContainer.appendChild(document.createElement("br"));
+                });
+            }
+        });
+    }
+
+    // Initial state
+    toggleCompanyType();
+    toggleExistingAppli();
+    loadModules(productSelect.value || "");  // 👈 agar blank ho to bhi unlinked modules load honge
+
+    // Events
+    companyTypeSelect.addEventListener("change", toggleCompanyType);
+    existingAppliSelect.addEventListener("change", toggleExistingAppli);
+    productSelect.addEventListener("change", function() {
+        loadModules(this.value);
+    });
+});
+</script>
+
+
+{% endblock %}

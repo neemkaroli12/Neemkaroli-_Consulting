@@ -14,6 +14,14 @@
 .breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
 .breadcrumb a:hover { color: #ffd369; }
 .breadcrumb .active { color: #ccc; }
+@media(max-width:576px){
+.approach{
+    height:100px !important;
+}
+.image{
+    height:80px !important;
+}
+}
 </style>
 
 <section class="hero-section text-white d-flex align-items-end justify-content-start"
@@ -47,16 +55,16 @@
         </div>
       </div>
 
-      <div class="col-lg-4 text-center p-4 shadow rounded bg-white h-100">
+      <div class="col-lg-4 text-center p-4 shadow rounded bg-white h-100 ">
         <h2 class="fw-bold mb-5">Our Approach</h2>
         <div class="d-flex justify-content-center flex-wrap gap-3">
           <img src="{% static 'images/odoo-imple(1).png' %}" 
                alt="Odoo Implementation Step 1" 
-               class="img-fluid shadow rounded bg-white p-2 hover-scale"
+               class="img-fluid shadow rounded bg-white p-2 hover-scale approach"
                style="max-width: 350px; height:200px;">
           <img src="{% static 'images/odoo-imple(2).png' %}" 
                alt="Odoo Implementation Step 2" 
-               class="img-fluid shadow rounded bg-white p-2 hover-scale"
+               class="img-fluid shadow rounded bg-white p-2 hover-scale image"
                style="max-width: 350px; height:120px;">
         </div>
       </div>
