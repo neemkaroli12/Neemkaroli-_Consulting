@@ -34,6 +34,41 @@
 .breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
 .breadcrumb a:hover { color: #ffd369; }
 .breadcrumb .active { color: #ccc; }
+/* Text + Image Section */
+@media(max-width:992px){
+  .image img{
+      max-width:400px !important;
+      margin-top: 20px;
+  }
+}
+@media(max-width:576px){
+  .image img{
+      max-width:250px !important;
+  }
+  .container h2{
+      font-size:1.2rem !important;
+  }
+  .container p{
+      font-size:0.8rem !important;
+  }
+}
+
+/* Highlights Section */
+@media(max-width:768px){
+  .h-100{
+    height: auto !important;
+  }
+  .row.g-4 > div {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  .row.g-4 {
+    gap: 1rem !important;
+  }
+  .row.g-4 h5{
+    font-size: 1rem !important;
+  }
+}
 </style>
 
 <section class="hero-banner">
@@ -63,7 +98,7 @@
           From initial setup to long-term optimization, NKCL’s team is dedicated to keeping your Odoo environment running smoothly, efficiently, and cost-effectively throughout its lifecycle.
         </p>
       </div>
-      <div class="col-lg-6 text-center">
+      <div class="col-lg-6 text-center image">
         <h2 class="fw-bold mb-4">Our Odoo Services</h2>
         <img src="{% static 'images/odoo-imple.png' %}" 
              alt="Odoo Project Management" 

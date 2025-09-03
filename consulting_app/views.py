@@ -88,3 +88,6 @@ def odoo_upgrade(request):
 
 def odoo_support(request):
     return render(request,'odoo_support.html')
+
+def odoo_imple(request):
+    return render(request,'odoo_imple.html')

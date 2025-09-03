@@ -7,7 +7,70 @@
 .breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
 .breadcrumb a:hover { color: #ffd369; }
 .breadcrumb .active { color: #ccc; }
+
+/* Default Image Responsive */
+.image img {
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Hero Section Responsive */
+@media(max-width:992px){
+  .hero-section {
+    height: 50vh !important;
+  }
+  .hero-section h1 {
+    font-size: 2.2rem !important;
+  }
+}
+@media(max-width:768px){
+  .hero-section {
+    height: 45vh !important;
+    text-align: center !important;
+  }
+  .hero-section .breadcrumb {
+    justify-content: center !important;
+    font-size: 1rem;
+  }
+}
+
+/* Text + Image Section */
+@media(max-width:992px){
+  .image img{
+      max-width:400px !important;
+      margin-top: 20px;
+  }
+}
+@media(max-width:576px){
+  .image img{
+      max-width:250px !important;
+  }
+  .container h2{
+      font-size:1.2rem !important;
+  }
+  .container p{
+      font-size:0.8rem !important;
+  }
+}
+
+/* Highlights Section */
+@media(max-width:768px){
+  .h-100{
+    height: auto !important;
+  }
+  .row.g-4 > div {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  .row.g-4 {
+    gap: 1rem !important;
+  }
+  .row.g-4 h5{
+    font-size: 1rem !important;
+  }
+}
 </style>
+
 <!-- Hero Section -->
 <section class="hero-section text-white d-flex align-items-end justify-content-start"
          style="background: url('{% static 'images/pexels-startup-stock-photos-7075.jpg' %}') center/cover no-repeat; height: 70vh; position: relative;">
@@ -25,7 +88,7 @@
 <!-- Main Content + Methodology Side by Side -->
 <section class="py-5">
   <div class="container">
-    <div class="row align-items-center g-5">
+    <div class="row me-0 align-items-center g-5">
       
       <!-- Left Side: Text -->
       <div class="col-lg-6">
@@ -42,12 +105,11 @@
       </div>
 
       <!-- Right Side: Image -->
-      <div class="col-lg-6 text-center">
+      <div class="col-lg-6 text-center image">
         <h2 class="fw-bold mb-4">Our Project Management Methodology</h2>
         <img src="{% static 'images/odoo.png' %}" 
              alt="Odoo Project Management" 
-             class="img-fluid shadow rounded p-3 bg-white"
-             style="max-width: 500px;">
+             class="img-fluid shadow rounded p-3 bg-white">
       </div>
     </div>
   </div>
