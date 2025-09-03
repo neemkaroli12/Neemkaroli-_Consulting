@@ -1,0 +1,144 @@
+{% extends 'layout.html' %}
+{% block title %}Estimate And Evaluate Yourself{% endblock %}
+{% block content %}
+<style>
+    form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 25px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #3b82f6; /* nice blue */
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.4);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+#id_module div {
+    margin-bottom: 8px;
+}
+
+#id_module input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+button[type="submit"] {
+    background-color: #3b82f6;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #2563eb;
+}
+
+@media (max-width: 640px) {
+    form {
+        padding: 15px;
+        margin: 10px;
+    }
+}
+
+</style>
+<form method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="form-group">
+            <label>{{ field.label_tag }}</label>
+            {% if field.name == 'module' %}
+                <div id="id_module"></div>  
+            {% else %}
+                {{ field }}
+            {% endif %}
+        </div>
+    {% endfor %}
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const productSelect = document.getElementById("id_product");
+        const moduleContainer = document.getElementById("id_module");
+
+        function fetchModules(productId) {
+            fetch(`/get-modules/?product_id=${productId}`)
+                .then(response => response.json())
+                .then(data => {
+                    moduleContainer.innerHTML = "";
+                    data.forEach(mod => {
+                        const checkboxId = `mod_${mod.id}`;
+                        const wrapper = document.createElement("div");
+
+                        const checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.name = "module";
+                        checkbox.value = mod.name;
+                        checkbox.id = checkboxId;
+
+                        const label = document.createElement("label");
+                        label.htmlFor = checkboxId;
+                        label.textContent = mod.name;
+
+                        wrapper.appendChild(checkbox);
+                        wrapper.appendChild(label);
+                        moduleContainer.appendChild(wrapper);
+                    });
+                });
+        }
+
+        if (productSelect.value) {
+            fetchModules(productSelect.value);  // load initial
+        }
+
+        productSelect.addEventListener("change", function () {
+            fetchModules(this.value);
+        });
+    });
+</script>
+
+{% endblock %}

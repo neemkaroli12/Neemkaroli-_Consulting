@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
-from .models import BlogPost
-from django.core.mail import EmailMessage
+from django.http import JsonResponse
+from .forms import EstimateForm
+from .models import BlogPost,Estimate, Module
+from django.core.mail import EmailMessage, send_mail
 from django.conf import settings
 from .forms import CareerApplicationForm
 
@@ -85,3 +87,43 @@ def odoo_service(request):
 
 def odoo_upgrade(request):
     return render(request,'odoo_upgrade.html')
+
+def estimate_view(request):
+    if request.method == 'POST':
+        form = EstimateForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            estimate = Estimate.objects.create(
+                name=data['name'],
+                company_name=data['company_name'],
+                location=data['location'],
+                type=data['type'],
+                Employees_no=data['Employees_no'],
+                turnover=data['turnover'],
+                designation=data['designation'],
+                mobile_no=data['mobile_no'],
+                email=data['email'],
+                existing_appli=data['existing_appli'],
+                no_of_users=data['no_of_users'],
+                product=data['product'],
+                module=", ".join(request.POST.getlist('module'))
+            )
+
+            # Send confirmation email
+            subject = "Estimate Submission Confirmation"
+            message = f"Hello {estimate.name},\n\nThank you for submitting your estimate request. We will get back to you shortly.\n\nDetails:\nCompany: {estimate.company_name}\nProduct: {estimate.product}\nModules: {estimate.module}\n\nBest Regards,\nYour Company"
+            recipient_list = [estimate.email]
+
+            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
+
+            return render(request, 'success.html')  # or redirect
+    else:
+        form = EstimateForm()
+
+    return render(request, 'estimate_form.html', {'form': form})
+
+
+def get_modules(request):
+    product_id = request.GET.get('product_id')
+    modules = Module.objects.filter(product_id=product_id).values('id', 'name')
+    return JsonResponse(list(modules), safe=False)
