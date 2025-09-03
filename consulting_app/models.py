@@ -29,12 +29,13 @@ class Product(models.Model):
 
 
 class Module(models.Model):
-    product = models.ForeignKey(Product, related_name='modules', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name='modules', on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=200)
 
     def __str__(self):
-        return f"{self.name} ({self.product.name})"
-
+        if self.product:
+            return f"{self.name} ({self.product.name})"
+        return f"{self.name} (Custom Module)"
 
 class Estimate(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True)

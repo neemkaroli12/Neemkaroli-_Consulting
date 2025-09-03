@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from .forms import EstimateForm
-from .models import BlogPost,Estimate, Module
+from .models import BlogPost,Estimate, Module,Product
 from django.core.mail import EmailMessage, send_mail
 from django.conf import settings
 from .forms import CareerApplicationForm
@@ -18,10 +18,6 @@ def vision(request):
 def leadership(request):
     return render(request, "leadership.html")
 
-
-
-from django.shortcuts import render
-from .models import BlogPost
 
 def blog(request):
     posts = BlogPost.objects.all() 
@@ -88,22 +84,40 @@ def odoo_service(request):
 def odoo_upgrade(request):
     return render(request,'odoo_upgrade.html')
 
+from django.core.mail import send_mail
+from django.conf import settings
+from django.http import JsonResponse
+from django.shortcuts import render
+
 def estimate_view(request):
+    selected_modules = []  # default empty
+
     if request.method == 'POST':
         form = EstimateForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
+
+            # 👇 Company type handle karo
+            company_type = data['type']
+            if company_type.lower() == "other":
+                company_type = request.POST.get('other_company_type', company_type)
+
+            # 👇 Existing application handle karo
+            existing_app = data['existing_appli']
+            if existing_app.lower() == "other":
+                existing_app = request.POST.get('other_existing_app', existing_app)
+
             estimate = Estimate.objects.create(
                 name=data['name'],
                 company_name=data['company_name'],
                 location=data['location'],
-                type=data['type'],
+                type=company_type,   # 👈 updated
                 Employees_no=data['Employees_no'],
                 turnover=data['turnover'],
                 designation=data['designation'],
                 mobile_no=data['mobile_no'],
                 email=data['email'],
-                existing_appli=data['existing_appli'],
+                existing_appli=existing_app,   # 👈 updated
                 no_of_users=data['no_of_users'],
                 product=data['product'],
                 module=", ".join(request.POST.getlist('module'))
@@ -111,22 +125,52 @@ def estimate_view(request):
 
             # Send confirmation email
             subject = "Estimate Submission Confirmation"
-            message = f"Hello {estimate.name},\n\nThank you for submitting your estimate request. We will get back to you shortly.\n\nDetails:\nCompany: {estimate.company_name}\nProduct: {estimate.product}\nModules: {estimate.module}\n\nBest Regards,\nYour Company"
+            message = (
+                f"Hello {estimate.name},\n\n"
+                f"Thank you for submitting your estimate request. We will get back to you shortly.\n\n"
+                f"Details:\nCompany: {estimate.company_name}\n"
+                f"Product: {estimate.product}\n"
+                f"Modules: {estimate.module}\n\nBest Regards,\nYour Company"
+            )
             recipient_list = [estimate.email]
 
             send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
 
             return render(request, 'success.html')  # or redirect
+
+        else:
+            # If form invalid, keep selected modules to re-populate checkboxes
+            selected_modules = request.POST.getlist('module')
+
     else:
         form = EstimateForm()
 
-    return render(request, 'estimate_form.html', {'form': form})
-
+    return render(request, 'estimate_form.html', {
+        'form': form,
+        'selected_modules': selected_modules,
+    })
 
 def get_modules(request):
     product_id = request.GET.get('product_id')
-    modules = Module.objects.filter(product_id=product_id).values('id', 'name')
-    return JsonResponse(list(modules), safe=False)
+    modules = []
+
+    try:
+        if not product_id:  
+            # Agar product select hi nahi hua -> unlinked modules dikhao
+            modules = list(Module.objects.filter(product__isnull=True).values('id', 'name'))
+        else:
+            product = Product.objects.get(id=product_id)
+            if product.name == "NA":
+                modules = list(Module.objects.filter(product__isnull=True).values('id', 'name'))
+            else:
+                modules = list(product.modules.values('id', 'name'))
+    except Product.DoesNotExist:
+        modules = []
+
+    return JsonResponse(modules, safe=False)
+
+
+
 
 def odoo_support(request):
     return render(request,'odoo_support.html')
