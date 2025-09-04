@@ -1,5 +1,5 @@
 from django import forms
-from .models import Product, CompanyType
+from .models import Product, CompanyType,Module
 import phonenumbers
 from phonenumbers.phonenumberutil import NumberParseException
 
@@ -22,9 +22,9 @@ class EstimateForm(forms.Form):
     branches = forms.CharField(
     required=False,
     widget=forms.Textarea(attrs={
-        'placeholder': 'Enter branch locations separated by commas',
-        'rows': 2,
-        'cols': 10
+        'placeholder': 'Enter  your company branch locations separated by commas',
+        'rows': 1,
+        'cols': 1,
     })
 )
 
@@ -45,18 +45,18 @@ class EstimateForm(forms.Form):
         label="Other Company Type",
         required=False,
         widget=forms.TextInput(attrs={
-            'placeholder': 'Please specify',
+            'placeholder': 'Please specify Other Company Type',
             'id': 'id_type_other'
         })
     )
 
     Employees_no = forms.IntegerField(
         label="Number of Employees",
-        widget=forms.NumberInput(attrs={'placeholder': 'e.g. 50'})
+        widget=forms.NumberInput(attrs={'placeholder': 'Number of Employees e.g. 50'})
     )
     turnover = forms.IntegerField(
         label="Turnover (in Crore)",
-        widget=forms.NumberInput(attrs={'placeholder': 'e.g. 20'})
+        widget=forms.NumberInput(attrs={'placeholder': 'Turnover (in Crore) e.g. 20'})
     )
     designation = forms.CharField(
         max_length=100,
@@ -73,9 +73,18 @@ class EstimateForm(forms.Form):
     )
 
     EXISTING_APPLI_CHOICES = [
-        ('', 'Please select'),
+        ('', 'Please select Existing Application'),
+        ('Acumatica', 'Acumatica'),
+        ('ERPNext', 'ERPNext'),
+        ('Epicor', 'Epicor'),
+        ('IFS Applications', 'IFS Applications'),
+        ('Infor CloudSuite', 'Infor CloudSuite'),
+        ('Microsoft Dynamics 365', 'Microsoft Dynamics 365'),
+        ('Oracle NetSuite', 'Oracle NetSuite'),
+        ('Odoo', 'Odoo'),
+        ('SAP S/4HANA', 'SAP S/4HANA'),
+        ('SYSPRO', 'SYSPRO'),
         ('Tally', 'Tally'),
-        ('SAP', 'SAP'),
         ('Other', 'Other'),
     ]
     existing_appli = forms.ChoiceField(
@@ -88,13 +97,13 @@ class EstimateForm(forms.Form):
         max_length=100,
         label="Other Application",
         required=False,
-        widget=forms.TextInput(attrs={'placeholder': 'Please specify',
+        widget=forms.TextInput(attrs={'placeholder': 'Please specify Other Application',
                                       'id': 'id_existing_appli_other'})
     )
 
     no_of_users = forms.IntegerField(
         label="Number of Users",
-        widget=forms.NumberInput(attrs={'placeholder': 'e.g. 10'})
+        widget=forms.NumberInput(attrs={'placeholder': 'Number of Users e.g. 10'})
     )
 
     product = forms.ModelChoiceField(
@@ -103,11 +112,13 @@ class EstimateForm(forms.Form):
         widget=forms.Select(attrs={'id': 'id_product'}),
         empty_label="Select Product Type"
     )
-
     
-
-   
-
+    module = forms.ModelMultipleChoiceField(
+        queryset=Module.objects.all(),
+        widget=forms.SelectMultiple(attrs={'class': 'select2-multi', 'id': 'id_module'}),
+        required=False
+    )
+    
     def clean_mobile_no(self):
         mobile = self.cleaned_data['mobile_no']
         try:

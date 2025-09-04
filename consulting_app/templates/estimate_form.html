@@ -1,217 +1,244 @@
 {% extends 'layout.html' %}
-{% block title %}Estimate And Evaluate Yourself{% endblock %}
+
+{% block title %}
+  Estimate And Evaluate Yourself
+{% endblock %}
+
 {% block content %}
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include Select2 CSS & JS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <style>
+  form {
+    max-width: 1000px;
+    margin: 0 auto 30px auto;
+    padding: 25px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 15px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+  }
+
+  input[type='text'],
+  input[type='email'],
+  input[type='number'],
+  textarea,select
+   {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.4);
+  }
+  
+
+  textarea {
+    resize: vertical;
+    min-height: 60px;
+  }
+
+  @media (max-width: 640px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
     form {
-        max-width: 600px;
-        margin: 20px auto;
-        padding: 25px;
-        background: #f9f9f9;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 15px;
+      margin: 10px;
     }
+  }
 
-    .form-group {
-        margin-bottom: 18px;
-    }
+  button[type='submit'] {
+    background-color: #3b82f6;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
 
-    label {
-        display: block;
-        font-weight: 600;
-        margin-bottom: 6px;
-        color: #333;
-    }
+  button[type='submit']:hover {
+    background-color: #2563eb;
+  }
 
-    input[type="text"],
-    input[type="email"],
-    input[type="number"],
-    textarea,
-    select {
-        width: 100%;
-        padding: 10px 12px;
-        border: 1.5px solid #ccc;
-        border-radius: 4px;
-        font-size: 1rem;
-        transition: border-color 0.3s ease;
-        box-sizing: border-box;
-    }
+  #other-type-wrapper,
+  #other-existing-wrapper {
+    display: none;
+  }
 
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    input[type="number"]:focus,
-    textarea:focus,
-    select:focus {
-        outline: none;
-        border-color: #3b82f6; /* nice blue */
-        box-shadow: 0 0 5px rgba(59, 130, 246, 0.4);
-    }
+  .select2-results__option {
+    user-select: none;
+    cursor: default;
+  }
 
-    textarea {
-        resize: vertical;
-        min-height: 80px;
-    }
-
-    /* MODULE CHECKBOXES INLINE AND RESPONSIVE */
-    #id_module div {
-        display: inline-flex;
-        align-items: center;
-        margin-right: 20px;
-        margin-bottom: 10px;
-    }
-
-    #id_module input[type="checkbox"] {
-        margin-right: 6px;
-        transform: scale(1.2);
-        cursor: pointer;
-    }
-
-    @media (max-width: 640px) {
-        #id_module div {
-            display: flex;
-            margin-right: 0;
-        }
-    }
-
-    button[type="submit"] {
-        background-color: #3b82f6;
-        color: white;
-        padding: 12px 25px;
-        border: none;
-        border-radius: 5px;
-        font-size: 1.1rem;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    button[type="submit"]:hover {
-        background-color: #2563eb;
-    }
-
-    @media (max-width: 640px) {
-        form {
-            padding: 15px;
-            margin: 10px;
-        }
-    }
-
-    /* Hide Other fields by default */
-    #id_type_other,
-    label[for="id_type_other"],
-    #id_existing_appli_other,
-    label[for="id_existing_appli_other"] {
-        display: none;
-    }
-
+  .select-all-option {
+    font-weight: 600;
+    border-bottom: 1px solid #ddd;
+    padding: 8px 12px;
+    background: white !important;
+  }
 </style>
 
-<form method="POST">
-    {% csrf_token %}
+<div class="container mt-5">
+  <div class="row">
+    <form method="POST">
+      {% csrf_token %}
 
-    {% if form.errors %}
-        <div class="alert alert-danger">
-            <ul>
-                {% for field, error in form.errors.items %}
-                    <li>{{ field }}: {{ error }}</li>
-                {% endfor %}
-            </ul>
+      <div class="form-row">
+        <div class="form-group">{{ form.name }}</div>
+        <div class="form-group">{{ form.company_name }}</div>
+        <div class="form-group">{{ form.branches }}</div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">{{ form.location }}</div>
+        <div class="form-group">{{ form.Employees_no }}</div>
+        <div class="form-group">{{ form.turnover }}</div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">{{ form.designation }}</div>
+        <div class="form-group">{{ form.mobile_no }}</div>
+        <div class="form-group">{{ form.email }}</div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">{{ form.no_of_users }}</div>
+        <div class="form-group">{{ form.product }}</div>
+        <div class="form-group">{{ form.type }}</div>
+      </div>
+
+      <div class="form-row" id="other-type-wrapper">
+        <div class="form-group">{{ form.type_other.label_tag }} {{ form.type_other }}</div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">{{ form.existing_appli }}</div>
+        <div>
+        
+          <select id="id_module" name="module" multiple="multiple" class="select2-multi" ></select>
+         
         </div>
-    {% endif %}
+      </div>
 
-    {% for field in form %}
-        {% if field.name not in "module" %}
-            <div class="form-group">
-                {{ field.label_tag }}
-                {{ field }}
-            </div>
-        {% endif %}
-    {% endfor %}
+      <div class="form-row" id="other-existing-wrapper">
+        <div class="form-group">{{ form.existing_appli_other.label_tag }} {{ form.existing_appli_other }}</div>
+      </div>
 
-    <!-- Module container (dynamic via JS) -->
-    <div class="form-group">
-        <label for="id_module">Modules</label>
-        <div id="id_module"></div>
-    </div>
-
-    <button type="submit">Submit</button>
-</form>
-
+      <button type="submit" style="align-self:center;">Submit</button>
+    </form>
+  </div>
+</div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    let companyTypeSelect = document.getElementById("id_type");
-    let otherCompanyInput = document.getElementById("id_type_other");
-    let existingAppliSelect = document.getElementById("id_existing_appli");
-    let existingAppliOtherInput = document.getElementById("id_existing_appli_other");
-    let productSelect = document.getElementById("id_product");
-    let moduleContainer = document.getElementById("id_module");
+  document.addEventListener('DOMContentLoaded', function () {
+    const companyTypeSelect = document.getElementById('id_type');
+    const otherCompanyWrapper = document.getElementById('other-type-wrapper');
+    const existingAppliSelect = document.getElementById('id_existing_appli');
+    const existingAppliOtherWrapper = document.getElementById('other-existing-wrapper');
+    const productSelect = document.getElementById('id_product');
+    const moduleSelect = $('#id_module');
+    const selectedCountDiv = document.getElementById('selected-count');
 
-    // Toggle "Other Company Type"
+    // Initialize Select2 with custom template
+    moduleSelect.select2({
+      placeholder: "Select modules...",
+      closeOnSelect: false,
+      templateResult: function (data) {
+        if (!data.id) return data.text;
+        const selectedValues = moduleSelect.val() || [];
+        const checked = selectedValues.includes(data.id);
+
+        const $result = $(`
+          <div class="custom-select2-item">
+            
+            <span>${data.text}</span>
+          </div>
+        `);
+        return $result;
+      },
+      templateSelection: function (data) {
+        return data.text;
+      },
+      escapeMarkup: function (markup) {
+        return markup;
+      }
+    });
+
+   
+
+   
+
     function toggleCompanyType() {
-        if (companyTypeSelect.value && companyTypeSelect.options[companyTypeSelect.selectedIndex].text.toLowerCase() === "other") {
-            otherCompanyInput.style.display = "block";
-            otherCompanyInput.required = true;
-        } else {
-            otherCompanyInput.style.display = "none";
-            otherCompanyInput.required = false;
-        }
+      otherCompanyWrapper.style.display = (companyTypeSelect?.selectedOptions[0]?.text.toLowerCase() === 'other') ? 'grid' : 'none';
     }
 
-    // Toggle "Other Existing Application"
     function toggleExistingAppli() {
-        if (existingAppliSelect.value === "Other") {
-            existingAppliOtherInput.style.display = "block";
-            existingAppliOtherInput.required = true;
-        } else {
-            existingAppliOtherInput.style.display = "none";
-            existingAppliOtherInput.required = false;
-        }
+      existingAppliOtherWrapper.style.display = (existingAppliSelect?.value === 'Other') ? 'grid' : 'none';
     }
 
-    // Load modules dynamically when product changes
     function loadModules(productId) {
-        fetch(`/get-modules/?product_id=${productId}`)
-            .then(response => response.json())
-            .then(data => {
-                moduleContainer.innerHTML = "";
-                if (data.length === 0) {
-                    moduleContainer.innerHTML = "<p>No modules available.</p>";
-                } else {
-                    data.forEach(module => {
-                        let label = document.createElement("label");
-                        let checkbox = document.createElement("input");
-                        checkbox.type = "checkbox";
-                        checkbox.name = "module";
-                        checkbox.value = module.id;
-                        label.appendChild(checkbox);
-                        label.append(" " + module.name);
-                        moduleContainer.appendChild(label);
-                        moduleContainer.appendChild(document.createElement("br"));
-                    });
-                }
+      moduleSelect.empty();
+      fetch(`/get-modules/?product_id=${productId}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.length === 0) {
+            moduleSelect.append(new Option("No modules available", "", false, false));
+          } else {
+            data.forEach(mod => {
+              moduleSelect.append(new Option(mod.name, mod.id, false, false));
             });
-    }
-
-    // Initial state
-    toggleCompanyType();
-    toggleExistingAppli();
-    if (productSelect && productSelect.value) {
-        loadModules(productSelect.value);
-    }
-
-    // Events
-    companyTypeSelect.addEventListener("change", toggleCompanyType);
-    existingAppliSelect.addEventListener("change", toggleExistingAppli);
-    if (productSelect) {
-        productSelect.addEventListener("change", function() {
-            loadModules(this.value);
+          }
+          moduleSelect.trigger('change');
+        })
+        .catch(() => {
+          moduleSelect.empty().append(new Option("Error loading modules", "", false, false)).trigger('change');
         });
     }
-});
 
+    if (companyTypeSelect) companyTypeSelect.addEventListener('change', toggleCompanyType);
+    if (existingAppliSelect) existingAppliSelect.addEventListener('change', toggleExistingAppli);
+    if (productSelect) productSelect.addEventListener('change', function () {
+      loadModules(this.value);
+    });
 
+    toggleCompanyType();
+    toggleExistingAppli();
+    if (productSelect && productSelect.value) loadModules(productSelect.value);
+    updateSelectedCount();
+  });
 </script>
-
-
-
 {% endblock %}

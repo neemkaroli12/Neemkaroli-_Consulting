@@ -147,14 +147,16 @@ def estimate_view(request):
 def get_modules(request):
     product_id = request.GET.get('product_id')
     modules = []
-    try:
-        if product_id:
+    
+    if product_id:
+        try:
             product = Product.objects.get(id=product_id)
+            # Assuming Product has a related_name 'modules' to access its modules
             modules = list(product.modules.values('id', 'name'))
-        else:
+        except Product.DoesNotExist:
             modules = []
-    except Product.DoesNotExist:
-        modules = []
+    # If no product_id is provided, modules will be empty list by default
+    
     return JsonResponse(modules, safe=False)
 
 def odoo_support(request):
