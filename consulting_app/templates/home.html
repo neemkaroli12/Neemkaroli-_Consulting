@@ -226,7 +226,7 @@
           <span class="tagline">Welcome to Neemkaroli Consulting</span>
           <h1 class="headline">Empowering <span>Businesses</span><br/>with Innovation</h1>
           <p class="subtext">Smart strategies, digital transformation & growth solutions for modern enterprises.</p>
-          <a href="#services" class="btn-slider">🚀 Explore Services</a>
+          <a href="{% url 'consulting_app:micro_service' %}" class="btn-slider">🚀 Explore Services</a>
         </div>
       </div>
 
@@ -237,7 +237,7 @@
           <span class="tagline">Grow with Experts</span>
           <h1 class="headline">Building <span>Future-Ready</span><br/>Organizations</h1>
           <p class="subtext">Leverage consulting, technology & strategy to stay ahead in a fast-changing world.</p>
-          <a href="#about" class="btn-slider">💡 Learn More</a>
+          <a href="{% url 'consulting_app:contact' %}" class="btn-slider">💡 Learn More</a>
         </div>
       </div>
 
@@ -248,7 +248,7 @@
           <span class="tagline">Digital Transformation</span>
           <h1 class="headline">Innovative <span>Solutions</span><br/>for Modern Businesses</h1>
           <p class="subtext">We help you harness the power of digital tools, automation & AI-driven solutions.</p>
-          <a href="#contact" class="btn-slider">📞 Get in Touch</a>
+          <a href="{% url 'consulting_app:contact' %}" class="btn-slider">📞 Get in Touch</a>
         </div>
       </div>
 
@@ -279,7 +279,7 @@ With a plethora of knowledge of dynamic environments, we embrace and adapt to th
 the IT industry. Our user-centric approach ensures development of interaction and experience models which reflect our zeal for digital transformation, meticulous technical implementation, and our resilience to deliver your vision.
 
 Our purpose is to cultivate innovation whilst ensuring the highest degree of efficiency and user satisfaction.</p>
-        <a href="#contact" class="btn btn-outline-primary mt-3">Contact Us</a>
+        <a href="{% url 'consulting_app:contact' %}" class="btn btn-outline-primary mt-3">Contact Us</a>
       </div>
     </div>
   </div>
@@ -391,7 +391,7 @@ Our purpose is to cultivate innovation whilst ensuring the highest degree of eff
   <div class="container" data-aos="zoom-in">
     <h2>Ready to grow your business?</h2>
     <p class="lead mb-4">Contact us today for a free consultation!</p>
-    <a href="/contact" class="btn btn-outline-primary btn-lg">Contact Us</a>
+    <a href="{% url 'consulting_app:contact' %}" class="btn btn-outline-primary btn-lg">Contact Us</a>
   </div>
 </section>
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
