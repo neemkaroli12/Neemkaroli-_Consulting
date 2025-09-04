@@ -322,45 +322,46 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4 mb-3">
-            <h5 class="fw-bold">Neemkaroli Consulting</h5>
-            <p>Helping businesses grow with expert consulting, training, and digital solutions.</p>
+            <img src="{% static 'images/logo-white.png' %}" style="height:80px; width:auto;">
+            <p class="mt-4">Helping businesses grow with expert consulting, training, and digital solutions.</p>
+            <span class="d-flex list-unstyled gap-3"><li class="bi bi-facebook"></li>
+            <li class="bi bi-instagram"></li>
+            <li class="bi bi-linkedin"></li></span>
           </div>
-          <div class="col-md-4 mb-3">
+          <div class="col-md-2 mb-3 ">
             <h5 class="fw-bold">Quick Links</h5>
             <ul class="list-unstyled">
               <li>
-                <a href="#">Home</a>
+                <a href="{% url "consulting_app:home_two" %}">Home</a>
               </li>
               <li>
-                <a href="#">About</a>
+                <a href="{% url "consulting_app:about" %}">About</a>
+              </li>
+              
+              <li>
+                <a href="{% url "consulting_app:blog" %}">Blog</a>
               </li>
               <li>
-                <a href="#">Services</a>
-              </li>
-              <li>
-                <a href="#">Blog</a>
-              </li>
-              <li>
-                <a href="#">Contact</a>
+                <a href="{% url "consulting_app:contact" %}">Contact</a>
               </li>
             </ul>
           </div>
-          <div class="col-md-4 mb-3">
-            <h5 class="fw-bold">Contact</h5>
-            <p>
-              <i class="bi bi-geo-alt"></i> Neemkaroli House,Haldwani, Uttarakhand:262139
-            </p>
-            <p>
-              <i class="bi bi-telephone"></i> +91 9389149580
-            </p>
-            <p>
-              <i class="bi bi-envelope"></i> info@neemkaroliconsulting.com
-            </p>
-            <div>
-              <a href="#"><i class="bi bi-facebook me-3"></i></a>
-              <a href="#"><i class="bi bi-twitter me-3"></i></a>
-              <a href="#"><i class="bi bi-linkedin me-3"></i></a>
-              <a href="#"><i class="bi bi-instagram"></i></a>
+          <div class="col-md-3 mb-3">
+            <h5 class="text-white fw-bold">Microsoft Dynamic Services</h5>
+            <a class="dropdown-item" href="{% url 'consulting_app:cons' %}">Consulting</a>
+            <a class="dropdown-item" href="{% url 'consulting_app:implementation' %}">Implementation</a>
+            <a class="dropdown-item" href="{% url 'consulting_app:support' %}">Support</a>
+            <a class="dropdown-item" href="{% url 'consulting_app:micro_service' %}">Services</a>
+          </div>
+          <div class="col-lg-3">
+            <h5 class="text-white fw-bold">Odoo Services</h5>
+            <a class="dropdown-item" href="{% url 'consulting_app:odoo_service' %}">Odoo ERP Professional Services</a>
+            <a class="dropdown-item" href="{% url 'consulting_app:odoo_upgrade' %}">Odoo ERP Upgrade</a>
+            <a class="dropdown-item" href="{% url 'consulting_app:odoo_support' %}">Odoo ERP Support</a>
+            <a class="dropdown-item" href="{% url 'consulting_app:odoo_imple' %}">Odoo ERP Implementation</a>
+            <a class="dropdown-item" href="{% url 'consulting_app:odoo_consulting' %}">Odoo ERP Consulting</a>
+          </div>   
+              
             </div>
           </div>
         </div>
