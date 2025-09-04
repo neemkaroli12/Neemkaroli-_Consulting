@@ -25,5 +25,6 @@ urlpatterns = [
 
 
     path('odoo_consulting/',views.odoo_consulting,name='odoo_consulting'),
+    path('contact/',views.contact,name='contact')
 
 ]

@@ -174,3 +174,6 @@ def odoo_support(request):
 
 def odoo_consulting(request):
     return render(request,'odoo_consulting.html')
+
+def contact(request):
+    return render(request,'contact.html')
