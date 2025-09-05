@@ -1,198 +1,204 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 {% load static %}
-{% block title %}Automation, Data Analytics & AI{% endblock %}
+{% block title %}
+  Automation, Data Analytics & AI
+{% endblock %}
 
 {% block content %}
-<style>
-/* Breadcrumb */
-.breadcrumb { background: transparent; gap: 6px; font-size: 1rem; color: #f0f0f0; }
-.breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
-.breadcrumb a:hover { color: #ffd369; }
-.breadcrumb .active { color: #ccc; }
+  <style>
+    /* Breadcrumb */
+    .breadcrumb {
+      background: transparent;
+      gap: 6px;
+      font-size: 1rem;
+      color: #f0f0f0;
+    }
+    .breadcrumb a {
+      color: #f0f0f0;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .breadcrumb a:hover {
+      color: #ffd369;
+    }
+    .breadcrumb .active {
+      color: #ccc;
+    }
+    
+    /* Section Title */
+    .section-title {
+      font-weight: 700;
+      font-size: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: #0dcaf0;
+      margin: 12px auto 0 auto;
+      border-radius: 2px;
+    }
+    
+    .value-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .value-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+    .value-card i {
+      font-size: 28px;
+      color: #0dcaf0;
+      margin-bottom: 10px;
+    }
+    
+    /* Advantage Section */
+    .advantage-box {
+      background: linear-gradient(135deg, #0b2347, #061b36);
+      padding: 50px 30px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    .advantage-item {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .advantage-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+  </style>
 
-/* Section Title */
-.section-title {
-  font-weight: 700;
-  font-size: 2rem;
-  position: relative;
-  display: inline-block;
-}
-.section-title::after {
-  content: "";
-  display: block;
-  width: 70px;
-  height: 4px;
-  background: #0dcaf0;
-  margin: 12px auto 0 auto;
-  border-radius: 2px;
-}
+  <!-- Hero Section -->
+  <section class="hero-section text-white d-flex align-items-end justify-content-start" style="background: url('{% static 'images/ai-powered-device-concept.jpg' %}') center/cover no-repeat; height: 60vh; position: relative;">
+    <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.55);"></div>
 
+    <div class="content position-relative text-start p-4 container" data-aos="fade-up">
+      <h1 class="fw-bold animate__animated animate__fadeInDown">Automation, Data Analytics & AI</h1>
+      <ol class="breadcrumb">
+        <li>
+          <a href="{% url 'consulting_app:home_two' %}">Home</a>
+        </li>
+        <li class="active">| Automation, Data Analytics & AI</li>
+      </ol>
+    </div>
+  </section>
 
-.value-card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.value-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-.value-card i {
-  font-size: 28px;
-  color: #0dcaf0;
-  margin-bottom: 10px;
-}
-
-/* Advantage Section */
-.advantage-box {
-  background: linear-gradient(135deg, #0b2347, #061b36);
-  padding: 50px 30px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-.advantage-item {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.advantage-item:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-}
-</style>
-
-<!-- Hero Section -->
-<section class="hero-section text-white d-flex align-items-end justify-content-start"
-         style="background: url('{% static 'images/ai-powered-device-concept.jpg' %}') center/cover no-repeat; height: 60vh; position: relative;">
-  <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.55);"></div>
-  
-  <div class="content position-relative text-start p-4 container" data-aos="fade-up">
-    <h1 class="fw-bold animate__animated animate__fadeInDown">Automation, Data Analytics & AI</h1>
-    <ol class="breadcrumb">
-        <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
-        <li class="active">| Automation, Data Analytics & AI</li> 
-    </ol>
-  </div>
-</section>
-
-<section class="py-5">
-  <div class="container text-center">
-    <h2 class="section-title">NKCL Process</h2>
-    <p class="text-muted mt-4 px-lg-5" data-aos="fade-up">
-      Our global AI & Data consulting team is committed to empowering clients across diverse industries 
-      by identifying and implementing tailored solutions that enhance operational efficiency, 
-      unlock actionable insights, and support informed decision-making. 
-      We focus on delivering high-ROI strategies and provide end-to-end support throughout the project lifecycle—
-      from solution discovery to full-scale implementation.
-    </p>
-  </div>
-</section>
-<section class="py-5 bg-light">
-  <div class="container text-center">
-    <h3 class="section-title">Our Value Proposition</h3>
-    <div class="row g-4 mt-4">
-      <div class="col-md-4" data-aos="zoom-in">
-        <div class="value-card">
-          <i class="bi bi-receipt"></i>
-          <h5 class="fw-bold">Invoice Automation</h5>
-          <p class="text-muted">Vendor invoice recognition and process automation.</p>
+  <section class="py-5">
+    <div class="container text-center">
+      <h2 class="section-title">NKCL Process</h2>
+      <p class="text-muted mt-4 px-lg-5" data-aos="fade-up">Our global AI & Data consulting team is committed to empowering clients across diverse industries by identifying and implementing tailored solutions that enhance operational efficiency, unlock actionable insights, and support informed decision-making. We focus on delivering high-ROI strategies and provide end-to-end support throughout the project lifecycle— from solution discovery to full-scale implementation.</p>
+    </div>
+  </section>
+  <section class="py-5 bg-light">
+    <div class="container text-center">
+      <h3 class="section-title">Our Value Proposition</h3>
+      <div class="row g-4 mt-4">
+        <div class="col-md-4" data-aos="zoom-in">
+          <div class="value-card">
+            <i class="bi bi-receipt"></i>
+            <h5 class="fw-bold">Invoice Automation</h5>
+            <p class="text-muted">Vendor invoice recognition and process automation.</p>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4" data-aos="zoom-in">
-        <div class="value-card">
-          <i class="bi bi-graph-up-arrow"></i>
-          <h5 class="fw-bold">Forecasting</h5>
-          <p class="text-muted">Product demand forecasting and churn prediction.</p>
+        <div class="col-md-4" data-aos="zoom-in">
+          <div class="value-card">
+            <i class="bi bi-graph-up-arrow"></i>
+            <h5 class="fw-bold">Forecasting</h5>
+            <p class="text-muted">Product demand forecasting and churn prediction.</p>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4" data-aos="zoom-in">
-        <div class="value-card">
-          <i class="bi bi-people"></i>
-          <h5 class="fw-bold">Customer Insights</h5>
-          <p class="text-muted">VIP identification, segmentation & personalized recommendations.</p>
+        <div class="col-md-4" data-aos="zoom-in">
+          <div class="value-card">
+            <i class="bi bi-people"></i>
+            <h5 class="fw-bold">Customer Insights</h5>
+            <p class="text-muted">VIP identification, segmentation & personalized recommendations.</p>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4" data-aos="zoom-in">
-        <div class="value-card">
-          <i class="bi bi-gear"></i>
-          <h5 class="fw-bold">Process Automation</h5>
-          <p class="text-muted">RPA, workflow automation & cross-system integration.</p>
+        <div class="col-md-4" data-aos="zoom-in">
+          <div class="value-card">
+            <i class="bi bi-gear"></i>
+            <h5 class="fw-bold">Process Automation</h5>
+            <p class="text-muted">RPA, workflow automation & cross-system integration.</p>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4" data-aos="zoom-in">
-        <div class="value-card">
-          <i class="bi bi-bar-chart-line"></i>
-          <h5 class="fw-bold">Analytics</h5>
-          <p class="text-muted">Data warehousing & business intelligence dashboards.</p>
+        <div class="col-md-4" data-aos="zoom-in">
+          <div class="value-card">
+            <i class="bi bi-bar-chart-line"></i>
+            <h5 class="fw-bold">Analytics</h5>
+            <p class="text-muted">Data warehousing & business intelligence dashboards.</p>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4" data-aos="zoom-in">
-        <div class="value-card">
-          <i class="bi bi-lightbulb"></i>
-          <h5 class="fw-bold">AI Innovation</h5>
-          <p class="text-muted">Retrieval-Augmented Generation (RAG) and advanced AI use cases.</p>
+        <div class="col-md-4" data-aos="zoom-in">
+          <div class="value-card">
+            <i class="bi bi-lightbulb"></i>
+            <h5 class="fw-bold">AI Innovation</h5>
+            <p class="text-muted">Retrieval-Augmented Generation (RAG) and advanced AI use cases.</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="py-5">
-  <div class="container-fulid">
-    <div class="advantage-box text-white" data-aos="fade-up">
-      <h3 class="fw-bold mb-4 text-center">The NKCL Advantage</h3>
-      <div class="row g-4">
-        
-        <div class="col-md-6 col-lg-4">
-          <div class="p-4 h-100 bg-white bg-opacity-10 rounded shadow-sm advantage-item text-center">
-            <i class="bi bi-people-fill fs-1 text-info mb-3"></i>
-            <h5 class="fw-bold">Expert Team</h5>
-            <p class="mb-0">Microsoft-certified architects, scientists & engineers with deep expertise.</p>
+  <section class="py-5">
+    <div class="container-fulid">
+      <div class="advantage-box text-white" data-aos="fade-up">
+        <h3 class="fw-bold mb-4 text-center">The NKCL Advantage</h3>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="p-4 h-100 bg-white bg-opacity-10 rounded shadow-sm advantage-item text-center">
+              <i class="bi bi-people-fill fs-1 text-info mb-3"></i>
+              <h5 class="fw-bold">Expert Team</h5>
+              <p class="mb-0">Microsoft-certified architects, scientists & engineers with deep expertise.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="p-4 h-100 bg-white bg-opacity-10 rounded shadow-sm advantage-item text-center">
+              <i class="bi bi-gear-wide-connected fs-1 text-info mb-3"></i>
+              <h5 class="fw-bold">Comprehensive Services</h5>
+              <p class="mb-0">End-to-end consultation, development and seamless deployment support.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="p-4 h-100 bg-white bg-opacity-10 rounded shadow-sm advantage-item text-center">
+              <i class="bi bi-diagram-3 fs-1 text-info mb-3"></i>
+              <h5 class="fw-bold">Seamless Integration</h5>
+              <p class="mb-0">Smooth collaboration with ERP & CRM teams for cross-functional success.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="p-4 h-100 bg-white bg-opacity-10 rounded shadow-sm advantage-item text-center">
+              <i class="bi bi-award fs-1 text-info mb-3"></i>
+              <h5 class="fw-bold">Unique Market Position</h5>
+              <p class="mb-0">AI + ERP/CRM expertise gives businesses a distinctive edge.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="p-4 h-100 bg-white bg-opacity-10 rounded shadow-sm advantage-item text-center">
+              <i class="bi bi-building-check fs-1 text-info mb-3"></i>
+              <h5 class="fw-bold">Client Convenience</h5>
+              <p class="mb-0">Advanced data capabilities without building internal big data teams.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="p-4 h-100 bg-white bg-opacity-10 rounded shadow-sm advantage-item text-center">
+              <i class="bi bi-graph-up fs-1 text-info mb-3"></i>
+              <h5 class="fw-bold">Maximized ROI</h5>
+              <p class="mb-0">Enhancing ERP/CRM investments with AI-driven intelligence.</p>
+            </div>
           </div>
         </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="p-4 h-100 bg-white bg-opacity-10 rounded shadow-sm advantage-item text-center">
-            <i class="bi bi-gear-wide-connected fs-1 text-info mb-3"></i>
-            <h5 class="fw-bold">Comprehensive Services</h5>
-            <p class="mb-0">End-to-end consultation, development and seamless deployment support.</p>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="p-4 h-100 bg-white bg-opacity-10 rounded shadow-sm advantage-item text-center">
-            <i class="bi bi-diagram-3 fs-1 text-info mb-3"></i>
-            <h5 class="fw-bold">Seamless Integration</h5>
-            <p class="mb-0">Smooth collaboration with ERP & CRM teams for cross-functional success.</p>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="p-4 h-100 bg-white bg-opacity-10 rounded shadow-sm advantage-item text-center">
-            <i class="bi bi-award fs-1 text-info mb-3"></i>
-            <h5 class="fw-bold">Unique Market Position</h5>
-            <p class="mb-0">AI + ERP/CRM expertise gives businesses a distinctive edge.</p>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="p-4 h-100 bg-white bg-opacity-10 rounded shadow-sm advantage-item text-center">
-            <i class="bi bi-building-check fs-1 text-info mb-3"></i>
-            <h5 class="fw-bold">Client Convenience</h5>
-            <p class="mb-0">Advanced data capabilities without building internal big data teams.</p>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="p-4 h-100 bg-white bg-opacity-10 rounded shadow-sm advantage-item text-center">
-            <i class="bi bi-graph-up fs-1 text-info mb-3"></i>
-            <h5 class="fw-bold">Maximized ROI</h5>
-            <p class="mb-0">Enhancing ERP/CRM investments with AI-driven intelligence.</p>
-          </div>
-        </div>
-
       </div>
     </div>
-  </div>
-</section>
-
+  </section>
 {% endblock %}

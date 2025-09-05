@@ -1,57 +1,62 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 {% load static %}
 
-{% block title %}Consulting Services{% endblock %}
+{% block title %}
+  Consulting Services
+{% endblock %}
 
 {% block content %}
-<style>
-.breadcrumb { background: transparent;  gap:2px; font-size:1.2rem; color: #f0f0f0; }
-.breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
-.breadcrumb a:hover { color: #ffd369; }
-.breadcrumb .active { color: #ccc; }
-</style>
+  <style>
+    .breadcrumb {
+      background: transparent;
+      gap: 2px;
+      font-size: 1.2rem;
+      color: #f0f0f0;
+    }
+    .breadcrumb a {
+      color: #f0f0f0;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .breadcrumb a:hover {
+      color: #ffd369;
+    }
+    .breadcrumb .active {
+      color: #ccc;
+    }
+  </style>
 
-<section class="hero-section text-white d-flex align-items-end justify-content-start"
-         style="background: url('{% static 'images/pexels-startup-stock-photos-7075.jpg' %}') center/cover no-repeat; height: 60vh; position: relative;">
-  <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0;"></div>
-  <div class="content position-relative text-start p-4 container" data-aos="fade-up">
-    <h1 class="display-4 fw-bold animate__animated animate__fadeInDown">Consulting</h1>
-    <ol class="breadcrumb">
-        <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
-        <li><a href="{% url 'consulting_app:cons' %}">|consulting</a></li>  
-    </ol>
-  </div>
-</section>
+  <section class="hero-section text-white d-flex align-items-end justify-content-start" style="background: url('{% static 'images/pexels-startup-stock-photos-7075.jpg' %}') center/cover no-repeat; height: 60vh; position: relative;">
+    <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0;"></div>
+    <div class="content position-relative text-start p-4 container" data-aos="fade-up">
+      <h1 class="display-4 fw-bold animate__animated animate__fadeInDown">Consulting</h1>
+      <ol class="breadcrumb">
+        <li>
+          <a href="{% url 'consulting_app:home_two' %}">Home</a>
+        </li>
+        <li>
+          <a href="{% url 'consulting_app:cons' %}">|consulting</a>
+        </li>
+      </ol>
+    </div>
+  </section>
 
-<section class="py-5">
-  <div class="container">
-    <div class="row align-items-center g-5">
-      <div class="col-md-6 text-center">
-        <img src="{% static 'images/pexels-mikhail-nilov-8101842.jpg' %}" alt="Consulting Services" 
-             class="img-fluid rounded-3 shadow-lg" data-aos="zoom-in">
-      </div>
-      <div class="col-md-6">
-        <h2 class="fw-bold mb-3" data-aos="fade-right">Our Consulting Expertise</h2>
-        <p class="mb-4" data-aos="fade-up">
-          At <strong>NKCL</strong>, we understand that building a successful intelligence solution 
-          requires more than just software—it demands a strategic partner with deep expertise 
-          in both your industry and AI.
-        </p>
-        <p class="mb-4" data-aos="fade-up" data-aos-delay="100">
-          Rooted in rich domain knowledge and proven proficiency in AI and Microsoft Dynamics, 
-          NKCL offers comprehensive consulting services across AI, Data, and Microsoft Dynamics 
-          for a wide range of industries.
-        </p>
-        <p class="mb-4" data-aos="fade-up" data-aos-delay="200">
-          Our seasoned consultants work closely with clients to identify critical business 
-          challenges and apply our specialized insights to drive meaningful transformation.
-        </p>
-        <p class="fw-semibold text-primary" data-aos="fade-up" data-aos-delay="300">
-          Unlock peak performance with NKCL’s Azure AI and Microsoft Dynamics consulting—where 
-          technology meets tailored strategy.
-        </p>
+  <section class="py-5">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-md-6 text-center">
+          <img src="{% static 'images/pexels-mikhail-nilov-8101842.jpg' %}" alt="Consulting Services" class="img-fluid rounded-3 shadow-lg" data-aos="zoom-in" />
+        </div>
+        <div class="col-md-6">
+          <h2 class="fw-bold mb-3" data-aos="fade-right">Our Consulting Expertise</h2>
+          <p class="mb-4" data-aos="fade-up">
+            At <strong>NKCL</strong>, we understand that building a successful intelligence solution requires more than just software—it demands a strategic partner with deep expertise in both your industry and AI.
+          </p>
+          <p class="mb-4" data-aos="fade-up" data-aos-delay="100">Rooted in rich domain knowledge and proven proficiency in AI and Microsoft Dynamics, NKCL offers comprehensive consulting services across AI, Data, and Microsoft Dynamics for a wide range of industries.</p>
+          <p class="mb-4" data-aos="fade-up" data-aos-delay="200">Our seasoned consultants work closely with clients to identify critical business challenges and apply our specialized insights to drive meaningful transformation.</p>
+          <p class="fw-semibold text-primary" data-aos="fade-up" data-aos-delay="300">Unlock peak performance with NKCL’s Azure AI and Microsoft Dynamics consulting—where technology meets tailored strategy.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 {% endblock %}
