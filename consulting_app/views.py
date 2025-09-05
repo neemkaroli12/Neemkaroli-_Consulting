@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from .forms import EstimateForm
-from .models import BlogPost,Estimate, Module,Product
+from .models import BlogPost,Estimate, Branch,Product
 from django.core.mail import EmailMessage, send_mail
 from django.conf import settings
 from .forms import CareerApplicationForm
