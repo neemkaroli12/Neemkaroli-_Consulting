@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}Automation, Data Analytics & AI{% endblock %}
+
+{% block content %}
+<style>
+.breadcrumb { background: transparent; gap: 6px; font-size: 1rem; color: #f0f0f0; }
+.breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { color: #ffd369; }
+.breadcrumb .active { color: #ccc; }
+
+.section-title {
+  font-weight: 700;
+  font-size: 2rem;
+  position: relative;
+  display: inline-block;
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 4px;
+  background: #0dcaf0;
+  margin: 12px auto 0 auto;
+  border-radius: 2px;
+}
+
+.value-list li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 10px;
+}
+.value-list li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #0dcaf0;
+  font-weight: bold;
+}
+
+.advantage-box {
+  background: linear-gradient(135deg, #092f5dff, #032963ff);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+</style>
+
+<section class="hero-section text-white d-flex align-items-end justify-content-start"
+         style="background: url('{% static 'images/ai-tech.jpg' %}') center/cover no-repeat; height: 60vh; position: relative;">
+  <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.6);"></div>
+  
+  <div class="content position-relative text-start p-4 container" data-aos="fade-up">
+    <h1 class=" fw-bold animate__animated animate__fadeInDown">Automation, Data Analytics & AI</h1>
+    <ol class="breadcrumb">
+        <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
+        <li><a href="{% url 'consulting_app:ai' %}">| Automation, Data Analytics & AI</a></li> 
+    </ol>
+  </div>
+</section>
+<section class="py-5">
+  <div class="container text-center">
+    <h2 class="section-title">NKCL Process</h2>
+    <p class="text-muted mt-4 px-lg-5" data-aos="fade-up">
+      Our global AI & Data consulting team is committed to empowering clients across diverse industries 
+      by identifying and implementing tailored solutions that enhance operational efficiency, 
+      unlock actionable insights, and support informed decision-making. 
+      We focus on delivering high-ROI strategies and provide end-to-end support throughout the project lifecycle—
+      from solution discovery to full-scale implementation.
+    </p>
+  </div>
+</section>
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row g-5 align-items-start">
+
+      <div class="col-lg-6" data-aos="fade-right">
+        <h3 class="fw-bold mb-3 section-title">Our Value Proposition</h3>
+        <ul class="list-unstyled value-list fs-6 text-muted mt-3">
+          <li>Vendor Invoice recognition and automation</li>
+          <li>Product Demand Forecast</li>
+          <li>Customer Churn Prediction</li>
+          <li>VIP Customer Identification</li>
+          <li>Personalized Product Recommendation</li>
+          <li>Automated Customer Segmentation</li>
+          <li>Robotic Process Automation (RPA)</li>
+          <li>Analytical Data Warehousing</li>
+          <li>Business Intelligence Dashboards</li>
+          <li>Cross-System Workflow Integration</li>
+          <li>Retrieval-Augmented Generation (RAG)</li>
+        </ul>
+      </div>
+
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="p-4 rounded text-white advantage-box">
+          <h3 class="fw-bold mb-3">The NKCL Advantage</h3>
+          <hr class="border-2 border-light mb-4" style="width: 60px;">
+          <p><strong>Expert Team:</strong> Microsoft-certified data architects, scientists, engineers, and analysts.</p>
+          <p><strong>Comprehensive Services:</strong> End-to-end consultation, development & deployment.</p>
+          <p><strong>Seamless Integration:</strong> Collaborates effectively with ERP/CRM teams.</p>
+          <p><strong>Unique Market Position:</strong> Expertise in AI + ERP/CRM for a competitive edge.</p>
+          <p><strong>Client Convenience:</strong> Eliminates the need to build/manage big data teams internally.</p>
+          <p><strong>Maximized ROI:</strong> Enhancing ERP/CRM value with AI-driven intelligence.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

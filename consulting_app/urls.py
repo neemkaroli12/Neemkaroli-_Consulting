@@ -22,6 +22,8 @@ urlpatterns = [
     path('odoo_imple/',views.odoo_imple,name='odoo_imple'),
     path('estimate/success/', TemplateView.as_view(template_name="success.html"), name="estimate_success"),
     path('odoo_consulting/',views.odoo_consulting,name='odoo_consulting'),
-    path('contact/',views.contact,name='contact')
+    path('contact/',views.contact,name='contact'),
+    path('automation/',views.ai,name="ai"),
+    path('application/',views.application,name="application")
 
 ]

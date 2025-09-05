@@ -179,3 +179,9 @@ def odoo_consulting(request):
 
 def contact(request):
     return render(request,'contact.html')
+
+def ai(request):
+    return render(request,'AI.html')
+
+def application(request):
+    return render(request,'application.html')
