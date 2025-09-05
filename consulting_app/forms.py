@@ -136,9 +136,16 @@ class EstimateForm(forms.Form):
 
     demo_date = forms.DateField(
     label="Preferred Demo Date",
-    widget=forms.DateInput(attrs={'type': 'text', 'id': 'id_demo_date','placeholder': 'Select a Date for Demo'}),  # id is important for Flatpickr
+    widget=forms.DateInput(
+        attrs={
+            'type': 'text',             # Must be 'text' for Flatpickr
+            'id': 'id_demo_date',       # Must match JS selector
+            'placeholder': 'Select a Date for Demo'
+        }
+    ),
     required=False
     )
+
 
     def clean_mobile_no(self):
         mobile = self.cleaned_data['mobile_no']
