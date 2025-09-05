@@ -1,0 +1,112 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}Integration Services{% endblock  %}
+{% block content %}
+<style> 
+.breadcrumb { background: transparent; gap: 6px; font-size: 1rem; color: #f0f0f0; }
+.breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { color: #ffd369; }
+.breadcrumb .active { color: #ccc; }
+
+</style>
+<section class="hero-section text-white d-flex align-items-end justify-content-start"
+         style="background:url('{% static 'images/inte.png' %}')center/cover no-repeat; height: 60vh; position: relative;">
+  <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5);"></div>
+  <div class="content position-relative text-start p-4 container" data-aos="fade-up">
+    <h1 class="fw-bold animate__animated animate__fadeInDown">Integration Services</h1>
+    <ol class="breadcrumb">
+        <li><a href="{% url 'consulting_app:home_two' %}" class="fw-bold">Home</a></li>
+        <li><a href="{% url 'consulting_app:custom' %}" class="fw-bold">| Integration Services</a></li> 
+    </ol>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <h2 class="fw-bold text-info mb-3">Empowering Businesses Through Collaboration & Integration</h2>
+    <p class="text-muted">
+      In today’s competitive landscape, success hinges on a synchronized value chain—where customers, partners, 
+      and suppliers operate in harmony. Yet, achieving seamless system integration across this ecosystem remains a critical challenge.
+    </p>
+    <p class="text-muted">
+      <strong>NKCL</strong> recognizes that true business value emerges when applications communicate effortlessly. 
+      Enhanced collaboration between systems unlocks the full potential of IT investments.
+    </p>
+    <p class="text-muted">
+      We deliver advanced application integration services across Microsoft Dynamics ERP and CRM platforms. 
+      Our team evaluates each client’s unique requirements and recommends optimal inter- and intra-platform integrations 
+      to maximize efficiency and ROI. Backed by deep expertise in Microsoft Dynamics, we ensure rapid deployment 
+      and high-impact integration outcomes.
+    </p>
+  </div>
+</section>
+
+<!-- Service Offerings -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="fw-bold text-center mb-4">Integration Service Offerings</h2>
+    <hr class="border-3 border-info mx-auto mb-4" style="width: 80px;">
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-6">
+        <div class="p-4 shadow-sm bg-white rounded-3 h-100">
+          <h5 class="fw-semibold">📑 Microsoft Office Integration</h5>
+          <p class="text-muted">Streamlining workflows with native connectivity to Word, Excel, and Office tools.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-6">
+        <div class="p-4 shadow-sm bg-white rounded-3 h-100">
+          <h5 class="fw-semibold">🤝 Collaborative Platform Integration</h5>
+          <p class="text-muted">Connecting with SharePoint, Outlook, and Teams for unified communication & document management.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-6">
+        <div class="p-4 shadow-sm bg-white rounded-3 h-100">
+          <h5 class="fw-semibold">🌐 Portal Integration with Dynamics CRM</h5>
+          <p class="text-muted">Extending CRM with secure, user-friendly portals for customers and partners.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-6">
+        <div class="p-4 shadow-sm bg-white rounded-3 h-100">
+          <h5 class="fw-semibold">🔗 Advanced Third-Party Integration</h5>
+          <p class="text-muted">Seamlessly bridging Dynamics with external applications for a cohesive ecosystem.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NKCL Advantage -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="fw-bold text-center mb-4">The NKCL Advantage</h2>
+    <hr class="border-3 border-info mx-auto mb-4" style="width: 80px;">
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="p-4 shadow-sm border rounded-3 h-100">
+          <h6 class="fw-bold">⚡ Deep Expertise</h6>
+          <p class="text-muted">Proven success in Microsoft Dynamics ERP & CRM across industries.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="p-4 shadow-sm border rounded-3 h-100">
+          <h6 class="fw-bold">🔄 Cross-Platform Capabilities</h6>
+          <p class="text-muted">Technical proficiency across legacy systems, modern platforms & emerging tech.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="p-4 shadow-sm border rounded-3 h-100">
+          <h6 class="fw-bold">🚀 Streamlined Services</h6>
+          <p class="text-muted">Enabling smooth, scalable connectivity across your business ecosystem.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="p-4 shadow-sm border rounded-3 h-100">
+          <h6 class="fw-bold">🛡️ Minimal Disruption</h6>
+          <p class="text-muted">Delivering precision-driven transformation while ensuring continuity.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -24,6 +24,9 @@ urlpatterns = [
     path('odoo_consulting/',views.odoo_consulting,name='odoo_consulting'),
     path('contact/',views.contact,name='contact'),
     path('automation/',views.ai,name="ai"),
-    path('application/',views.application,name="application")
+    path('application/',views.application,name="application"),
+    path('custom/',views.custom,name="custom"),
+    path('inte/',views.inte,name="inte"),
+    path('change/',views.change,name="change"),
 
 ]

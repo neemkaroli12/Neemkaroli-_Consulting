@@ -185,3 +185,12 @@ def ai(request):
 
 def application(request):
     return render(request,'application.html')
+
+def custom(request):
+    return render(request,'custom.html')
+
+def inte(request):
+    return render(request,'inte.html')
+
+def change(request):
+    return render(request,'change.html')
