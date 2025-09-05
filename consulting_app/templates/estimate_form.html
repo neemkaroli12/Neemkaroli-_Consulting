@@ -609,7 +609,7 @@ document.addEventListener("change", function (e) {
   // ============================
   const employeesField = document.getElementById("id_Employees_no");
   const turnoverField = document.getElementById("id_turnover");
-  const usersField = document.getElementById("id_no_of_users");
+  
   const designationField = document.getElementById("id_designation");
 
   const errorEmployeesSpan = document.getElementById("error-employees");
@@ -639,13 +639,7 @@ document.addEventListener("change", function (e) {
     return null;
   });
 
-  validateField(usersField, errorUsersSpan, (val) => {
-    if (val === "") return null;
-    const num = parseInt(val);
-    if (isNaN(num) || num < 0) return "Number of users cannot be negative.";
-    if (num % 5 !== 0) return "Number of users must be divisible by 5.";
-    return null;
-  });
+  
 
   if (designationField) {
     designationField.addEventListener("input", () => {
