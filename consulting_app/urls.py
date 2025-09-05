@@ -28,5 +28,7 @@ urlpatterns = [
     path('custom/',views.custom,name="custom"),
     path('inte/',views.inte,name="inte"),
     path('change/',views.change,name="change"),
+    path('health/',views.health,name="health"),
+    path('performance/',views.performance,name="performance"),
 
 ]

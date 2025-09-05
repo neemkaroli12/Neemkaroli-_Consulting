@@ -194,3 +194,9 @@ def inte(request):
 
 def change(request):
     return render(request,'change.html')
+
+def health(request):
+    return render(request,'health.html')
+
+def performance(request):
+    return render(request,'performance.html')
