@@ -50,7 +50,9 @@ class Estimate(models.Model):
     no_of_users = models.IntegerField(blank=True, null=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, blank=True)
     module = models.TextField(blank=True, null=True)
-    location = models.CharField(max_length=255, null=True, blank=True) 
+    location = models.CharField(max_length=255, null=True, blank=True)
+    demo_date = models.DateField(null=True)
+    timeline = models.CharField(max_length=255, null=True, blank=True)
     def __str__(self):
         return f"{self.name} - {self.company_name}"
     

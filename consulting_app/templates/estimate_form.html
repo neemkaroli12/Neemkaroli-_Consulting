@@ -5,12 +5,10 @@
 {% endblock %}
 
 {% block content %}
-<!-- Include jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Include Select2 CSS & JS -->
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!-- Flatpickr CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<!-- SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style>
   form {
@@ -43,8 +41,8 @@
   input[type='text'],
   input[type='email'],
   input[type='number'],
-  textarea,select
-   {
+  textarea,
+  select {
     width: 100%;
     padding: 10px 12px;
     border: 1.5px solid #ccc;
@@ -61,7 +59,6 @@
     border-color: #3b82f6;
     box-shadow: 0 0 5px rgba(59, 130, 246, 0.4);
   }
-  
 
   textarea {
     resize: vertical;
@@ -99,22 +96,134 @@
     display: none;
   }
 
-  .select2-results__option {
-    user-select: none;
-    cursor: default;
+  /* Custom multiselect styles */
+  .custom-multiselect {
+    position: relative;
+    width: 100%;
+    border: 1.5px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
   }
 
-  .select-all-option {
-    font-weight: 600;
-    border-bottom: 1px solid #ddd;
-    padding: 8px 12px;
-    background: white !important;
+  .custom-multiselect-toggle {
+    padding: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
+
+  .custom-multiselect-toggle span {
+    font-weight: 500;
+  }
+
+  .custom-multiselect-toggle .arrow {
+    font-size: 10px;
+    transition: transform 0.3s ease;
+  }
+
+  .custom-multiselect.open .custom-multiselect-toggle .arrow {
+    transform: rotate(180deg);
+  }
+
+  .custom-multiselect-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #ccc;
+    background: white;
+    max-height: 250px;
+    overflow-y: auto;
+    z-index: 1000;
+  }
+
+  .custom-multiselect.open .custom-multiselect-menu {
+    display: block;
+  }
+
+  .search-box {
+    padding: 8px;
+  }
+
+  .search-box input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .option {
+    display: block;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+
+  .option input {
+    margin-right: 8px;
+  }
+
+  .counter-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    background: black;
+    color:white;
+    border-radius: 10px;
+  }
+
+  .clear-btn {
+    background: black;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color:white;
+    border-radius: 10px;
+  }
+  input[type='date'] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+  background-color: white;
+}
+
+input[type='date']:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.4);
+}
+
 </style>
 
 <div class="container mt-5">
   <div class="row">
+    
     <form method="POST">
+      {% if form.errors %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let errorMessages = "";
+
+    {% for field, errors in form.errors.items %}
+      errorMessages += "<strong>{{ field|capfirst }}:</strong> {{ errors.as_text|escapejs }}<br>";
+    {% endfor %}
+
+    Swal.fire({
+      title: 'Form Validation Error',
+      html: errorMessages,
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
+  });
+</script>
+{% endif %}
+
       {% csrf_token %}
 
       <div class="form-row">
@@ -136,26 +245,53 @@
       </div>
 
       <div class="form-row">
-        <div class="form-group">{{ form.no_of_users }}</div>
+        <div class="form-group">{{ form.no_of_users}}</div>
         <div class="form-group">{{ form.product }}</div>
-        <div class="form-group">{{ form.type }}</div>
-      </div>
-
-      <div class="form-row" id="other-type-wrapper">
-        <div class="form-group">{{ form.type_other.label_tag }} {{ form.type_other }}</div>
+        <div class="form-group">
+          {% comment %} custom module dropdown {% endcomment %}
+          <div class="custom-multiselect" id="moduleDropdown">
+            <div class="custom-multiselect-toggle">
+              <span>Select Modules</span>
+              <div class="counter-box" id="moduleCounterBox" style="display:none;">
+                <span id="moduleCounter">0</span>
+                <button type="button" class="clear-btn" id="moduleClear">&times;</button>
+              </div>
+              <span class="arrow">&#9660;</span>
+            </div>
+            <div class="custom-multiselect-menu">
+              <div class="search-box">
+                <input type="text" id="moduleSearch" placeholder="Search for module...">
+              </div>
+              <label class="option"><input type="checkbox" id="moduleSelectAll"> Select All</label>
+              <div id="moduleOptions">
+                {% for module in modules %}
+                  <label class="option"><input type="checkbox" name="modules" value="{{ module.id }}"> {{ module.name }}</label>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        
       </div>
 
       <div class="form-row">
         <div class="form-group">{{ form.existing_appli }}</div>
-        <div>
-        
-          <select id="id_module" name="module" multiple="multiple" class="select2-multi" ></select>
-         
-        </div>
+        <div class="form-group">{{ form.type }}</div>
+        <div class="form-group"> {{ form.demo_date }}</div>
       </div>
-
-      <div class="form-row" id="other-existing-wrapper">
-        <div class="form-group">{{ form.existing_appli_other.label_tag }} {{ form.existing_appli_other }}</div>
+      <div class="form-row" id="other-fields-wrapper">
+  <div class="form-group" id="other-existing-wrapper">
+    {{ form.existing_appli_other.label_tag }} 
+    {{ form.existing_appli_other }}
+  </div>
+  
+  <div class="form-group" id="other-type-wrapper">
+    {{ form.type_other.label_tag }} 
+    {{ form.type_other }}
+  </div>
+</div>
+      <div class="form-row">
+        <div class="form-group"> {{ form.timeline }}</div>
       </div>
 
       <button type="submit" style="align-self:center;">Submit</button>
@@ -164,81 +300,124 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const companyTypeSelect = document.getElementById('id_type');
-    const otherCompanyWrapper = document.getElementById('other-type-wrapper');
-    const existingAppliSelect = document.getElementById('id_existing_appli');
-    const existingAppliOtherWrapper = document.getElementById('other-existing-wrapper');
-    const productSelect = document.getElementById('id_product');
-    const moduleSelect = $('#id_module');
-    const selectedCountDiv = document.getElementById('selected-count');
+  document.addEventListener("DOMContentLoaded", function () {
+  const companyTypeSelect = document.getElementById("id_type");
+  const otherCompanyWrapper = document.getElementById("other-type-wrapper");
+  const existingAppliSelect = document.getElementById("id_existing_appli");
+  const existingAppliOtherWrapper = document.getElementById("other-existing-wrapper");
 
-    // Initialize Select2 with custom template
-    moduleSelect.select2({
-      placeholder: "Select modules...",
-      closeOnSelect: false,
-      templateResult: function (data) {
-        if (!data.id) return data.text;
-        const selectedValues = moduleSelect.val() || [];
-        const checked = selectedValues.includes(data.id);
+  function toggleCompanyType() {
+    otherCompanyWrapper.style.display =
+      companyTypeSelect?.selectedOptions[0]?.text.toLowerCase() === "other" ? "grid" : "none";
+  }
 
-        const $result = $(`
-          <div class="custom-select2-item">
-            
-            <span>${data.text}</span>
-          </div>
-        `);
-        return $result;
-      },
-      templateSelection: function (data) {
-        return data.text;
-      },
-      escapeMarkup: function (markup) {
-        return markup;
-      }
+  function toggleExistingAppli() {
+    existingAppliOtherWrapper.style.display =
+      existingAppliSelect?.value === "Other" ? "grid" : "none";
+  }
+
+  if (companyTypeSelect) companyTypeSelect.addEventListener("change", toggleCompanyType);
+  if (existingAppliSelect) existingAppliSelect.addEventListener("change", toggleExistingAppli);
+
+  toggleCompanyType();
+  toggleExistingAppli();
+
+  // Custom multiselect logic
+  const dropdown = document.getElementById("moduleDropdown");
+  const toggle = dropdown.querySelector(".custom-multiselect-toggle");
+  const moduleOptions = document.getElementById("moduleOptions");
+  const selectAll = document.getElementById("moduleSelectAll");
+  const counterBox = document.getElementById("moduleCounterBox");
+  const counter = document.getElementById("moduleCounter");
+  const clearBtn = document.getElementById("moduleClear");
+  const search = document.getElementById("moduleSearch");
+
+  toggle.addEventListener("click", () => {
+    dropdown.classList.toggle("open");
+  });
+
+  search.addEventListener("keyup", function () {
+    const val = this.value.toLowerCase();
+    moduleOptions.querySelectorAll(".option").forEach(opt => {
+      const text = opt.textContent.toLowerCase();
+      opt.style.display = text.includes(val) ? "block" : "none";
     });
+  });
 
-   
-
-   
-
-    function toggleCompanyType() {
-      otherCompanyWrapper.style.display = (companyTypeSelect?.selectedOptions[0]?.text.toLowerCase() === 'other') ? 'grid' : 'none';
+  function updateCounter() {
+    const checked = moduleOptions.querySelectorAll("input[name='modules']:checked").length;
+    if (checked > 0) {
+      counter.textContent = checked;
+      counterBox.style.display = "flex";
+    } else {
+      counterBox.style.display = "none";
     }
+  }
 
-    function toggleExistingAppli() {
-      existingAppliOtherWrapper.style.display = (existingAppliSelect?.value === 'Other') ? 'grid' : 'none';
-    }
+  moduleOptions.querySelectorAll("input[name='modules']").forEach(cb => cb.addEventListener("change", updateCounter));
 
-    function loadModules(productId) {
-      moduleSelect.empty();
-      fetch(`/get-modules/?product_id=${productId}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data.length === 0) {
-            moduleSelect.append(new Option("No modules available", "", false, false));
-          } else {
-            data.forEach(mod => {
-              moduleSelect.append(new Option(mod.name, mod.id, false, false));
-            });
-          }
-          moduleSelect.trigger('change');
-        })
-        .catch(() => {
-          moduleSelect.empty().append(new Option("Error loading modules", "", false, false)).trigger('change');
-        });
-    }
+  selectAll.addEventListener("change", function () {
+    moduleOptions.querySelectorAll("input[name='modules']").forEach(cb => cb.checked = this.checked);
+    updateCounter();
+  });
 
-    if (companyTypeSelect) companyTypeSelect.addEventListener('change', toggleCompanyType);
-    if (existingAppliSelect) existingAppliSelect.addEventListener('change', toggleExistingAppli);
-    if (productSelect) productSelect.addEventListener('change', function () {
+  clearBtn.addEventListener("click", function(e) {
+    e.stopPropagation();
+    moduleOptions.querySelectorAll("input[name='modules']").forEach(cb => cb.checked = false);
+    selectAll.checked = false;
+    updateCounter();
+  });
+
+  updateCounter();
+
+  // AJAX load modules
+  const productSelect = document.getElementById("id_product");
+
+  function loadModules(productId) {
+    if (!productId) return;
+
+    fetch(`/get-modules/?product_id=${productId}`)
+      .then(res => res.json())
+      .then(data => {
+        moduleOptions.innerHTML = '';
+        selectAll.checked = false;
+
+        if (data.length === 0) {
+          moduleOptions.innerHTML = '<label class="option"><input type="checkbox" disabled> No modules available</label>';
+        } else {
+          data.forEach(mod => {
+            const label = document.createElement("label");
+            label.className = "option";
+            label.innerHTML = `<input type="checkbox" name="modules" value="${mod.id}"> ${mod.name}`;
+            moduleOptions.appendChild(label);
+          });
+        }
+
+        moduleOptions.querySelectorAll("input[name='modules']").forEach(cb => cb.addEventListener("change", updateCounter));
+        updateCounter();
+      })
+      .catch(err => {
+        moduleOptions.innerHTML = '<label class="option"><input type="checkbox" disabled> Error loading modules</label>';
+        updateCounter();
+        console.error(err);
+      });
+  }
+
+  if (productSelect) {
+    productSelect.addEventListener("change", function () {
       loadModules(this.value);
     });
-
-    toggleCompanyType();
-    toggleExistingAppli();
-    if (productSelect && productSelect.value) loadModules(productSelect.value);
-    updateSelectedCount();
+  }
+  flatpickr("#id_demo_date", {
+  dateFormat: "Y-m-d", // matches Django's default format
+  altInput: true,
+  altFormat: "F j, Y", // human-friendly format
+  minDate: "today", // optional: restrict past dates
+  disableMobile: "true" // forces Flatpickr even on mobile
+});
   });
 </script>
+<!-- Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 {% endblock %}

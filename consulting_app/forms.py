@@ -2,12 +2,14 @@ from django import forms
 from .models import Product, CompanyType,Module
 import phonenumbers
 from phonenumbers.phonenumberutil import NumberParseException
+from django.core.exceptions import ValidationError
 
 class CareerApplicationForm(forms.Form):
     name = forms.CharField(max_length=100, label="Full Name", widget=forms.TextInput(attrs={'placeholder': 'Your Name'}))
     email = forms.EmailField(label="Email Address", widget=forms.EmailInput(attrs={'placeholder': 'Your Email'}))
     message = forms.CharField(label="Message", widget=forms.Textarea(attrs={'placeholder': 'Write a short message...'}), required=False)
     resume = forms.FileField(label="Upload Resume", required=False)
+    
 class EstimateForm(forms.Form):
     name = forms.CharField(
         max_length=100,
@@ -103,7 +105,7 @@ class EstimateForm(forms.Form):
 
     no_of_users = forms.IntegerField(
         label="Number of Users",
-        widget=forms.NumberInput(attrs={'placeholder': 'Number of Users e.g. 10'})
+        widget=forms.NumberInput(attrs={'placeholder': 'Number of Users e.g. 5,10,15,20'})
     )
 
     product = forms.ModelChoiceField(
@@ -119,6 +121,25 @@ class EstimateForm(forms.Form):
         required=False
     )
     
+    TIMELINE_CHOICES = [
+    ('', 'Fix Demo Date'),
+    ('15 Days', '15 Days'),
+    ('30 Days', '30 Days'),
+    ('45 Days', '45 Days'),
+    ]
+    timeline = forms.ChoiceField(
+    choices=TIMELINE_CHOICES,
+    label="Timeline",
+    widget=forms.Select(attrs={'placeholder': 'Number of Users e.g. 10'}),
+    required=True,
+    )
+
+    demo_date = forms.DateField(
+    label="Preferred Demo Date",
+    widget=forms.DateInput(attrs={'type': 'text', 'id': 'id_demo_date','placeholder': 'Select a Date for Demo'}),  # id is important for Flatpickr
+    required=False
+    )
+
     def clean_mobile_no(self):
         mobile = self.cleaned_data['mobile_no']
         try:
@@ -136,7 +157,7 @@ class EstimateForm(forms.Form):
         if domain not in allowed_domains:
             raise forms.ValidationError("Please use your company email address.")
         return email
-
+    
     def clean(self):
         cleaned_data = super().clean()
 
@@ -153,3 +174,10 @@ class EstimateForm(forms.Form):
             self.add_error('existing_appli_other', "Please specify the other application.")
 
         return cleaned_data
+    def clean_no_of_users(self):
+        no_of_users = self.cleaned_data.get('no_of_users')
+        if no_of_users is None:
+            return no_of_users
+        if no_of_users % 5 != 0:
+            raise ValidationError("Please enter a number divisible by 5.")
+        return no_of_users
