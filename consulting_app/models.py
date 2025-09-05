@@ -7,7 +7,7 @@ class BlogPost(models.Model):
     content = models.TextField()
     excerpt = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to='blog_images/', blank=True, null=True)
-    created_at = models.DateTimeField(default=timezone.now)   # fix
+    created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -31,11 +31,28 @@ class Product(models.Model):
 class Module(models.Model):
     product = models.ForeignKey(Product, related_name='modules', on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=200)
+    functional_days = models.PositiveIntegerField(default=0)
+    technical_days = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        if self.product:
-            return f"{self.name} ({self.product.name})"
-        return f"{self.name} (Custom Module)"
+        return f"{self.name} ({self.product.name if self.product else 'Custom'})"
+
+
+class SubModule(models.Model):
+    module = models.ForeignKey(Module, related_name="submodules", on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return f"{self.name} ({self.module.name})"
+
+
+class SubSubModule(models.Model):
+    submodule = models.ForeignKey(SubModule, related_name="subsubmodules", on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return f"{self.name} ({self.submodule.name})"
+
 
 class Estimate(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True)
@@ -49,12 +66,28 @@ class Estimate(models.Model):
     existing_appli = models.CharField(max_length=200, blank=True, null=True)
     no_of_users = models.IntegerField(blank=True, null=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, blank=True)
+    
+    # module selections
     module = models.TextField(blank=True, null=True)
+    submodules = models.TextField(blank=True, null=True)
+    subsubmodules = models.TextField(blank=True, null=True)
+
+    # location / demo
     location = models.CharField(max_length=255, null=True, blank=True)
     demo_date = models.DateField(null=True)
     timeline = models.CharField(max_length=255, null=True, blank=True)
+
+    # --- NEW FIELDS for Cost Estimation ---
+    functional_days = models.PositiveIntegerField(default=0)
+    technical_days = models.PositiveIntegerField(default=0)
+    functional_cost = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    technical_cost = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    final_cost = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+
     def __str__(self):
         return f"{self.name} - {self.company_name}"
+
+
     
 class Branch(models.Model):
     estimate = models.ForeignKey(Estimate, related_name='branches', on_delete=models.CASCADE)

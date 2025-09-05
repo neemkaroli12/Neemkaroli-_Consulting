@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from .forms import EstimateForm
-from .models import BlogPost,Estimate, Branch,Product
+from .models import BlogPost,Estimate, Branch,Product,Module,SubModule,SubSubModule
 from django.core.mail import EmailMessage, send_mail
 from django.conf import settings
 from .forms import CareerApplicationForm
-
+from django.views.decorators.csrf import csrf_exempt
 def home_two(request):
     return render(request, "home.html")
 
@@ -83,59 +83,100 @@ def odoo_service(request):
 
 def odoo_upgrade(request):
     return render(request,'odoo_upgrade.html')
-
 def estimate_view(request):
     selected_modules = []
+    selected_submodules = []
+    selected_subsubmodules = []
 
     if request.method == 'POST':
         form = EstimateForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
 
-            company_type = data['type'] if data['type'] else data.get('type_other')
-            existing_app = data['existing_appli']
-            if existing_app == "Other":
-                existing_app = data.get('existing_appli_other')
+            # Modules selected
+            selected_modules = request.POST.getlist("modules")
 
+            # Submodules selected
+            for mid in selected_modules:
+                sub_list = request.POST.getlist(f"submodules_{mid}")
+                selected_submodules.extend(sub_list)
+
+                # Subsubmodules for each submodule
+                for sid in sub_list:
+                    subsub_list = request.POST.getlist(f"subsubmodules_{sid}")
+                    selected_subsubmodules.extend(subsub_list)
+
+            # ---------------- COST ESTIMATION ---------------- #
+            total_functional_days = 0
+            total_technical_days = 0
+
+            modules = Module.objects.filter(id__in=selected_modules)
+            for m in modules:
+                total_functional_days += m.functional_days or 0
+                total_technical_days += m.technical_days or 0
+
+            functional_cost = total_functional_days * 900
+            technical_cost = total_technical_days * 800
+            final_cost = functional_cost + technical_cost
+
+            # ---------------- SAVE ESTIMATE ---------------- #
             estimate = Estimate.objects.create(
                 name=data['name'],
                 company_name=data['company_name'],
                 location=data['location'],
-                type=data['type'],  # ForeignKey
+                type=data['type'],
                 Employees_no=data['Employees_no'],
                 turnover=data['turnover'],
                 designation=data['designation'],
                 mobile_no=data['mobile_no'],
                 email=data['email'],
-                existing_appli=existing_app,
+                existing_appli=data['existing_appli'],
                 no_of_users=data['no_of_users'],
                 product=data['product'],
-                module=", ".join(request.POST.getlist('module'))  # ✅ module list save
+                module=", ".join(selected_modules),
+                submodules=", ".join(selected_submodules),
+                subsubmodules=", ".join(selected_subsubmodules),  # <-- add this field in model
+                functional_days=total_functional_days,
+                technical_days=total_technical_days,
+                functional_cost=functional_cost,
+                technical_cost=technical_cost,
+                final_cost=final_cost,
             )
 
-            # Branches save
+            # Save Branches if any
             branches = data.get('branches', "")
             if branches:
                 branch_list = [b.strip() for b in branches.split(",") if b.strip()]
                 for loc in branch_list:
                     Branch.objects.create(estimate=estimate, location=loc)
 
-            # Confirmation email
+            # Confirmation Email
             subject = "Estimate Submission Confirmation"
             message = (
                 f"Hello {estimate.name},\n\n"
                 f"Thank you for submitting your estimate request. We will get back to you shortly.\n\n"
-                f"Details:\nCompany: {estimate.company_name}\n"
+                f"Details:\n"
+                f"Company: {estimate.company_name}\n"
                 f"Product: {estimate.product}\n"
-                f"Modules: {estimate.module}\n\nBest Regards,\nYour Company"
+                f"Modules: {estimate.module}\n"
+                f"SubModules: {estimate.submodules}\n"
+                f"SubSubModules: {estimate.subsubmodules}\n\n"
+                # f"Functional Days: {total_functional_days}\n"
+                # f"Technical Days: {total_technical_days}\n"
+                # f"Functional Cost: ₹{functional_cost}\n"
+                # f"Technical Cost: ₹{technical_cost}\n"
+                # f"Final Estimate: ₹{final_cost}\n\n"
+                f"Best Regards,\nYour Company"
             )
             recipient_list = [estimate.email]
             send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
 
-            return render(request, 'success.html')
-
+            return render(request, 'success.html', {
+                "estimate": estimate,
+                "final_cost": final_cost
+            })
         else:
-            selected_modules = request.POST.getlist('module')
+            selected_modules = request.POST.getlist('modules')
     else:
         form = EstimateForm()
 
@@ -143,6 +184,38 @@ def estimate_view(request):
         'form': form,
         'selected_modules': selected_modules,
     })
+    
+@csrf_exempt
+def calculate_estimate(request):
+    if request.method == "POST":
+        modules = request.POST.getlist("modules")
+
+        total_functional_days = 0
+        total_technical_days = 0
+
+        # Modules ke functional + technical days add karna
+        for mid in modules:
+            try:
+                module = Module.objects.get(id=mid)
+                total_functional_days += module.functional_days or 0
+                total_technical_days += module.technical_days or 0
+            except Module.DoesNotExist:
+                pass
+
+        functional_cost = total_functional_days * 900
+        technical_cost = total_technical_days * 800
+        final_cost = functional_cost + technical_cost
+
+        return JsonResponse({
+            "success": True,
+            "functional_days": total_functional_days,
+            "technical_days": total_technical_days,
+            "functional_cost": functional_cost,
+            "technical_cost": technical_cost,
+            "final_cost": final_cost
+        })
+
+    return JsonResponse({"success": False, "message": "Invalid request"})
 
 def get_modules(request):
     product_id = request.GET.get('product_id')
@@ -158,6 +231,24 @@ def get_modules(request):
     # If no product_id is provided, modules will be empty list by default
     
     return JsonResponse(modules, safe=False)
+
+def get_submodules(request):
+    module_id = request.GET.get("module_id")
+    submodules = []
+
+    if module_id:
+        try:
+            module = Module.objects.get(id=module_id)
+            submodules = list(module.submodules.values("id", "name"))
+        except Module.DoesNotExist:
+            submodules = []
+
+    return JsonResponse(submodules, safe=False)
+
+
+def get_subsubmodules(request, submodule_id):
+    subsubmodules = SubSubModule.objects.filter(submodule_id=submodule_id).values("id", "name")
+    return JsonResponse(list(subsubmodules), safe=False)
 
 def odoo_support(request):
     return render(request,'odoo_support.html')
