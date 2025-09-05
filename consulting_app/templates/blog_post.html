@@ -19,6 +19,10 @@
     background-size: cover;
     height: 60vh;
     }
+    .breadcrumb { background: transparent;  font-size: 1.125rem; display: flex; justify-content:flex-start; gap: 10px; color: #f0f0f0; }
+    .breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
+    .breadcrumb a:hover { color: #ffd369; }
+    .breadcrumb .active { color: #ccc; }
     
     .page-title .date {
         font-size: 1.12rem;
@@ -42,9 +46,10 @@
         box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
     .blog-detail img {
-        width: 100%;
+        width: 80%;
         border-radius: 10px;
         margin: 20px 0;
+        height: 350px;
     }
     .blog-detail h2 {
         font-size: 1.125rem;
@@ -56,6 +61,7 @@
         line-height: 1.7;
         color: #444;
         margin-bottom: 15px;
+        text-align: justify !important;
     }
 
     /* Sidebar (reuse from listing) */
@@ -104,6 +110,7 @@
     <div class="container">
     <h1>{{ post.title }}</h1>
     <p class="date">{{ post.created_at|date:"F d, Y" }}</p>
+    
     </div>
 </section>
 
