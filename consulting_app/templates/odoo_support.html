@@ -1,190 +1,199 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 {% load static %}
-{% block title %}Odoo Support{% endblock  %}
+{% block title %}
+  Odoo Support
+{% endblock %}
 {% block content %}
-<style>
-.breadcrumb { background: transparent;  gap:2px; font-size:1.2rem; color: #f0f0f0; }
-.breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
-.breadcrumb a:hover { color: #ffd369; }
-.breadcrumb .active { color: #ccc; }
-
-/* Default Image Responsive */
-.image img {
-    max-width: 500px;
-    width: 100%;
-}
-
-/* Hero Section Responsive */
-@media(max-width:992px){
-  .hero-section {
-    height: 50vh !important;
-  }
-  .hero-section h1 {
-    font-size: 2.2rem !important;
-  }
-}
-@media(max-width:768px){
-  .hero-section {
-    height: 45vh !important;
-    text-align: center !important;
-  }
-  .hero-section .breadcrumb {
-    justify-content: center !important;
-    font-size: 1rem;
-  }
-}
-
-/* Text + Image Section */
-@media(max-width:992px){
-  .image img{
-      max-width:400px !important;
-      margin-top: 20px;
-  }
-}
-@media(max-width:576px){
-  .image img{
-      max-width:250px !important;
-  }
-  .container h2{
-      font-size:1.2rem !important;
-  }
-  .container p{
-      font-size:0.8rem !important;
-  }
-}
-
-/* Highlights Section */
-@media(max-width:768px){
-  .h-100{
-    height: auto !important;
-  }
-  .row.g-4 > div {
-    flex: 0 0 100% !important;
-    max-width: 100% !important;
-  }
-  .row.g-4 {
-    gap: 1rem !important;
-  }
-  .row.g-4 h5{
-    font-size: 1rem !important;
-  }
-}
-</style>
-
-<!-- Hero Section -->
-<section class="hero-section text-white d-flex align-items-end justify-content-start"
-         style="background: url('{% static 'images/pexels-startup-stock-photos-7075.jpg' %}') center/cover no-repeat; height: 60vh; position: relative;">
-  <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5);"></div>
-  <div class="content position-relative text-start p-4 container" data-aos="fade-up">
-    <h1 class="display-4 fw-bold animate__animated animate__fadeInDown">Odoo ERP Support</h1>
-    <ol class="breadcrumb">
-        <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
-        <li><a href="{% url 'consulting_app:odoo_support' %}">| Odoo ERP Support</a></li>  
-    </ol>
-  </div>
-</section>
+  <style>
+    .breadcrumb {
+      background: transparent;
+      gap: 2px;
+      font-size: 1.2rem;
+      color: #f0f0f0;
+    }
+    .breadcrumb a {
+      color: #f0f0f0;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .breadcrumb a:hover {
+      color: #ffd369;
+    }
+    .breadcrumb .active {
+      color: #ccc;
+    }
     
+    /* Default Image Responsive */
+    .image img {
+      max-width: 500px;
+      width: 100%;
+    }
+    
+    /* Hero Section Responsive */
+    @media (max-width: 992px) {
+      .hero-section {
+        height: 50vh !important;
+      }
+      .hero-section h1 {
+        font-size: 2.2rem !important;
+      }
+    }
+    @media (max-width: 768px) {
+      .hero-section {
+        height: 45vh !important;
+        text-align: center !important;
+      }
+      .hero-section .breadcrumb {
+        justify-content: center !important;
+        font-size: 1rem;
+      }
+    }
+    
+    /* Text + Image Section */
+    @media (max-width: 992px) {
+      .image img {
+        max-width: 400px !important;
+        margin-top: 20px;
+      }
+    }
+    @media (max-width: 576px) {
+      .image img {
+        max-width: 250px !important;
+      }
+      .container h2 {
+        font-size: 1.2rem !important;
+      }
+      .container p {
+        font-size: 0.8rem !important;
+      }
+    }
+    
+    /* Highlights Section */
+    @media (max-width: 768px) {
+      .h-100 {
+        height: auto !important;
+      }
+      .row.g-4 > div {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+      }
+      .row.g-4 {
+        gap: 1rem !important;
+      }
+      .row.g-4 h5 {
+        font-size: 1rem !important;
+      }
+    }
+  </style>
 
-<!-- Main Content + Methodology Side by Side -->
-<section class="py-5">
-  <div class="container">
-    <div class="row me-0 align-items-center g-5">
-      
-      <!-- Left Side: Text -->
-      <div class="col-lg-6">
-        <h2 class="fw-bold mb-4">Flexible, Secure, and Scalable Odoo Cloud Services</h2>
-        <p class="text-muted fs-6">
-          NKCL delivers robust Cloud services for Odoo solutions, offering businesses a fast, low-risk path to harness advanced software capabilities. 
-          By leveraging Amazon EC2 infrastructure, clients gain access to cutting-edge functionality—without the upfront costs of hardware or software investments.
-        
-          Unlike traditional SaaS deployments where multiple users share a common instance and database, NKCL’s Odoo on Cloud provides a dedicated, secure environment tailored exclusively for your organization. 
-          This ensures greater flexibility to customize, scale, and upgrade your solution in alignment with your unique business needs.
+  <!-- Hero Section -->
+  <section class="hero-section text-white d-flex align-items-end justify-content-start" style="background: url('{% static 'images/pexels-startup-stock-photos-7075.jpg' %}') center/cover no-repeat; height: 60vh; position: relative;">
+    <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5);"></div>
+    <div class="content position-relative text-start p-4 container" data-aos="fade-up">
+      <h1 class="display-4 fw-bold animate__animated animate__fadeInDown">Odoo ERP Support</h1>
+      <ol class="breadcrumb">
+        <li>
+          <a href="{% url 'consulting_app:home_two' %}">Home</a>
+        </li>
+        <li>
+          <a href="{% url 'consulting_app:odoo_support' %}">| Odoo ERP Support</a>
+        </li>
+      </ol>
+    </div>
+  </section>
 
-          Our team is committed to managing and optimizing your Odoo Cloud deployment—ensuring it remains secure, efficient, and fully aligned with your operational goals.
-        </p>
-      </div>
+  <!-- Main Content + Methodology Side by Side -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row me-0 align-items-center g-5">
+        <!-- Left Side: Text -->
+        <div class="col-lg-6">
+          <h2 class="fw-bold mb-4">Flexible, Secure, and Scalable Odoo Cloud Services</h2>
+          <p class="text-muted fs-6">NKCL delivers robust Cloud services for Odoo solutions, offering businesses a fast, low-risk path to harness advanced software capabilities. By leveraging Amazon EC2 infrastructure, clients gain access to cutting-edge functionality—without the upfront costs of hardware or software investments.
 
-      <!-- Right Side: Image -->
-      <div class="col-lg-6 text-center image">
-        <h2 class="fw-bold mb-4">Our Project Management Methodology</h2>
-        <img src="{% static 'images/odoo.png' %}" 
-             alt="Odoo Project Management" 
-             class="img-fluid shadow rounded p-3 bg-white">
+            Unlike traditional SaaS deployments where multiple users share a common instance and database, NKCL’s Odoo on Cloud provides a dedicated, secure environment tailored exclusively for your organization. This ensures greater flexibility to customize, scale, and upgrade your solution in alignment with your unique business needs.
+
+            Our team is committed to managing and optimizing your Odoo Cloud deployment—ensuring it remains secure, efficient, and fully aligned with your operational goals.</p>
+        </div>
+
+        <!-- Right Side: Image -->
+        <div class="col-lg-6 text-center image">
+          <h2 class="fw-bold mb-4">Our Project Management Methodology</h2>
+          <img src="{% static 'images/odoo.png' %}" alt="Odoo Project Management" class="img-fluid shadow rounded p-3 bg-white" />
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Highlights Section -->
-<section class="py-5 bg-light">
-  <div class="container">
-    <h2 class="fw-bold mb-5 text-center">Highlights</h2>
-    <div class="row g-4 text-center">
-      <div class="col-md-4">
-        <div class="p-4 shadow rounded bg-white h-100">
-          <i class="fas fa-user-tag fa-2x text-primary mb-3"></i>
-          <h5>Per user license subscription</h5>
+  <!-- Highlights Section -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="fw-bold mb-5 text-center">Highlights</h2>
+      <div class="row g-4 text-center">
+        <div class="col-md-4">
+          <div class="p-4 shadow rounded bg-white h-100">
+            <i class="fas fa-user-tag fa-2x text-primary mb-3"></i>
+            <h5>Per user license subscription</h5>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="p-4 shadow rounded bg-white h-100">
-          <i class="fas fa-dollar-sign fa-2x text-success mb-3"></i>
-          <h5>Low monthly investment</h5>
+        <div class="col-md-4">
+          <div class="p-4 shadow rounded bg-white h-100">
+            <i class="fas fa-dollar-sign fa-2x text-success mb-3"></i>
+            <h5>Low monthly investment</h5>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="p-4 shadow rounded bg-white h-100">
-          <i class="fas fa-tools fa-2x text-warning mb-3"></i>
-          <h5>Managed services</h5>
+        <div class="col-md-4">
+          <div class="p-4 shadow rounded bg-white h-100">
+            <i class="fas fa-tools fa-2x text-warning mb-3"></i>
+            <h5>Managed services</h5>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="p-4 shadow rounded bg-white h-100">
-          <i class="fas fa-user-tie fa-2x text-danger mb-3"></i>
-          <h5>Single point of contact</h5>
+        <div class="col-md-4">
+          <div class="p-4 shadow rounded bg-white h-100">
+            <i class="fas fa-user-tie fa-2x text-danger mb-3"></i>
+            <h5>Single point of contact</h5>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="p-4 shadow rounded bg-white h-100">
-          <i class="fas fa-cogs fa-2x text-info mb-3"></i>
-          <h5>On Demand Customization</h5>
+        <div class="col-md-4">
+          <div class="p-4 shadow rounded bg-white h-100">
+            <i class="fas fa-cogs fa-2x text-info mb-3"></i>
+            <h5>On Demand Customization</h5>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="p-4 shadow rounded bg-white h-100">
-          <i class="fas fa-plug fa-2x text-secondary mb-3"></i>
-          <h5>Ready to use Integration</h5>
+        <div class="col-md-4">
+          <div class="p-4 shadow rounded bg-white h-100">
+            <i class="fas fa-plug fa-2x text-secondary mb-3"></i>
+            <h5>Ready to use Integration</h5>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="p-4 shadow rounded bg-white h-100">
-          <i class="fas fa-sync-alt fa-2x text-primary mb-3"></i>
-          <h5>Seamless upgrades</h5>
+        <div class="col-md-4">
+          <div class="p-4 shadow rounded bg-white h-100">
+            <i class="fas fa-sync-alt fa-2x text-primary mb-3"></i>
+            <h5>Seamless upgrades</h5>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="p-4 shadow rounded bg-white h-100">
-          <i class="fas fa-lock fa-2x text-success mb-3"></i>
-          <h5>Secured private instance</h5>
+        <div class="col-md-4">
+          <div class="p-4 shadow rounded bg-white h-100">
+            <i class="fas fa-lock fa-2x text-success mb-3"></i>
+            <h5>Secured private instance</h5>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="p-4 shadow rounded bg-white h-100">
-          <i class="fas fa-headset fa-2x text-warning mb-3"></i>
-          <h5>Support Desk 24/7</h5>
+        <div class="col-md-4">
+          <div class="p-4 shadow rounded bg-white h-100">
+            <i class="fas fa-headset fa-2x text-warning mb-3"></i>
+            <h5>Support Desk 24/7</h5>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4 mx-auto">
-        <div class="p-4 shadow rounded bg-white h-100">
-          <i class="fas fa-eye fa-2x text-danger mb-3"></i>
-          <h5>Transparent service delivery</h5>
+        <div class="col-md-4 mx-auto">
+          <div class="p-4 shadow rounded bg-white h-100">
+            <i class="fas fa-eye fa-2x text-danger mb-3"></i>
+            <h5>Transparent service delivery</h5>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FontAwesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-{% endblock  %}
+  <!-- FontAwesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+{% endblock %}

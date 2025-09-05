@@ -5,101 +5,6 @@
 
 {% block content %}
 
-<!-- Hero Section -->
-<section class="hero-section d-flex align-items-end justify-content-start text-white">
-  <canvas id="particles"></canvas>
-  <div class="hero-overlay"></div>
-  <div class="content p-4 container" data-aos="fade-up">
-    <h1 class="fw-bold">Microsoft Dynamics Implementation</h1>
-    <ol class="breadcrumb">
-        <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
-        <li><a href="{% url 'consulting_app:implementation' %}">|implementation</a></li>  
-    </ol>
-  </div>
-</section>
-
-<!-- Process Section -->
-<section class="process-section py-5">
-  <div class="container" data-aos="fade-up">
-    <h2 class="fw-bold mb-3 text-dark text-center">Implementation Process</h2>
-    <div class="underline mx-auto mb-4"></div>
-    <p class="mb-5 text-muted text-center">A structured framework to ensure a seamless rollout.</p>
-
-    <!-- Single Card with Image + Text -->
-    <div class="process-card bg-white rounded shadow p-4" data-aos="zoom-in">
-      <!-- Image -->
-      <div class="text-center mb-4">
-        <img src="{% static 'images/image copy.png' %}" 
-             alt="Microsoft Dynamics Implementation Process" 
-             class="process-img">
-      </div>
-
-      <!-- Text -->
-      <div class="process-text">
-        <h3 class="fw-bold mb-3 text-dark">Empowering Your Success with Expertise That Delivers</h3>
-        <p>
-          At <strong>NKCL</strong>, our certified professionals are deeply committed to your success. 
-          With proven expertise in AI, ERP, and CRM implementations, we ensure your Azure AI and 
-          Microsoft Dynamics solutions are deployed seamlessly—maximizing value from day one.
-        </p>
-        <p>
-          Our seasoned consultants bring rich domain knowledge and hands-on experience across Azure AI, 
-          Data, and Microsoft Dynamics platforms. Focused on operational excellence, we help you 
-          streamline workflows, eliminate inefficiencies, boost productivity, and enhance decision-making 
-          through cutting-edge predictive AI tools.
-        </p>
-        <p>
-          But we go beyond implementation. From strategic program management and business process 
-          optimization to effective change management, our clients rely on our consulting acumen to 
-          unlock value across their entire enterprise.
-        </p>
-        <p class="fw-semibold text-primary mb-0">
-          Our comprehensive rollout services cover every phase—from process and strategy consulting, scope 
-          definition, and cost-effective technical execution to post-implementation support including 
-          training and knowledge transfer. With a track record of flawless go-lives, NKCL offers not just 
-          solutions—but peace of mind.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA Section -->
-<section class="cta-section text-center text-white py-5">
-  <div class="overlay"></div>
-  <div class="container" data-aos="zoom-in">
-    <h3 class="fw-bold display-6">Ready to Transform Your Business?</h3>
-    <p class="mb-4 lead">Contact us today to discuss your Microsoft Dynamics Implementation needs.</p>
-    <a href="{% url 'consulting_app:contact' %}" class="btn btn-gradient btn-lg">Get in Touch</a>
-  </div>
-</section>
-
-<!-- AOS -->
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init({ duration: 1000, once: true });
-
-  // Particles Animation
-  const canvas = document.getElementById("particles");
-  const ctx = canvas.getContext("2d");
-  function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
-  window.addEventListener("resize",resizeCanvas);resizeCanvas();
-
-  let particles=[];
-  for(let i=0;i<60;i++){
-    particles.push({
-      x:Math.random()*canvas.width,
-      y:Math.random()*canvas.height,
-      r:2+Math.random()*2,
-      dx:(Math.random()-.5),
-      dy:(Math.random()-.5)
-    });
-  }
-
-  
-</script>
-
 <style>
 .hero-section {
   background: linear-gradient(rgba(0, 0, 0, 0.5)),
@@ -169,4 +74,95 @@
   transform: scale(1.05);
 }
 </style>
+
+<section class="hero-section d-flex align-items-end justify-content-start text-white">
+  <canvas id="particles"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="content p-4 container" data-aos="fade-up">
+    <h1 class="fw-bold">Microsoft Dynamics Implementation</h1>
+    <ol class="breadcrumb">
+        <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
+        <li><a href="{% url 'consulting_app:implementation' %}">|implementation</a></li>  
+    </ol>
+  </div>
+</section>
+
+<section class="process-section py-5">
+  <div class="container" data-aos="fade-up">
+    <h2 class="fw-bold mb-3 text-dark text-center">Implementation Process</h2>
+    <div class="underline mx-auto mb-4"></div>
+    <p class="mb-5 text-muted text-center">A structured framework to ensure a seamless rollout.</p>
+
+
+    <div class="process-card bg-white rounded shadow p-4" data-aos="zoom-in">
+    
+      <div class="text-center mb-4">
+        <img src="{% static 'images/image copy.png' %}" 
+             alt="Microsoft Dynamics Implementation Process" 
+             class="process-img">
+      </div>
+
+      <div class="process-text">
+        <h3 class="fw-bold mb-3 text-dark">Empowering Your Success with Expertise That Delivers</h3>
+        <p>
+          At <strong>NKCL</strong>, our certified professionals are deeply committed to your success. 
+          With proven expertise in AI, ERP, and CRM implementations, we ensure your Azure AI and 
+          Microsoft Dynamics solutions are deployed seamlessly—maximizing value from day one.
+        </p>
+        <p>
+          Our seasoned consultants bring rich domain knowledge and hands-on experience across Azure AI, 
+          Data, and Microsoft Dynamics platforms. Focused on operational excellence, we help you 
+          streamline workflows, eliminate inefficiencies, boost productivity, and enhance decision-making 
+          through cutting-edge predictive AI tools.
+        </p>
+        <p>
+          But we go beyond implementation. From strategic program management and business process 
+          optimization to effective change management, our clients rely on our consulting acumen to 
+          unlock value across their entire enterprise.
+        </p>
+        <p class="fw-semibold text-primary mb-0">
+          Our comprehensive rollout services cover every phase—from process and strategy consulting, scope 
+          definition, and cost-effective technical execution to post-implementation support including 
+          training and knowledge transfer. With a track record of flawless go-lives, NKCL offers not just 
+          solutions—but peace of mind.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section text-center text-white py-5">
+  <div class="overlay"></div>
+  <div class="container" data-aos="zoom-in">
+    <h3 class="fw-bold display-6">Ready to Transform Your Business?</h3>
+    <p class="mb-4 lead">Contact us today to discuss your Microsoft Dynamics Implementation needs.</p>
+    <a href="{% url 'consulting_app:contact' %}" class="btn btn-gradient btn-lg">Get in Touch</a>
+  </div>
+</section>
+
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 1000, once: true });
+
+
+  const canvas = document.getElementById("particles");
+  const ctx = canvas.getContext("2d");
+  function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  window.addEventListener("resize",resizeCanvas);resizeCanvas();
+
+  let particles=[];
+  for(let i=0;i<60;i++){
+    particles.push({
+      x:Math.random()*canvas.width,
+      y:Math.random()*canvas.height,
+      r:2+Math.random()*2,
+      dx:(Math.random()-.5),
+      dy:(Math.random()-.5)
+    });
+  }
+
+  
+</script>
+
 {% endblock %}

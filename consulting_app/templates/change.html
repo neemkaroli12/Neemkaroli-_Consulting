@@ -1,0 +1,204 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}Change Management{% endblock  %}
+{% block content %}
+<style>
+.hero-section {
+  position: relative;
+  height: 60vh;
+  background: url("{% static 'images/change.jpg' %}") center/cover no-repeat;
+  color: white;
+  display: flex;
+  align-items: end;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+}
+.hero-content {
+  position: relative;
+  padding: 40px;
+}
+.breadcrumb { background: transparent; gap: 6px; font-size: 1rem; color: #f0f0f0; }
+.breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { color: #ffd369; }
+.breadcrumb .active { color: #ccc; }
+
+
+.section-title {
+  font-weight: 700;
+  font-size: 2rem;
+  position: relative;
+  display: inline-block;
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 4px;
+  background: #0dcaf0;
+  margin: 12px auto 0 auto;
+  border-radius: 2px;
+}
+
+.method-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  height: 100%;
+}
+.method-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.method-card h5 {
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #0b2347;
+}
+
+.advantage-box {
+  padding: 50px 30px;
+  color: black;
+}
+.advantage-item {
+  background: hsla(239, 96%, 44%, 0.00);
+  border-radius: 14px;
+  padding: 25px;
+  text-align: center;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+.advantage-item:hover {
+  transform: translateY(-6px);
+  background: rgba(14, 13, 13, 0.2);
+}
+.advantage-item i {
+  font-size: 2rem;
+  color: #0dcaf0;
+  margin-bottom: 10px;
+}
+</style>
+
+<section class="hero-section">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <h1 class="fw-bold">Change Management</h1>
+    <ol class="breadcrumb">
+        <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
+        <li class="active">| Change Management</li> 
+    </ol>
+  </div>
+</section>
+<section class="py-5">
+  <div class="container text-center">
+    <h2 class="section-title">Empowering Organizations to Navigate Change</h2>
+    <p class="text-muted mt-4 px-lg-5">
+      In today’s fast-paced business landscape, agility is essential. To stay ahead of the curve, organizations must 
+      manage change with precision, foresight, and minimal disruption.  
+      At NKCL, we understand that transitioning technology projects is one of the most complex challenges enterprises face.  
+      Our Change Management Services are crafted to ensure smooth execution, stakeholder alignment, and reduced risk.
+    </p>
+  </div>
+</section>
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <h3 class="text-center fw-bold section-title">NKCL’s Change Management Methodology</h3>
+    <div class="row g-4 mt-4">
+
+      <div class="col-md-6 col-lg-3">
+        <div class="method-card h-100">
+          <h5>1️⃣ Change Planning</h5>
+          <p>We assess readiness, leadership alignment & stakeholder engagement, then craft a strategic roadmap to build momentum.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="method-card h-100">
+          <h5>2️⃣ Organizational Alignment</h5>
+          <p>Analyzing structure & roles, we design tailored frameworks that realign functions and ensure goals are met.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="method-card h-100">
+          <h5>3️⃣ Strategic Communication</h5>
+          <p>We deliver the right message to the right stakeholders at the right time—ensuring clarity and consistency.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="method-card h-100">
+          <h5>4️⃣ Targeted Training</h5>
+          <p>Customized training closes skill gaps, empowering teams to thrive in new environments with confidence.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container-fulid">
+    <div class="advantage-box">
+      <h3 class="fw-bold text-center mb-4">The NKCL Advantage in Change Management</h3>
+      <div class="row g-4">
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="advantage-item">
+            <i class="bi bi-globe"></i>
+            <h5>Global Expertise</h5>
+            <p>Proven success delivering advanced change management solutions worldwide.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="advantage-item">
+            <i class="bi bi-bar-chart-line"></i>
+            <h5>Data-Driven Approach</h5>
+            <p>Leveraging analytics to accelerate adoption and drive meaningful transformation.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="advantage-item">
+            <i class="bi bi-shield-check"></i>
+            <h5>Risk Mitigation</h5>
+            <p>Minimizing potential disruptions by proactively identifying risks early.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="advantage-item">
+            <i class="bi bi-people"></i>
+            <h5>Targeted Training</h5>
+            <p>Custom programs designed to reinforce change initiatives and build internal capacity.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="advantage-item">
+            <i class="bi bi-diagram-3"></i>
+            <h5>End-to-End Integration</h5>
+            <p>Seamless alignment across vertical and horizontal project lifecycle dimensions.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="advantage-item">
+            <i class="bi bi-sliders"></i>
+            <h5>Customized Methodology</h5>
+            <p>Adapting our framework to the unique needs of every project & organization.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

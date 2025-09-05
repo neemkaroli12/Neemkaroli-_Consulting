@@ -1,0 +1,110 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+  Customization and Development Services
+{% endblock %}
+{% block content %}
+  <style>
+    .breadcrumb {
+      background: transparent;
+      gap: 6px;
+      font-size: 1rem;
+      color: #f0f0f0;
+    }
+    .breadcrumb a {
+      color: #f0f0f0;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .breadcrumb a:hover {
+      color: #ffd369;
+    }
+    .breadcrumb .active {
+      color: #ccc;
+    }
+  </style>
+  <section class="hero-section text-white d-flex align-items-end justify-content-start" style="background: url('https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg') center/cover no-repeat; height: 60vh; position: relative;">
+    <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5);"></div>
+    <div class="content position-relative text-start p-4 container" data-aos="fade-up">
+      <h1 class="fw-bold animate__animated animate__fadeInDown">Customization & Development Services</h1>
+      <ol class="breadcrumb">
+        <li>
+          <a href="{% url 'consulting_app:home_two' %}" class="fw-bold">Home</a>
+        </li>
+        <li>
+          <a href="{% url 'consulting_app:custom' %}" class="fw-bold">| Customization and Development Services</a>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-12">
+          <h2 class="fw-bold text-info mb-3">Tailored Applications for Your Unique Business Needs</h2>
+          <p class="text-muted">No two businesses are alike—and off-the-shelf solutions often fall short of addressing specific operational challenges. When differentiation is key, a custom-built application becomes essential to stay competitive.</p>
+          <p class="text-muted">
+            <strong>NKCL</strong> specializes in bespoke application development for Microsoft Dynamics ERP and CRM, with deep expertise across niche verticals such as Life Sciences, Food & Beverage, Chemicals & Plastics, Discrete Manufacturing, and Retail.
+          </p>
+          <p class="text-muted">
+            We go beyond customization—developing entirely new applications that extend and enhance the capabilities of Microsoft Dynamics. Our commitment to <strong>industry-standard development practices</strong>,
+            <strong>proven project management methodologies</strong>, and <strong>unwavering focus on quality</strong> ensures that every solution is delivered on time and within budget.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="fw-bold text-center mb-4">Our Value Proposition</h2>
+      <hr class="border-3 border-info mx-auto mb-4" style="width: 80px;" />
+      <p class="text-center text-muted mb-5">We empower businesses with tailored application solutions that align with industry-specific needs and operational goals:</p>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="p-4 shadow-sm bg-white rounded-3 h-100">
+            <h5 class="fw-semibold">⚙️ Custom Development & Enhancement</h5>
+            <p class="text-muted">For Microsoft Dynamics 365 and Odoo platforms.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="p-4 shadow-sm bg-white rounded-3 h-100">
+            <h5 class="fw-semibold">🔄 Application Re-engineering</h5>
+            <p class="text-muted">Adapt applications to evolving industry standards and business models.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="p-4 shadow-sm bg-white rounded-3 h-100">
+            <h5 class="fw-semibold">✅ Verification & Validation</h5>
+            <p class="text-muted">Ensuring reliability, compliance, and performance of solutions.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="p-4 shadow-sm bg-white rounded-3 h-100">
+            <h5 class="fw-semibold">🔗 Seamless Integration & Migration</h5>
+            <p class="text-muted">Smooth transition across legacy and modern systems.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="p-4 shadow-sm bg-white rounded-3 h-100">
+            <h5 class="fw-semibold">📝 Form Customization</h5>
+            <p class="text-muted">Streamline user experience and data capture.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="p-4 shadow-sm bg-white rounded-3 h-100">
+            <h5 class="fw-semibold">📊 Custom Report Development</h5>
+            <p class="text-muted">Deliver actionable insights and informed decision-making.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+          <div class="p-4 shadow-sm bg-white rounded-3 h-100">
+            <h5 class="fw-semibold">⚡ Workflow Automation & Design</h5>
+            <p class="text-muted">Optimize processes and enhance productivity with automation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

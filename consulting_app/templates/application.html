@@ -4,116 +4,123 @@
   Application Management
 {% endblock %}
 {% block content %}
-<style> 
-.breadcrumb { background: transparent; gap: 6px; font-size: 1rem; color: #f0f0f0; }
-.breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
-.breadcrumb a:hover { color: #ffd369; }
-.breadcrumb .active { color: #ccc; }
+  <style>
+    .breadcrumb {
+      background: transparent;
+      gap: 6px;
+      font-size: 1rem;
+      color: #f0f0f0;
+    }
+    .breadcrumb a {
+      color: #f0f0f0;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .breadcrumb a:hover {
+      color: #ffd369;
+    }
+    .breadcrumb .active {
+      color: #ccc;
+    }
+  </style>
 
-</style>
-<!-- Hero Section -->
-<section class="hero-section text-white d-flex align-items-end justify-content-start"
-         style="background: url('{% static 'images/ai-tech.jpg' %}') center/cover no-repeat; height: 60vh; position: relative;">
-  <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; "></div>
-  <div class="content position-relative text-start p-4 container" data-aos="fade-up">
-    <h1 class=" fw-bold animate__animated animate__fadeInDown"> Application Management</h1>
-    <ol class="breadcrumb">
-        <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
-        <li><a href="{% url 'consulting_app:application' %}">| Application Management</a></li> 
-    </ol>
-  </div>
-</section>
-
-<!-- Intro Section -->
-<section class="py-5">
-  <div class="container">
-    <div class="row g-4">
-      <div class="col-lg-12">
-        <h2 class="fw-bold mb-3 text-dark">Optimal Performance, Minimal Cost</h2>
-        <p class="text-muted">
-          Achieving peak application performance requires sustained efficiency well beyond the initial go-live. 
-          The real challenge lies in maintaining high availability, consistent performance, and reliable service levels—
-          without inflating operational costs. With NKCL Application Management Services, you don’t need a large IT 
-          department to meet these demands. We offer comprehensive post-implementation support for Microsoft Dynamics 
-          and Odoo applications across the globe, ensuring your systems run smoothly and deliver maximum value.
-        </p>
-        <h4 class="fw-semibold mt-4">Our expert consultants provide flexible service models designed to:</h4>
-        <ul class="list-unstyled mt-3">
-          <li>✅ Extend application uptime</li>
-          <li>✅ Optimize performance</li>
-          <li>✅ Reduce total cost of ownership</li>
-          <li>✅ Free your internal teams to focus on strategic priorities</li>
-        </ul>
-        <p class="mt-3"><strong>Let us manage your application landscape—so you can focus on growing your business.</strong></p>
-      </div>
+  <section class="hero-section text-white d-flex align-items-end justify-content-start" style="background: url('{% static 'images/ai-tech.jpg' %}') center/cover no-repeat; height: 60vh; position: relative;">
+    <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; "></div>
+    <div class="content position-relative text-start p-4 container" data-aos="fade-up">
+      <h1 class="fw-bold animate__animated animate__fadeInDown">Application Management</h1>
+      <ol class="breadcrumb">
+        <li>
+          <a href="{% url 'consulting_app:home_two' %}">Home</a>
+        </li>
+        <li>
+          <a href="{% url 'consulting_app:application' %}">| Application Management</a>
+        </li>
+      </ol>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Value Proposition -->
-<section class="py-5 bg-light">
-  <div class="container">
-    <h2 class="fw-bold text-center mb-4">Our Value Proposition</h2>
-    <hr class="border-3 border-info mx-auto mb-4" style="width: 80px;">
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-4">
-        <div class="p-4 shadow-sm bg-white rounded-3 h-100">
-          <h5 class="fw-semibold">Expertise</h5>
-          <p class="text-muted">Focused Microsoft Dynamics technology experience and expertise</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="p-4 shadow-sm bg-white rounded-3 h-100">
-          <h5 class="fw-semibold">Compliance</h5>
-          <p class="text-muted">ITIL compliant delivery process & end-to-end application lifecycle capabilities</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="p-4 shadow-sm bg-white rounded-3 h-100">
-          <h5 class="fw-semibold">Framework</h5>
-          <p class="text-muted">Integrated service delivery framework with deep industry knowledge</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="p-4 shadow-sm bg-white rounded-3 h-100">
-          <h5 class="fw-semibold">Flexibility</h5>
-          <p class="text-muted">Flexible client engagement model & 24x7 multilingual help desk</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="p-4 shadow-sm bg-white rounded-3 h-100">
-          <h5 class="fw-semibold">Support</h5>
-          <p class="text-muted">Transparent reporting and client engagement for accountability</p>
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-12">
+          <h2 class="fw-bold mb-3 text-dark">Optimal Performance, Minimal Cost</h2>
+          <p class="text-muted">Achieving peak application performance requires sustained efficiency well beyond the initial go-live. The real challenge lies in maintaining high availability, consistent performance, and reliable service levels— without inflating operational costs. With NKCL Application Management Services, you don’t need a large IT department to meet these demands. We offer comprehensive post-implementation support for Microsoft Dynamics and Odoo applications across the globe, ensuring your systems run smoothly and deliver maximum value.</p>
+          <h4 class="fw-semibold mt-4">Our expert consultants provide flexible service models designed to:</h4>
+          <ul class="list-unstyled mt-3">
+            <li>✅ Extend application uptime</li>
+            <li>✅ Optimize performance</li>
+            <li>✅ Reduce total cost of ownership</li>
+            <li>✅ Free your internal teams to focus on strategic priorities</li>
+          </ul>
+          <p class="mt-3">
+            <strong>Let us manage your application landscape—so you can focus on growing your business.</strong>
+          </p>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Service Offerings -->
-<section class="py-5">
-  <div class="container">
-    <h2 class="fw-bold text-center mb-4">Application Management Service Offerings</h2>
-    <hr class="border-3 border-primary mx-auto mb-4" style="width: 80px;">
-    <div class="row g-4">
-      <div class="col-md-6">
-        <ul class="list-group list-group-flush shadow-sm rounded">
-          <li class="list-group-item">⚡ Incident Management: Rapid resolution of application issues</li>
-          <li class="list-group-item">📞 Dedicated Service Desk: A single point of contact for user support</li>
-          <li class="list-group-item">📊 Service Reporting: Transparent metrics & actionable insights</li>
-          <li class="list-group-item">🔍 Problem Management: Root cause analysis & long-term prevention</li>
-        </ul>
-      </div>
-      <div class="col-md-6">
-        <ul class="list-group list-group-flush shadow-sm rounded">
-          <li class="list-group-item">🔄 Change Management: Efficient handling of updates & enhancements</li>
-          <li class="list-group-item">📈 Service Level Management: Measurable SLAs to ensure commitments</li>
-          <li class="list-group-item">🚀 Release Management: Smooth deployment of features & updates</li>
-          <li class="list-group-item">🖥️ Monitoring: Availability & performance tracking for uptime</li>
-        </ul>
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="fw-bold text-center mb-4">Our Value Proposition</h2>
+      <hr class="border-3 border-info mx-auto mb-4" style="width: 80px;" />
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="p-4 shadow-sm bg-white rounded-3 h-100">
+            <h5 class="fw-semibold">Expertise</h5>
+            <p class="text-muted">Focused Microsoft Dynamics technology experience and expertise</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="p-4 shadow-sm bg-white rounded-3 h-100">
+            <h5 class="fw-semibold">Compliance</h5>
+            <p class="text-muted">ITIL compliant delivery process & end-to-end application lifecycle capabilities</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="p-4 shadow-sm bg-white rounded-3 h-100">
+            <h5 class="fw-semibold">Framework</h5>
+            <p class="text-muted">Integrated service delivery framework with deep industry knowledge</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="p-4 shadow-sm bg-white rounded-3 h-100">
+            <h5 class="fw-semibold">Flexibility</h5>
+            <p class="text-muted">Flexible client engagement model & 24x7 multilingual help desk</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="p-4 shadow-sm bg-white rounded-3 h-100">
+            <h5 class="fw-semibold">Support</h5>
+            <p class="text-muted">Transparent reporting and client engagement for accountability</p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <section class="py-5">
+    <div class="container">
+      <h2 class="fw-bold text-center mb-4">Application Management Service Offerings</h2>
+      <hr class="border-3 border-primary mx-auto mb-4" style="width: 80px;" />
+      <div class="row g-4">
+        <div class="col-md-6">
+          <ul class="list-group list-group-flush shadow-sm rounded">
+            <li class="list-group-item">⚡ Incident Management: Rapid resolution of application issues</li>
+            <li class="list-group-item">📞 Dedicated Service Desk: A single point of contact for user support</li>
+            <li class="list-group-item">📊 Service Reporting: Transparent metrics & actionable insights</li>
+            <li class="list-group-item">🔍 Problem Management: Root cause analysis & long-term prevention</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <ul class="list-group list-group-flush shadow-sm rounded">
+            <li class="list-group-item">🔄 Change Management: Efficient handling of updates & enhancements</li>
+            <li class="list-group-item">📈 Service Level Management: Measurable SLAs to ensure commitments</li>
+            <li class="list-group-item">🚀 Release Management: Smooth deployment of features & updates</li>
+            <li class="list-group-item">🖥️ Monitoring: Availability & performance tracking for uptime</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}
