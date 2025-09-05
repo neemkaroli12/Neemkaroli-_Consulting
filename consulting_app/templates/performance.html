@@ -1,0 +1,133 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}Performance Management{% endblock  %}
+
+{% block content %}
+<style>
+.breadcrumb { background: transparent;  gap:2px; font-size:1.2rem; color: #f0f0f0; }
+.breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { color: #ffd369; }
+.breadcrumb .active { color: #ccc; }
+
+.section-title {
+  font-weight: 700;
+  font-size: 2rem;
+  position: relative;
+  display: inline-block;
+ 
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 4px;
+  background: #0dcaf0;
+  margin: 12px auto 0 auto;
+  border-radius: 2px;
+}
+
+.highlight-box {
+  color: #212529;
+  padding: 30px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  border-radius: 10px;
+  background: #fff;
+  text-align: center;
+}
+.highlight-box h3 {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+</style>
+
+<section class="hero-section text-white d-flex align-items-end justify-content-start"
+         style="background: url('{% static 'images/ERP-Soft.png' %}') center/cover no-repeat; height: 60vh; position: relative;">
+  <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.55);"></div>
+  
+  <div class="content position-relative text-start p-4 container" data-aos="fade-up">
+    <h1 class="fw-bold">Performance Management</h1>
+     <ol class="breadcrumb ms-3">
+          <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
+          <li><a href="active">|Performance Management</a></li>  
+    </ol>
+  </div>
+</section>
+
+<section class="py-5 ">
+  <div class="container">
+    <div class="text-center">
+    <h2 class="section-title">Driving Productivity Through Continuous Optimization</h2>
+   </div>
+    <p class="text-muted mt-4 px-lg-5 text-align-center">
+      Organizations often invest significant time and effort during ERP implementation—defining business requirements, assessing performance, and training teams. Yet, once the system goes live, many companies fall short in consistently monitoring its performance.
+To sustain peak operational efficiency, it’s essential for business leaders to maintain visibility into how their systems are functioning. Understanding performance baselines and tracking emerging trends allows for early detection of potential issues—enabling timely interventions before they escalate.
+However, ongoing performance management demands time and expertise that many businesses may not have readily available. That’s where Tectura steps in. We help ensure your systems continue to perform optimally and offer strategic recommendations whenever performance gaps are identified
+
+    </p>
+  </div>
+</section>
+
+<section class="py-5 bg-light">
+  <div class="container text-center">
+    <h3 class="fw-bold section-title">Why Invest in ERP Performance Management?</h3>
+    <div class="row g-4 mt-4">
+      <div class="col-md-4" data-aos="fade-up">
+        <div class="card border-0 shadow-sm h-100 p-4">
+          <div class="fs-2 mb-3 text-primary">🚀</div>
+          <h5 class="fw-bold">Maintain Peak Efficiency</h5>
+          <p class="text-muted">Keep your ERP running at top speed and responsiveness.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="150">
+        <div class="card border-0 shadow-sm h-100 p-4">
+          <div class="fs-2 mb-3 text-success">🔍</div>
+          <h5 class="fw-bold">Proactively Detect Issues</h5>
+          <p class="text-muted">Identify performance gaps early and resolve them quickly.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="card border-0 shadow-sm h-100 p-4">
+          <div class="fs-2 mb-3 text-danger">⏱️</div>
+          <h5 class="fw-bold">Reduce Downtime</h5>
+          <p class="text-muted">Minimize interruptions and ensure business continuity.</p>
+        </div>
+      </div>
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="450">
+        <div class="card border-0 shadow-sm h-100 p-4">
+          <div class="fs-2 mb-3 text-warning">📈</div>
+          <h5 class="fw-bold">Unlock ERP Potential</h5>
+          <p class="text-muted">Enhance adoption, functionality, and business impact.</p>
+        </div>
+      </div>
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="600">
+        <div class="card border-0 shadow-sm h-100 p-4">
+          <div class="fs-2 mb-3 text-info">🛡️</div>
+          <h5 class="fw-bold">Safeguard Investments</h5>
+          <p class="text-muted">Protect long-term value of your ERP infrastructure.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container text-center">
+    <h3 class="fw-bold section-title">Tailored ERP Performance Solutions</h3>
+    <p class="text-muted mb-5">NKCL provides two specialized offerings to align with your unique business needs:</p>
+    <div class="row g-4">
+      <div class="col-md-6" data-aos="fade-right">
+        <div class="highlight-box h-100">
+          <h3>Continuous Performance Services</h3>
+          <p>Proactive, ongoing monitoring to ensure system efficiency and reliability at all times.</p>
+        </div>
+      </div>
+      <div class="col-md-6" data-aos="fade-left">
+        <div class="highlight-box h-100">
+          <h3>Targeted Intervention Services</h3>
+          <p>Focused support to resolve specific performance challenges and urgent issues quickly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
