@@ -201,16 +201,12 @@ input[type='date']:focus {
 
 </style>
 
+
 <div class="container mt-5">
   <div class="row">
     <h2 class="fw-bold">Baseline Implementation Effort Projection</h2>
     <form method="POST">
-      {% if form.errors %}
-
-{% endif %}
-
       {% csrf_token %}
-        
       <div class="form-row">
         <div class="form-group">{{ form.name }}</div>
         <div class="form-group">{{ form.company_name }}</div>
@@ -224,20 +220,19 @@ input[type='date']:focus {
       </div>
 
       <div class="form-row">
-  <div class="form-group">
-    {{ form.designation }}
-    <span id="error-designation" class="error-msg" style="color:red; font-size:0.9rem;"></span>
-  </div>
-  <div class="form-group">{{ form.mobile_no }}</div>
-  <div class="form-group">{{ form.email }}</div>
-</div>
-
+        <div class="form-group">
+          {{ form.designation }}
+          <span id="error-designation" class="error-msg" style="color:red; font-size:0.9rem;"></span>
+        </div>
+        <div class="form-group">{{ form.mobile_no }}</div>
+        <div class="form-group">{{ form.email }}</div>
+      </div>
 
       <div class="form-row">
-        <div class="form-group">{{ form.no_of_users}} <span class="error-msg" id="error-users" style="color:red; font-size:0.9rem;"></span></div>
+        <div class="form-group">{{ form.no_of_users }} <span class="error-msg" id="error-users" style="color:red; font-size:0.9rem;"></span></div>
         <div class="form-group">{{ form.product }}</div>
         <div class="form-group">
-          {% comment %} custom module dropdown {% endcomment %}
+          <!-- Custom module dropdown -->
           <div class="custom-multiselect" id="moduleDropdown">
             <div class="custom-multiselect-toggle">
               <span>Select Modules</span>
@@ -260,27 +255,27 @@ input[type='date']:focus {
             </div>
           </div>
         </div>
-        
       </div>
 
       <div class="form-row">
         <div class="form-group">{{ form.existing_appli }}</div>
         <div class="form-group">{{ form.type }}</div>
-        <div class="form-group"> {{ form.demo_date }}</div>
+        <div class="form-group">{{ form.demo_date }}</div>
       </div>
+
       <div class="form-row" id="other-fields-wrapper">
-  <div class="form-group" id="other-existing-wrapper">
-    {{ form.existing_appli_other.label_tag }} 
-    {{ form.existing_appli_other }}
-  </div>
-  
-  <div class="form-group" id="other-type-wrapper">
-    {{ form.type_other.label_tag }} 
-    {{ form.type_other }}
-  </div>
-</div>
+        <div class="form-group" id="other-existing-wrapper">
+          {{ form.existing_appli_other.label_tag }}
+          {{ form.existing_appli_other }}
+        </div>
+        <div class="form-group" id="other-type-wrapper">
+          {{ form.type_other.label_tag }}
+          {{ form.type_other }}
+        </div>
+      </div>
+
       <div class="form-row">
-        <div class="form-group"> {{ form.timeline }}</div>
+        <div class="form-group">{{ form.timeline }}</div>
       </div>
 
       <button type="submit" style="align-self:center;">Submit</button>
@@ -288,8 +283,15 @@ input[type='date']:focus {
   </div>
 </div>
 
+<!-- JS Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
+
+  // ============================
+  // 1. Toggle 'Other' fields
+  // ============================
   const companyTypeSelect = document.getElementById("id_type");
   const otherCompanyWrapper = document.getElementById("other-type-wrapper");
   const existingAppliSelect = document.getElementById("id_existing_appli");
@@ -311,7 +313,9 @@ input[type='date']:focus {
   toggleCompanyType();
   toggleExistingAppli();
 
-  // Custom multiselect logic
+  // ============================
+  // 2. Custom Module Dropdown
+  // ============================
   const dropdown = document.getElementById("moduleDropdown");
   const toggle = dropdown.querySelector(".custom-multiselect-toggle");
   const moduleOptions = document.getElementById("moduleOptions");
@@ -351,15 +355,25 @@ input[type='date']:focus {
   });
 
   clearBtn.addEventListener("click", function(e) {
-    e.stopPropagation();
-    moduleOptions.querySelectorAll("input[name='modules']").forEach(cb => cb.checked = false);
-    selectAll.checked = false;
-    updateCounter();
-  });
+  e.stopPropagation();
 
+  // 1. Uncheck all top-level modules
+  moduleOptions.querySelectorAll("input[name='modules']").forEach(cb => cb.checked = false);
+
+  // 2. Uncheck selectAll
+  selectAll.checked = false;
+
+  // 3. Remove all submodule and sub-submodule wrappers
+  document.querySelectorAll(".submodule-wrapper, .subsubmodule-wrapper").forEach(wrapper => wrapper.remove());
+
+  // 4. Reset counter
   updateCounter();
+});
 
-  // AJAX load modules
+
+  // ============================
+  // 3. AJAX Load Modules
+  // ============================
   const productSelect = document.getElementById("id_product");
 
   function loadModules(productId) {
@@ -397,26 +411,34 @@ input[type='date']:focus {
       loadModules(this.value);
     });
   }
-  // Submodule Load Logic
 document.addEventListener("change", function (e) {
+  // Module logic
   if (e.target.name === "modules") {
     const moduleId = e.target.value;
 
+    // Remove previous wrapper for this module
+    const existingWrapper = document.querySelector(`.submodule-wrapper[data-module-id="${moduleId}"]`);
+    if (existingWrapper) existingWrapper.remove();
+
     if (e.target.checked) {
-      // Load submodules when module is selected
       fetch(`/get-submodules/?module_id=${moduleId}`)
         .then(res => res.json())
         .then(data => {
           let submoduleWrapper = document.createElement("div");
           submoduleWrapper.className = "submodule-wrapper";
           submoduleWrapper.setAttribute("data-module-id", moduleId);
-          submoduleWrapper.style.marginLeft = "20px"; // indent for clarity
+          submoduleWrapper.style.marginLeft = "20px";
 
           if (data.length > 0) {
             data.forEach(sm => {
               const label = document.createElement("label");
               label.className = "option";
               label.innerHTML = `<input type="checkbox" name="submodules_${moduleId}" value="${sm.id}"> ${sm.name}`;
+
+              // Remove old sub-submodule wrapper if exists
+              const oldSubWrapper = label.querySelector(".subsubmodule-wrapper");
+              if (oldSubWrapper) oldSubWrapper.remove();
+
               submoduleWrapper.appendChild(label);
             });
           } else {
@@ -426,18 +448,16 @@ document.addEventListener("change", function (e) {
           e.target.closest("label.option").appendChild(submoduleWrapper);
         })
         .catch(err => console.error("Error loading submodules:", err));
-    } else {
-      // Remove submodules when module is unchecked
-      const wrapper = document.querySelector(`.submodule-wrapper[data-module-id="${moduleId}"]`);
-      if (wrapper) wrapper.remove();
     }
   }
-});
 
-// SubSubmodule Load Logic
-document.addEventListener("change", function (e) {
+  // Submodule logic
   if (e.target.name && e.target.name.startsWith("submodules_")) {
     const submoduleId = e.target.value;
+
+    // Remove old sub-submodule wrapper
+    const oldWrapper = document.querySelector(`.subsubmodule-wrapper[data-submodule-id="${submoduleId}"]`);
+    if (oldWrapper) oldWrapper.remove();
 
     if (e.target.checked) {
       fetch(`/get-subsubmodules/${submoduleId}/`)
@@ -446,7 +466,7 @@ document.addEventListener("change", function (e) {
           let subsubWrapper = document.createElement("div");
           subsubWrapper.className = "subsubmodule-wrapper";
           subsubWrapper.setAttribute("data-submodule-id", submoduleId);
-          subsubWrapper.style.marginLeft = "40px"; // aur indent taaki hierarchy dikhe
+          subsubWrapper.style.marginLeft = "40px";
 
           if (data.length > 0) {
             data.forEach(ssm => {
@@ -462,226 +482,185 @@ document.addEventListener("change", function (e) {
           e.target.closest("label.option").appendChild(subsubWrapper);
         })
         .catch(err => console.error("Error loading sub-submodules:", err));
-    } else {
-      const wrapper = document.querySelector(`.subsubmodule-wrapper[data-submodule-id="${submoduleId}"]`);
-      if (wrapper) wrapper.remove();
     }
   }
 });
 
- const previewBtn = document.createElement("button");
-    previewBtn.type = "button";
-    previewBtn.textContent = "Preview Estimate";
-    previewBtn.style.marginRight = "10px";
-    form.querySelector("button[type='submit']").before(previewBtn);
+  // ============================
+  // 5. Preview Estimate Button
+  // ============================
+  const form = document.querySelector("form");
+  const previewBtn = document.createElement("button");
+  previewBtn.type = "button";
+  previewBtn.textContent = "Preview Estimate";
+  previewBtn.style.marginRight = "10px";
+  form.querySelector("button[type='submit']").before(previewBtn);
 
-    previewBtn.addEventListener("click", function () {
-        if (errorEmployees.textContent || errorTurnover.textContent || errorUsers.textContent || errorDesignation.textContent) {
-            Swal.fire("Error", "Please fix the validation errors first.", "error");
-            return;
-        }
-
-        let formData = new FormData(form);
-
-        fetch("{% url 'consulting_app:calculate_estimate' %}", {
-         method: "POST",
-         body: formData
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                Swal.fire({
-                    title: "Estimate Preview",
-                    html: `
-                        <b>Functional Days:</b> ${data.functional_days}<br>
-                        <b>Technical Days:</b> ${data.technical_days}<br>
-                        <b>Functional Cost:</b> ₹${data.functional_cost}<br>
-                        <b>Technical Cost:</b> ₹${data.technical_cost}<br>
-                        <hr>
-                        <b>Total Cost:</b> <span style="color:green;">₹${data.final_cost}</span>
-                    `,
-                    icon: "info",
-                    showCancelButton: true,
-                    confirmButtonText: "Submit Form",
-                    cancelButtonText: "Close"
-                }).then(result => {
-                    if (result.isConfirmed) {
-                        form.submit();
-                    }
-                });
-            } else {
-                Swal.fire("Error", data.message || "Could not calculate estimate", "error");
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            Swal.fire("Error", "Something went wrong.", "error");
-        });
-    });
-
-    // ============================
-    // 3. FINAL SUBMIT CONFIRMATION
-    // ============================
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Do you want to submit your estimate?",
-            icon: "question",
-            showCancelButton: true,
-            confirmButtonText: "Yes, Submit",
-            cancelButtonText: "Cancel"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                form.submit();
-            }
-        });
-    });
-
-
-  flatpickr("#id_demo_date", {
-  dateFormat: "Y-m-d", // matches Django's default format
-  altInput: true,
-  altFormat: "F j, Y", // human-friendly format
-  minDate: "today", // optional: restrict past dates
-  disableMobile: "true" // forces Flatpickr even on mobile
-});
-  });
-</script>
-<!-- Flatpickr JS -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const numberFields = document.querySelectorAll("input[type='number']");
-
-    // Real-time number validation
-    numberFields.forEach(field => {
-        field.addEventListener("input", () => {
-            if (!field.validity.valid) {
-                field.setCustomValidity("Please enter a valid non-negative number.");
-                field.reportValidity();
-            } else {
-                field.setCustomValidity("");
-            }
-        });
-    });
-
-    // Intercept the form submission to add SweetAlert
-    const form = document.querySelector("form");
-    form.addEventListener("submit", function (event) {
-        let isValid = form.checkValidity();
-
-        if (!isValid) {
-            event.preventDefault(); // stop form submission
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops!',
-                text: 'Please correct the errors before submitting.',
-            });
-        } else {
-            // Optional: Show confirmation popup before actual submission
-            event.preventDefault();
-            Swal.fire({
-                title: 'Submit Estimate?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, Submit',
-                cancelButtonText: 'Cancel',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit(); // continue to submit
-                }
-            });
-        }
-    });
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const employeesField = document.getElementById("id_Employees_no");
-    const turnoverField = document.getElementById("id_turnover");
-    const usersField = document.getElementById("id_no_of_users");
-    const designationField = document.getElementById("id_designation");
-
+  previewBtn.addEventListener("click", function () {
     const errorEmployees = document.getElementById("error-employees");
     const errorTurnover = document.getElementById("error-turnover");
     const errorUsers = document.getElementById("error-users");
     const errorDesignation = document.getElementById("error-designation");
 
-    function validateField(field, errorSpan, validatorFn) {
-        if (!field) return;
-        field.addEventListener("input", () => {
-            const errorMsg = validatorFn(field.value);
-            errorSpan.textContent = errorMsg || "";
-        });
+    if (errorEmployees.textContent || errorTurnover.textContent || errorUsers.textContent || errorDesignation.textContent) {
+      Swal.fire("Error", "Please fix the validation errors first.", "error");
+      return;
     }
 
-    // Employees: non-negative
-    validateField(employeesField, errorEmployees, (val) => {
-        if (val === "") return null;
-        const num = parseInt(val);
-        if (isNaN(num) || num < 0) return "Number of employees cannot be negative.";
-        return null;
-    });
+    let formData = new FormData(form);
 
-    // Turnover: non-negative
-    validateField(turnoverField, errorTurnover, (val) => {
-        if (val === "") return null;
-        const num = parseInt(val);
-        if (isNaN(num) || num < 0) return "Turnover cannot be negative.";
-        return null;
-    });
-
-    // No of users: non-negative + divisible by 5
-    validateField(usersField, errorUsers, (val) => {
-        if (val === "") return null;
-        const num = parseInt(val);
-        if (isNaN(num) || num < 0) return "Number of users cannot be negative.";
-        if (num % 5 !== 0) return "Number of users must be divisible by 5.";
-        return null;
-    });
-
-    // Designation: only alphabets
-    if (designationField) {
-        designationField.addEventListener("input", () => {
-            const val = designationField.value.trim();
-            const regex = /^[A-Za-z\s]+$/; // only letters & spaces
-            if (val === "") {
-                errorDesignation.textContent = "";
-            } else if (!regex.test(val)) {
-                errorDesignation.textContent = "Designation should contain only alphabets.";
-            } else {
-                errorDesignation.textContent = "";
-            }
-        });
-    }
-
-    // Form submit with SweetAlert check
-    const form = document.querySelector("form");
-    form.addEventListener("submit", function(event) {
-        if (errorEmployees.textContent || errorTurnover.textContent || errorUsers.textContent || errorDesignation.textContent) {
-            event.preventDefault();
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops!',
-                text: 'Please correct the errors before submitting.',
-            });
-            return;
-        }
-
-        event.preventDefault();
+    fetch("{% url 'consulting_app:calculate_estimate' %}", {
+      method: "POST",
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
         Swal.fire({
-            title: 'Submit Estimate?',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, Submit',
-            cancelButtonText: 'Cancel',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                form.submit();
-            }
+          title: "Estimate Preview",
+          html: `
+            <b>Functional Days:</b> ${data.functional_days}<br>
+            <b>Technical Days:</b> ${data.technical_days}<br>
+            <b>Functional Cost:</b> ₹${data.functional_cost}<br>
+            <b>Technical Cost:</b> ₹${data.technical_cost}<br>
+            <hr>
+            <b>Total Cost:</b> <span style="color:green;">₹${data.final_cost}</span>
+          `,
+          icon: "info",
+          showCancelButton: true,
+          confirmButtonText: "Submit Form",
+          cancelButtonText: "Close"
+        }).then(result => {
+          if (result.isConfirmed) {
+            form.submit();
+          }
         });
+      } else {
+        Swal.fire("Error", data.message || "Could not calculate estimate", "error");
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      Swal.fire("Error", "Something went wrong.", "error");
     });
+  });
+
+  // ============================
+  // 6. Form Submission Confirmation
+  // ============================
+  form.addEventListener("submit", function (event) {
+    const errorEmployees = document.getElementById("error-employees");
+    const errorTurnover = document.getElementById("error-turnover");
+    const errorUsers = document.getElementById("error-users");
+    const errorDesignation = document.getElementById("error-designation");
+
+    if (errorEmployees.textContent || errorTurnover.textContent || errorUsers.textContent || errorDesignation.textContent) {
+      event.preventDefault();
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops!',
+        text: 'Please correct the errors before submitting.',
+      });
+      return;
+    }
+
+    event.preventDefault();
+    Swal.fire({
+      title: 'Submit Estimate?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, Submit',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        form.submit();
+      }
+    });
+  });
+
+  // ============================
+  // 7. Flatpickr Initialization
+  // ============================
+  flatpickr("#id_demo_date", {
+    dateFormat: "Y-m-d",
+    altInput: true,
+    altFormat: "F j, Y",
+    minDate: "today",
+    disableMobile: "true"
+  });
+
+  // ============================
+  // 8. Real-time Number Validation
+  // ============================
+  const numberFields = document.querySelectorAll("input[type='number']");
+  numberFields.forEach(field => {
+    field.addEventListener("input", () => {
+      if (!field.validity.valid) {
+        field.setCustomValidity("Please enter a valid non-negative number.");
+        field.reportValidity();
+      } else {
+        field.setCustomValidity("");
+      }
+    });
+  });
+
+  // ============================
+  // 9. Field-specific Validation
+  // ============================
+  const employeesField = document.getElementById("id_Employees_no");
+  const turnoverField = document.getElementById("id_turnover");
+  const usersField = document.getElementById("id_no_of_users");
+  const designationField = document.getElementById("id_designation");
+
+  const errorEmployeesSpan = document.getElementById("error-employees");
+  const errorTurnoverSpan = document.getElementById("error-turnover");
+  const errorUsersSpan = document.getElementById("error-users");
+  const errorDesignationSpan = document.getElementById("error-designation");
+
+  function validateField(field, errorSpan, validatorFn) {
+    if (!field) return;
+    field.addEventListener("input", () => {
+      const errorMsg = validatorFn(field.value);
+      errorSpan.textContent = errorMsg || "";
+    });
+  }
+
+  validateField(employeesField, errorEmployeesSpan, (val) => {
+    if (val === "") return null;
+    const num = parseInt(val);
+    if (isNaN(num) || num < 0) return "Number of employees cannot be negative.";
+    return null;
+  });
+
+  validateField(turnoverField, errorTurnoverSpan, (val) => {
+    if (val === "") return null;
+    const num = parseInt(val);
+    if (isNaN(num) || num < 0) return "Turnover cannot be negative.";
+    return null;
+  });
+
+  validateField(usersField, errorUsersSpan, (val) => {
+    if (val === "") return null;
+    const num = parseInt(val);
+    if (isNaN(num) || num < 0) return "Number of users cannot be negative.";
+    if (num % 5 !== 0) return "Number of users must be divisible by 5.";
+    return null;
+  });
+
+  if (designationField) {
+    designationField.addEventListener("input", () => {
+      const val = designationField.value.trim();
+      const regex = /^[A-Za-z\s]+$/;
+      if (val === "") {
+        errorDesignationSpan.textContent = "";
+      } else if (!regex.test(val)) {
+        errorDesignationSpan.textContent = "Designation should contain only alphabets.";
+      } else {
+        errorDesignationSpan.textContent = "";
+      }
+    });
+  }
+
 });
 </script>
 {% endblock %}
