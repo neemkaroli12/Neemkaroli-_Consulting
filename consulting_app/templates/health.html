@@ -1,0 +1,138 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}Health Check{% endblock  %}
+
+{% block content %}
+<style>
+.breadcrumb { background: transparent; gap: 6px; font-size: 1rem; color: #f0f0f0; }
+.breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { color: #ffd369; }
+.breadcrumb .active { color: #ccc; }
+
+.section-title {
+  font-weight: 700;
+  font-size: 2rem;
+  position: relative;
+  display: inline-block;
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 4px;
+  background: #0dcaf0;
+  margin: 12px auto 0 auto;
+  border-radius: 2px;
+}
+
+.highlight-box {
+  color: black;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+ 
+}
+.highlight-box h3 {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+</style>
+
+<!-- Hero Section -->
+<section class="hero-section text-white d-flex align-items-end justify-content-start"
+         style="background: url('{% static 'images/pexels-pixabay-40568.jpg' %}') center/cover no-repeat; height: 60vh; position: relative;">
+  <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.55);"></div>
+  
+  <div class="content position-relative text-start p-4 container" data-aos="fade-up">
+    <h1 class="fw-bold animate__animated animate__fadeInDown">Health Check</h1>
+    <ol class="breadcrumb">
+        <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
+        <li class="active">| Health Check</li> 
+    </ol>
+  </div>
+</section>
+
+<!-- Intro Section -->
+<section class="py-5 text-center">
+  <div class="container">
+    <h2 class="section-title">Maximizing Business Performance</h2>
+    <p class="text-muted mt-4 px-lg-5" data-aos="fade-up">
+      To stay ahead in a competitive landscape, it's essential to have robust systems that foster sustained growth. 
+      <strong>NKCL partners with you</strong> to evaluate whether your technology ecosystem aligns with your broader business strategy—ensuring your operations run at peak efficiency.
+    </p>
+  </div>
+</section>
+
+<!-- Why Choose Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center">
+    <h3 class="fw-bold section-title">Why Choose the NKCL Health Check?</h3>
+    </div>
+    <div class="row g-4 mt-4">
+      <div class="col-md-4" data-aos="fade-up">
+        <div class="card border-0 shadow-sm h-100 text-center p-4">
+          <div class="icon mb-3 text-primary fs-2">⚙️</div>
+          <h5 class="fw-bold">Align Technology</h5>
+          <p class="text-muted">Ensure your IT ecosystem supports long-term business goals effectively.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="150">
+        <div class="card border-0 shadow-sm h-100 text-center p-4">
+          <div class="icon mb-3 text-success fs-2">🚀</div>
+          <h5 class="fw-bold">Boost Performance</h5>
+          <p class="text-muted">Enhance productivity, eliminate bottlenecks, and drive efficiency.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="card border-0 shadow-sm h-100 text-center p-4">
+          <div class="icon mb-3 text-info fs-2">🔒</div>
+          <h5 class="fw-bold">Safeguard Investments</h5>
+          <p class="text-muted">Protect and maximize the value of your IT systems with strategic insights.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box mt-5" data-aos="zoom-in">
+      <h3>The Outcome: Confidence in Every Click</h3>
+      <p>
+        With NKCL’s broad reach and deep capabilities, we take a holistic approach to system evaluation. 
+        Our recommendations are tailored to your budget and resource constraints—ensuring practical, impactful solutions.
+      </p>
+      <p class="mb-0"><strong>Result:</strong> Systems aligned with strategy, running at peak efficiency, and driving confident growth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Drivers Section -->
+<section class="py-5">
+  <div class="container">
+    <div class="text-center">
+    <h3 class="fw-bold  section-title">Why Organizations Undertake Health Checks</h3>
+    </div>
+    <div class="row g-4 mt-4">
+      <div class="col-md-6" data-aos="fade-right">
+        <div class="card border-0 shadow-sm h-100 p-4 ">
+          <ul class="list-unstyled value-list text-muted mb-0">
+            <li>📌 Shifting business requirements due to market changes</li>
+            <li>📌 Performance concerns (perceived or backed by data)</li>
+            <li>📌 Productivity losses from inefficient processes</li>
+            <li>📌 Onboarding challenges caused by complex systems</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 d-flex align-items-center" data-aos="fade-left">
+        <div class="text-center">
+          <p class="text-muted mb-3">
+            Many businesses lack the time or specialized insight to conduct a thorough evaluation. 
+            Internal teams may overlook critical issues because they are too close to operations.
+          </p>
+          <p class="fw-bold text-dark">
+            That’s where <span class="text-primary">NKCL</span> steps in—with seasoned expertise and an objective lens.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
