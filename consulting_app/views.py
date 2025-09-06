@@ -83,33 +83,31 @@ def odoo_service(request):
 
 def odoo_upgrade(request):
     return render(request,'odoo_upgrade.html')
+from django.http import JsonResponse
+
 def estimate_view(request):
     selected_modules = []
     selected_submodules = []
     selected_subsubmodules = []
+    estimate = None
 
     if request.method == 'POST':
         form = EstimateForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
 
-            # Modules selected
+            # Modules
             selected_modules = request.POST.getlist("modules")
-
-            # Submodules selected
             for mid in selected_modules:
                 sub_list = request.POST.getlist(f"submodules_{mid}")
                 selected_submodules.extend(sub_list)
-
-                # Subsubmodules for each submodule
                 for sid in sub_list:
                     subsub_list = request.POST.getlist(f"subsubmodules_{sid}")
                     selected_subsubmodules.extend(subsub_list)
 
-            # ---------------- COST ESTIMATION ---------------- #
+            # Cost Estimation
             total_functional_days = 0
             total_technical_days = 0
-
             modules = Module.objects.filter(id__in=selected_modules)
             for m in modules:
                 total_functional_days += m.functional_days or 0
@@ -119,7 +117,7 @@ def estimate_view(request):
             technical_cost = total_technical_days * 800
             final_cost = functional_cost + technical_cost
 
-            # ---------------- SAVE ESTIMATE ---------------- #
+            # Save Estimate
             estimate = Estimate.objects.create(
                 name=data['name'],
                 company_name=data['company_name'],
@@ -135,7 +133,7 @@ def estimate_view(request):
                 product=data['product'],
                 module=", ".join(selected_modules),
                 submodules=", ".join(selected_submodules),
-                subsubmodules=", ".join(selected_subsubmodules),  # <-- add this field in model
+                subsubmodules=", ".join(selected_subsubmodules),
                 functional_days=total_functional_days,
                 technical_days=total_technical_days,
                 functional_cost=functional_cost,
@@ -143,47 +141,39 @@ def estimate_view(request):
                 final_cost=final_cost,
             )
 
-            # Save Branches if any
+            # Branch save
             branches = data.get('branches', "")
             if branches:
-                branch_list = [b.strip() for b in branches.split(",") if b.strip()]
-                for loc in branch_list:
+                for loc in [b.strip() for b in branches.split(",") if b.strip()]:
                     Branch.objects.create(estimate=estimate, location=loc)
 
             # Confirmation Email
             subject = "Estimate Submission Confirmation"
             message = (
                 f"Hello {estimate.name},\n\n"
-                f"Thank you for submitting your estimate request. We will get back to you shortly.\n\n"
-                f"Details:\n"
+                f"Thank you for submitting your estimate request.\n\n"
                 f"Company: {estimate.company_name}\n"
                 f"Product: {estimate.product}\n"
                 f"Modules: {estimate.module}\n"
                 f"SubModules: {estimate.submodules}\n"
                 f"SubSubModules: {estimate.subsubmodules}\n\n"
-                # f"Functional Days: {total_functional_days}\n"
-                # f"Technical Days: {total_technical_days}\n"
-                # f"Functional Cost: ₹{functional_cost}\n"
-                # f"Technical Cost: ₹{technical_cost}\n"
-                # f"Final Estimate: ₹{final_cost}\n\n"
+                f"Total Estimate: ₹{final_cost}\n\n"
                 f"Best Regards,\nYour Company"
             )
-            recipient_list = [estimate.email]
-            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
+            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [estimate.email])
 
-            return render(request, 'success.html', {
-                "estimate": estimate,
-                "final_cost": final_cost
-            })
-        else:
-            selected_modules = request.POST.getlist('modules')
+            # 🔹 Ajax response
+            if request.headers.get("x-requested-with") == "XMLHttpRequest":
+                return JsonResponse({
+                    "success": True,
+                    "final_cost": final_cost,
+                })
+
     else:
         form = EstimateForm()
 
-    return render(request, 'estimate_form.html', {
-        'form': form,
-        'selected_modules': selected_modules,
-    })
+    return render(request, 'estimate_form.html', {"form": form})
+
     
 @csrf_exempt
 def calculate_estimate(request):
