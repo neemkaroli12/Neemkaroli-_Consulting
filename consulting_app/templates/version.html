@@ -1,0 +1,122 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}Version Management{% endblock %}
+
+{% block content %}
+<style>
+.breadcrumb { background: transparent;  gap:2px; font-size:1.2rem; color: #f0f0f0; }
+.breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { color: #ffd369; }
+.breadcrumb .active { color: #ccc; }
+
+
+.hero-banner {
+  position: relative;
+  background: url("{% static 'images/version.png' %}") center center/cover no-repeat;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.55);
+}
+</style>
+
+<section class="hero-banner d-flex align-items-end justify-content-start text-white" style="position: relative;height:60vh;"> 
+    <div class="hero-overlay" style="
+        position:absolute; 
+        top:0; 
+        left:0; 
+        right:0; 
+        bottom:0; 
+        background: rgba(0,0,0,0.55);
+        z-index:1;">
+    </div>
+    <div class="container mb-4" style="position: relative; z-index:2;"> 
+        <h1 class="fw-bold ms-3 text-white">Version Management</h1> 
+        <ol class="breadcrumb ms-3">
+          <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
+          <li><a href="{% url 'consulting_app:version' %}">|Version Management</a></li>  
+    </ol>
+    </div> 
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <h1 class="fw-bold">Keeping Your Technology Aligned, Compliant, and Future-Ready</h1>
+    <p class="fs-5">
+      Modern technology environments are inherently complex, with numerous interdependent components that must operate in harmony to prevent disruptions. 
+      Staying compliant and ready for future upgrades requires vigilant oversight—but managing this complexity can be a challenge.
+    </p>
+    <p>
+      <strong>Version Management Services</strong> provide structured tracking and control across all layers of your solution stack—including software, hardware, and firmware. 
+      NKCL ensures that every version is documented, monitored, and aligned with your operational goals, helping you maintain a consistent and up-to-date technology landscape.
+    </p>
+  </div>
+</section>
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="fw-bold text-center mb-4">Why Version Management Matters</h2>
+    <div class="row g-4 text-center">
+      <div class="col-md-3">
+        <div class="p-4 shadow-sm rounded bg-white h-100">
+          <h3 class="fs-5">📘 Comprehensive Visibility</h3>
+          <p class="mb-0">Clear insight into every system version.</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="p-4 shadow-sm rounded bg-white h-100">
+          <h3 class="fs-5">✅ Audit Preparedness</h3>
+          <p class="mb-0">Stay compliant and audit-ready at all times.</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="p-4 shadow-sm rounded bg-white h-100">
+          <h3 class="fs-5">⚙️ Sustained Performance</h3>
+          <p class="mb-0">Maintain reliable and optimized systems.</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="p-4 shadow-sm rounded bg-white h-100">
+          <h3 class="fs-5">🔄 Streamlined Upgrades</h3>
+          <p class="mb-0">Smooth, disruption-free version updates.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <h2 class="fw-bold mb-3">Achieve Complete Visibility Across Your IT Landscape</h2>
+    <ul class="fs-6">
+      <li>NKCL’s Version Management Services deliver <strong>full transparency</strong> into versions running in your ecosystem.</li>
+      <li>We create a <strong>strategic roadmap</strong> for upgrades that improve performance and productivity.</li>
+      <li>Our goal is to keep <strong>software, hardware, and firmware</strong> aligned with vendor and regulatory standards.</li>
+      <li>We monitor version releases across <strong>Microsoft platforms, third-party apps, infrastructure, and devices</strong>.</li>
+      <li>We design <strong>cohesive upgrade paths</strong> to enhance synergy, compliance, and ROI.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="fw-bold mb-3">Partnering with Expertise That Understands Your Business</h2>
+    <ul class="fs-6">
+      <li>We understand not just your technology, but also your <strong>industry challenges and goals</strong>.</li>
+      <li>Our consultants are experts in the <strong>Microsoft Dynamics ecosystem</strong> and integrations.</li>
+      <li>With global reach and local insight, NKCL ensures compliance with <strong>regional legislation</strong> and regulatory standards.</li>
+      <li>We provide assurance that your environment is <strong>secure, synchronized, and high-performing</strong>.</li>
+    </ul>
+    <p class="mt-3">
+      With NKCL by your side, you can stay focused on your <strong>core business</strong> while we ensure your technology evolves seamlessly.
+    </p>
+  </div>
+</section>
+
+{% endblock %}

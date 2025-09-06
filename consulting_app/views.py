@@ -281,3 +281,12 @@ def health(request):
 
 def performance(request):
     return render(request,'performance.html')
+
+def release(request):
+    return render(request,'release.html')
+
+def version(request):
+    return render(request,'version.html')
+
+def skill(request):
+    return render(request,'skill.html')
