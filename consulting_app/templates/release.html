@@ -1,0 +1,130 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}Release & Deployment Management{% endblock %}
+
+{% block content %}
+<style>
+.breadcrumb { background: transparent;  gap:2px; font-size:1.2rem; color: #f0f0f0; }
+.breadcrumb a { color: #f0f0f0; text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { color: #ffd369; }
+.breadcrumb .active { color: #ccc; }
+
+
+.hero-banner {
+  position: relative;
+  background: url("{% static 'images/release.png' %}") center center/cover no-repeat;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.55);
+}
+</style>
+
+
+<section class="hero-banner d-flex align-items-end justify-content-start text-white" style="position: relative;height:60vh;"> 
+    <div class="hero-overlay" style="
+        position:absolute; 
+        top:0; 
+        left:0; 
+        right:0; 
+        bottom:0; 
+        background: rgba(0,0,0,0.55);
+        z-index:1;">
+    </div>
+    <div class="container mb-4" style="position: relative; z-index:2;"> 
+        <h1 class="fw-bold ms-3 text-white">Release & Deployment Management</h1> 
+        <ol class="breadcrumb ms-3">
+          <li><a href="{% url 'consulting_app:home_two' %}">Home</a></li>
+          <li><a href="{% url 'consulting_app:release' %}">|Release & Deployment Management</a></li>  
+    </ol>
+    </div> 
+</section>
+
+<!-- Content Section -->
+<section class="py-5">
+  <div class="container">
+    <h1 class="fw-bold">Seamless Deployment of Technology Changes</h1>
+    <p class="fs-5">
+      Adopting new technology often introduces fresh challenges. When rolling out a new solution, organizations must focus on two critical priorities: 
+      <strong>selecting the right functionality</strong> and 
+      <strong>ensuring a smooth, disruption-free deployment</strong>.
+    </p>
+    <p>
+      Release and Deployment Management is the structured process of implementing changes to your solution environment—whether it's a new development, upgrade, bug fix, or configuration adjustment. 
+      To ensure these changes are applied effectively, rigorous review and testing are essential before moving into the production environment.
+    </p>
+    <p>
+      <strong>NKCL brings the expertise</strong> to manage these requirements end-to-end, ensuring your technology transitions are secure, efficient, and aligned with business goals.
+    </p>
+  </div>
+</section>
+
+<!-- Why It Matters -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="fw-bold text-center mb-4">Why Release & Deployment Management Matters</h2>
+    <div class="row g-4 text-center">
+      <div class="col-md-3">
+        <div class="p-4 shadow-sm rounded bg-white h-100">
+          <h3 class="fs-5">✅ Accurate & Reliable Updates</h3>
+          <p class="mb-0">Ensure smooth and error-free installations.</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="p-4 shadow-sm rounded bg-white h-100">
+          <h3 class="fs-5">🔒 Secure Testing</h3>
+          <p class="mb-0">Rigorous protocols safeguard your systems.</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="p-4 shadow-sm rounded bg-white h-100">
+          <h3 class="fs-5">⏱️ Minimized Downtime</h3>
+          <p class="mb-0">Reduce disruption and maintain operations.</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="p-4 shadow-sm rounded bg-white h-100">
+          <h3 class="fs-5">📈 Sustained Performance</h3>
+          <p class="mb-0">Boost productivity and efficiency.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NKCL Advantage -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="fw-bold mb-3">The NKCL Advantage</h2>
+    <p>
+      Our seasoned team offers a full-spectrum service—from planning and documentation to testing and implementation—
+      ensuring every change is executed with precision.
+    </p>
+    <p>
+      We tailor each deployment to your organization’s unique needs, minimizing disruption and prioritizing data security at every step.
+    </p>
+  </div>
+</section>
+
+<!-- Confidence Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="fw-bold mb-3">Confidence and Control Over Your IT Landscape</h2>
+    <p>
+      Effective change management isn’t just about applying updates—it’s about mitigating risk and maintaining control. 
+      With <strong>NKCL</strong> as your partner, you gain oversight across the entire solution stack, leading to better governance, 
+      reduced licensing and maintenance costs, and enhanced protection of your IT investments.
+    </p>
+    <p>
+      Trust our global reach and deep expertise to ensure your systems evolve smoothly and securely—empowering your business to thrive.
+    </p>
+  </div>
+</section>
+
+{% endblock %}
