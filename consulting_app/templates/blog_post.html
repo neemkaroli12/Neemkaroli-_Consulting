@@ -7,7 +7,7 @@
     
     .page-title {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                url("{% static 'images/home-bg-8.jpg' %}");
+                url("{% static 'images/blog1.png' %}");
     color: white;
     display: flex;
     flex-direction: column;
@@ -105,7 +105,6 @@
     }
 </style>
 
-<!-- Hero Section -->
 <section class="page-title">
     <div class="container">
     <h1>{{ post.title }}</h1>
@@ -114,9 +113,9 @@
     </div>
 </section>
 
-<!-- Blog Content -->
+
 <div class="blog-detail-container">
-    <!-- Main Content -->
+    
     <div class="blog-detail">
         {% if post.image %}
             <img src="{{ post.image.url }}" alt="{{ post.title }}">
@@ -126,7 +125,7 @@
         </div>
     </div>
 
-    <!-- Sidebar -->
+    
     <div class="blog-sidebar">
         <div class="recent-posts">
             <h3>Recent Posts</h3>

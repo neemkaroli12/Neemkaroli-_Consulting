@@ -56,7 +56,7 @@ def career(request):
                 email_subject,
                 email_body,
                 settings.DEFAULT_FROM_EMAIL,
-                ['neemkaroligroup@gmail.com'],  # Change to your recipient email
+                ['info@neemkaroliconsulting.com'],  # Change to your recipient email
                 reply_to=[email],
             )
 
@@ -159,7 +159,7 @@ def estimate_view(request):
                 f"SubModules: {estimate.submodules}\n"
                 f"SubSubModules: {estimate.subsubmodules}\n\n"
                 f"Total Estimate: ₹{final_cost}\n\n"
-                f"Best Regards,\nYour Company"
+                f"Best Regards,\nNeemKaroli Consulting LLP"
             )
             send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [estimate.email])
 
@@ -277,8 +277,6 @@ def contact(request):
             messages.success(request, "Thank you for reaching out! We’ll get back to you soon.")
         except:
             messages.error(request, "Something went wrong while sending your message. Please try again.")
-
-        return redirect("contact")  # contact = name of url
 
     return render(request, "contact.html")
 

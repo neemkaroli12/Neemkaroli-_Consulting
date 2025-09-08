@@ -124,7 +124,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATIC_URL = '/static/'
 
-# ये line missing थी 👇
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
@@ -143,7 +143,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"
 
 
-DEFAULT_FROM_EMAIL = 'neemkaroligroup@gmail.com'
+DEFAULT_FROM_EMAIL = 'info@neemkaroliconsulting.com'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
@@ -151,5 +151,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587                      
 EMAIL_USE_TLS = True                  
 
-EMAIL_HOST_USER = 'neemkaroligroup@gmail.com'  
-EMAIL_HOST_PASSWORD = 'hkkf ipgi nsox cdxo'      
+EMAIL_HOST_USER = 'info@neemkaroliconsulting.com'  
+EMAIL_HOST_PASSWORD = 'VHxDKhsRueph'      
