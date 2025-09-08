@@ -124,7 +124,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATIC_URL = '/static/'
 
-# ये line missing थी 👇
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
