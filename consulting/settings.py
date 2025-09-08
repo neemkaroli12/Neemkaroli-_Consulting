@@ -159,4 +159,8 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'info@neemkaroliconsulting.com'
 EMAIL_HOST_PASSWORD = '8K8QeWx4U1jb'
+<<<<<<< HEAD
 
+=======
+EMAIL_USE_LOCALTIME = True
+>>>>>>> 7c7c0ccda2c04edc62dd60d9712ed4e900886514
