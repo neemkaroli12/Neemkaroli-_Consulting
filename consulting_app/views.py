@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
+from django.contrib import messages
 from .forms import EstimateForm
 from .models import BlogPost,Estimate, Branch,Product,Module,SubModule,SubSubModule
 from django.core.mail import EmailMessage, send_mail
@@ -259,7 +260,25 @@ def odoo_consulting(request):
     return render(request,'odoo_consulting.html')
 
 def contact(request):
-    return render(request,'contact.html')
+    if request.method == "POST":
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        message = request.POST.get("message")
+
+        # Optional: Send Email
+        try:
+            send_mail(
+                subject=f"New Contact Message from {name}",
+                message=f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}",
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=["neemkaroligroup@gmail.com"],  # Change with your email
+                fail_silently=False,
+            )
+            messages.success(request, "Thank you for reaching out! We’ll get back to you soon.")
+        except:
+            messages.error(request, "Something went wrong while sending your message. Please try again.") # contact = name of url
+
+    return render(request, "home.html")
 
 def ai(request):
     return render(request,'AI.html')
