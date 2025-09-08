@@ -271,14 +271,16 @@ def contact(request):
                 subject=f"New Contact Message from {name}",
                 message=f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}",
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=["neemkaroligroup@gmail.com"],  # Change with your email
+                recipient_list=["info@neemkaroliconsulting.com"],  # Change with your email
                 fail_silently=False,
             )
             messages.success(request, "Thank you for reaching out! We’ll get back to you soon.")
         except:
-            messages.error(request, "Something went wrong while sending your message. Please try again.") # contact = name of url
+            messages.error(request, "Something went wrong while sending your message. Please try again.")
 
-    return render(request, "home.html")
+        return redirect("contact")  # contact = name of url
+
+    return render(request, "contact.html")
 
 def ai(request):
     return render(request,'AI.html')
