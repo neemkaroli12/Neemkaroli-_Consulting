@@ -143,13 +143,19 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"
 
 
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# EMAIL_HOST = 'smtp.zoho.in'        
+# EMAIL_PORT = 587                      
+# EMAIL_USE_TLS = True                  
+
+# EMAIL_HOST_USER = 'info@neemkaroliconsulting.com'  
+# EMAIL_HOST_PASSWORD = 'VHxDKhsRueph'      
 DEFAULT_FROM_EMAIL = 'info@neemkaroliconsulting.com'
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-EMAIL_HOST = 'smtp.gmail.com'        
-EMAIL_PORT = 587                      
-EMAIL_USE_TLS = True                  
-
-EMAIL_HOST_USER = 'info@neemkaroliconsulting.com'  
-EMAIL_HOST_PASSWORD = 'VHxDKhsRueph'      
+EMAIL_HOST = 'smtp.zoho.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'info@neemkaroliconsulting.com'
+EMAIL_HOST_PASSWORD = '8K8QeWx4U1jb'
