@@ -56,7 +56,7 @@ def career(request):
                 email_subject,
                 email_body,
                 settings.DEFAULT_FROM_EMAIL,
-                ['info@neemkaroliconsulting.com'],  # Change to your recipient email
+                ['neemkaroligroup@gmail.com'],  # Change to your recipient email
                 reply_to=[email],
             )
 
@@ -175,7 +175,25 @@ def estimate_view(request):
 
     return render(request, 'estimate_form.html', {"form": form})
 
-    
+import threading
+from django.core.mail import send_mail
+from django.conf import settings
+
+def send_estimate_email_async(subject, message, recipient):
+    def _send():
+        try:
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                [recipient],
+                fail_silently=False,
+            )
+        except Exception as e:
+            print("❌ Mail send error:", e)
+    threading.Thread(target=_send).start()
+
+
 @csrf_exempt
 def calculate_estimate(request):
     if request.method == "POST":
@@ -184,7 +202,6 @@ def calculate_estimate(request):
         total_functional_days = 0
         total_technical_days = 0
 
-        # Modules ke functional + technical days add karna
         for mid in modules:
             try:
                 module = Module.objects.get(id=mid)
@@ -197,6 +214,26 @@ def calculate_estimate(request):
         technical_cost = total_technical_days * 800
         final_cost = functional_cost + technical_cost
 
+        # 🔹 Confirmation Email (background thread)
+        user_name = request.POST.get("name")
+        user_email = request.POST.get("email")
+        company_name = request.POST.get("company_name")
+        product = request.POST.get("product")
+
+        if user_email:
+            subject = "Estimate Submission Confirmation"
+            message = (
+                f"Hello {user_name},\n\n"
+                f"Thank you for submitting your estimate request.\n\n"
+                f"Company: {company_name}\n"
+                f"Product: {product}\n"
+                f"Modules: {', '.join(modules)}\n\n"
+                f"Total Estimate: ₹{final_cost}\n\n"
+                f"Best Regards,\nNeemKaroli Consulting LLP"
+            )
+            send_estimate_email_async(subject, message, user_email)
+
+        # 🔹 Response turant return hoga
         return JsonResponse({
             "success": True,
             "functional_days": total_functional_days,
@@ -207,6 +244,7 @@ def calculate_estimate(request):
         })
 
     return JsonResponse({"success": False, "message": "Invalid request"})
+
 
 def get_modules(request):
     product_id = request.GET.get('product_id')
@@ -278,7 +316,7 @@ def contact(request):
         except:
             messages.error(request, "Something went wrong while sending your message. Please try again.") # contact = name of url
 
-    return render(request, "contact.html")
+    return render(request, "home.html")
 
 def ai(request):
     return render(request,'AI.html')
