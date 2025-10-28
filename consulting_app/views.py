@@ -324,7 +324,7 @@ def contact(request):
         except:
             messages.error(request, "Something went wrong while sending your message. Please try again.")
 
-    return render(request, "home.html")
+    return render(request, "contact.html")
 
 def ai(request):
     return render(request,'AI.html')
