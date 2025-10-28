@@ -160,3 +160,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'info@neemkaroliconsulting.com'
 EMAIL_HOST_PASSWORD = '8K8QeWx4U1jb'
 EMAIL_USE_LOCALTIME = True
+

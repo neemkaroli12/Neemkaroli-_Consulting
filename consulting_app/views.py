@@ -149,19 +149,27 @@ def estimate_view(request):
                     Branch.objects.create(estimate=estimate, location=loc)
 
             # Confirmation Email
-            subject = "Estimate Submission Confirmation"
-            message = (
-                f"Hello {estimate.name},\n\n"
-                f"Thank you for submitting your estimate request.\n\n"
-                f"Company: {estimate.company_name}\n"
-                f"Product: {estimate.product}\n"
-                f"Modules: {estimate.module}\n"
-                f"SubModules: {estimate.submodules}\n"
-                f"SubSubModules: {estimate.subsubmodules}\n\n"
-                f"Total Estimate: ₹{final_cost}\n\n"
-                f"Best Regards,\nNeemKaroli Consulting LLP"
-            )
-            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [estimate.email])
+           # estimate_view ke andar
+                subject = "Estimate Submission Confirmation"
+                message = (
+                    f"Hello {estimate.name},\n\n"
+                    f"Thank you for submitting your estimate request.\n\n"
+                    f"Company: {estimate.company_name}\n"
+                    f"Product: {estimate.product}\n"
+                    f"Modules: {estimate.module}\n"
+                    f"SubModules: {estimate.submodules}\n"
+                    f"SubSubModules: {estimate.subsubmodules}\n\n"
+                    f"Total Estimate: ₹{final_cost}\n\n"
+                    f"Best Regards,\nNeemKaroli Consulting LLP"
+                )
+
+                send_mail(
+                    subject,
+                    message,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [estimate.email]   # yahan user ka email ja raha hai
+                )
+
 
             # 🔹 Ajax response
             if request.headers.get("x-requested-with") == "XMLHttpRequest":
@@ -314,7 +322,7 @@ def contact(request):
             )
             messages.success(request, "Thank you for reaching out! We’ll get back to you soon.")
         except:
-            messages.error(request, "Something went wrong while sending your message. Please try again.") # contact = name of url
+            messages.error(request, "Something went wrong while sending your message. Please try again.")
 
     return render(request, "home.html")
 
